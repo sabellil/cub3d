@@ -6,7 +6,7 @@
 #    By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 15:01:27 by sabellil          #+#    #+#              #
-#    Updated: 2025/05/26 15:32:11 by mairivie         ###   ########.fr        #
+#    Updated: 2025/05/26 15:43:53 by mairivie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,13 +28,19 @@ OBJ = $(addprefix $(OBJ_DIR), $(OBJ_LIST))
 LIBFT_DIR = libft/
 LIBFT = $(LIBFT_DIR)libft.a
 
-all: $(LIBFT) $(NAME)
+MLX_DIR = minilibx-linux/
+MLX = $(MLX_DIR)libmlx_Linux.a
+
+all: $(MLX) $(LIBFT) $(NAME)
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
+	
+$(MLX):
+	$(MAKE) -C $(MLX_DIR)
 
-$(NAME): $(OBJ) $(LIBFT)
-	$(COMPIL) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) -lm
+$(NAME): $(OBJ) $(LIBFT) $(MLX)
+	$(COMPIL) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) -o $(NAME) -lm
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(@D)
@@ -46,7 +52,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) fclean -C $(LIBFT_DIR) 
+	$(MAKE) fclean -C $(LIBFT_DIR)
 	
 re: fclean all
 
