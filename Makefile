@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+         #
+#    By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 15:01:27 by sabellil          #+#    #+#              #
-#    Updated: 2025/05/26 15:43:53 by mairivie         ###   ########.fr        #
+#    Updated: 2025/05/28 16:24:07 by sabellil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ COMPIL = cc
 CFLAGS = -Wall -Wextra -Werror -g -I include
 
 SRC_DIR = src/
-SRC_LIST = main.c
+SRC_LIST = main.c errors.c
 
 SRC = $(addprefix $(SRC_DIR), $(SRC_LIST))
 
