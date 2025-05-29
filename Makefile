@@ -6,7 +6,7 @@
 #    By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 15:01:27 by sabellil          #+#    #+#              #
-#    Updated: 2025/05/28 16:24:07 by sabellil         ###   ########.fr        #
+#    Updated: 2025/05/29 12:44:43 by sabellil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ COMPIL = cc
 CFLAGS = -Wall -Wextra -Werror -g -I include
 
 SRC_DIR = src/
-SRC_LIST = main.c errors.c
+SRC_LIST = main.c errors.c init_and_parse.c free.c init_parsing_utils.c
 
 SRC = $(addprefix $(SRC_DIR), $(SRC_LIST))
 

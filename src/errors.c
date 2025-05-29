@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 16:19:42 by sabellil          #+#    #+#             */
-/*   Updated: 2025/05/28 17:26:37 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:43:39 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ int ft_handle_error(int code)
         ft_putstr_fd("Error\nFailed to initialize graphics infrastructure.\n", 2);
     else
         ft_putstr_fd("Error\nUnknown error.\n", 2);
-    return (1);
+    return (FAILURE);
 }

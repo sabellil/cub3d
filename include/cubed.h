@@ -6,9 +6,12 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/05/28 16:18:38 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:39:11 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef CUBED_H
+# define CUBED_H
 
 # include <math.h>
 # include <unistd.h> // write close read
@@ -26,9 +29,10 @@
 # define HEIGHT 720
 
 # define SUCCESS          0
-# define ERR_ARG_COUNT    1
-# define ERR_PARSE_FAIL   2
-# define ERR_INFRA_FAIL   3
+# define FAILURE          1
+# define ERR_ARG_COUNT    11
+# define ERR_PARSE_FAIL   12
+# define ERR_INFRA_FAIL   13
 
 typedef struct s_img
 {
@@ -76,3 +80,5 @@ typedef struct s_data
 	t_game	game_game;
 	t_infra	infra;
 }
+
+#endif

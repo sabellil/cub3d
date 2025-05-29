@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:10:09 by sabellil          #+#    #+#             */
-/*   Updated: 2025/05/28 17:29:51 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:42:10 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ int	ft_check_file_extension(const char *filename, const char *extension)
 	int	start;
 
 	if (!filename || !extension)
-		return (0);
+		return (FAILURE);
 	len_file = ft_strlen(filename);
 	len_extension = ft_strlen(extension);
 	if (len_file <= len_extension)
-		return (0);
+		return (FAILURE);
 	start = len_file - len_extension;
-	if (ft_strncmp(filename + start, extension, len_extension) == 0)
-		return (1);
-	return (0);
+	if (ft_strncmp(filename + start, extension, len_extension) == SUCCESS)
+		return (SUCCESS);
+	return (FAILURE);
 }
 
 int	ft_init_and_parse(t_game_data *game, char *filename)
