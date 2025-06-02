@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:16:22 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/02 13:22:55 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/02 13:53:48 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	free_file_lines_partial(char **lines, int count)
 	}
 	free(lines);
 }
+
+
 
 void	free_file_lines(char **file_lines)
 {
