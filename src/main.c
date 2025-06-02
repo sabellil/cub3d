@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 15:24:08 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/02 12:27:48 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/02 13:54:39 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int	main(int argc, char **argv)
 	if (infra != SUCCESS)
 		return (ft_handle_error(ERR_INFRA_FAIL));
 	ft_setup_hooks(&data);
-	mlx_loop_hook(data.infra.mlx, ft_render_next_frame, &data);
-	mlx_loop(data.infra.mlx);
+	// mlx_loop_hook(data.infra.mlx, ft_render_next_frame, &data);
+	// mlx_loop(data.infra.mlx);
 	ft_clean_exit(&data, SUCCESS);
 	return (0);
 }

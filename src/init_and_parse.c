@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:10:09 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/02 13:46:48 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:12:22 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,12 @@ int	ft_check_file_extension(const char *filename, const char *extension)
 	return (SUCCESS);
 }
 
-char	**ft_read_cub_file(const char *filename)
+char	**read_lines_from_file(int fd)
 {
-	int		fd;
-	char	*line;
 	char	**lines;
+	char	*line;
 	int		i;
-	
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		return (NULL);
+
 	lines = malloc(sizeof(char *) * (MAX_LINES + 1));
 	if (!lines)
 		return (NULL);
@@ -55,16 +51,27 @@ char	**ft_read_cub_file(const char *filename)
 		if (!lines[i])
 		{
 			free_file_lines_partial(lines, i);
-			close(fd);
 			return (NULL);
 		}
 		i++;
 	}
 	lines[i] = NULL;
+	return (lines);
+}
+char	**ft_read_cub_file(const char *filename)
+{
+	int		fd;
+	char	**lines;
+
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		return (NULL);
+	lines = read_lines_from_file(fd);
 	close(fd);
 	printf("ft_read_cub_file va retourner lines\n");
 	return (lines);
 }
+
 
 
 int	parse_textures_and_colors(char **file_lines, t_game_data *game)
@@ -88,9 +95,10 @@ int	ft_init_and_parse(t_game_data *game, char *filename)
 	if (ft_check_file_extension(filename, ".cub") != SUCCESS)// verifier extension .cub
 		return (ERR_PARSE_FAIL);
 	printf("ft_check_file_extension OK\n");
-	file_lines = ft_read_cub_file(filename);//TODO ouvrir et lire .cub dans double tableau
+	file_lines = ft_read_cub_file(filename);
 	if (!file_lines)
 		return (ERR_PARSE_FAIL);
+	// print_file_lines(file_lines);//TODO : pour verifier que le tableau est bien rempli
 	printf("ft_read_cub_file OK\n");
 	if (parse_textures_and_colors(file_lines, game) != SUCCESS)// TODO extraire textures et couleurs (NO, SO, WE, EA, F, C)
 	{

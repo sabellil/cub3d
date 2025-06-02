@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/02 13:22:41 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/02 15:58:48 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ int				ft_check_file_extension(const char *filename,
 					const char *extension);
 int				has_single_dot(const char *filename, int len_file);
 void			free_file_lines_partial(char **lines, int count);
+// void			print_file_lines(char **lines);
+char			**read_lines_from_file(int fd);
 int				ft_init_and_parse(t_game_data *game, char *filename);
 char			**ft_read_cub_file(const char *filename);
 int				parse_textures_and_colors(char **file_lines, t_game_data *game);
