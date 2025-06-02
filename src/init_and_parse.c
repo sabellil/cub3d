@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:10:09 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/02 13:29:35 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/02 13:46:48 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,3 +107,4 @@ int	ft_init_and_parse(t_game_data *game, char *filename)
 	free_file_lines(file_lines); // plus besoin de file_lines apres parsing
 	return (SUCCESS);
 }
+//starting point, direction du regrd, dessin des mur sur la carte.  
