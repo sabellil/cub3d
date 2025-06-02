@@ -6,7 +6,7 @@
 #    By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 15:01:27 by sabellil          #+#    #+#              #
-#    Updated: 2025/06/02 12:26:45 by sabellil         ###   ########.fr        #
+#    Updated: 2025/06/02 13:12:16 by sabellil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ val:
 		--gen-suppressions=all \
 		--read-var-info=yes \
 		--log-file=valgrind_report.log \
-		./cub3d
+		./cub3d 
 
  valclean:
 	rm -f valgrind_report.log

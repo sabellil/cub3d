@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:26:02 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/02 12:50:17 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/02 13:21:58 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,3 +29,4 @@ int	has_single_dot(const char *filename, int len_file)
 		return (0);
 	return (1);
 }
+

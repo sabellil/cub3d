@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/02 12:50:37 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/02 13:22:41 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 # define WIDTH 1280
 # define HEIGHT 720
+# define MAX_LINES 1024
 
 # define SUCCESS 0
 # define FAILURE 1
@@ -86,16 +87,15 @@ int				ft_init_and_parse(t_game_data *game, char *filename);
 int				ft_check_file_extension(const char *filename,
 					const char *extension);
 int				has_single_dot(const char *filename, int len_file);
-int				ft_check_file_extension(const char *filename,
-					const char *extension);
+void			free_file_lines_partial(char **lines, int count);
 int				ft_init_and_parse(t_game_data *game, char *filename);
 char			**ft_read_cub_file(const char *filename);
 int				parse_textures_and_colors(char **file_lines, t_game_data *game);
 int				parse_map_and_player(char **file_lines, t_game_data *game);
-void			free_file_lines(char **file_lines);
 
-//ERROR MANAGEMENT
+//ERROR AND FREE MANAGEMENT
 int				ft_handle_error(int code);
+void			free_file_lines(char **file_lines);
 
 //THE BIG BIG LOOP
 int				ft_render_next_frame(void *param);

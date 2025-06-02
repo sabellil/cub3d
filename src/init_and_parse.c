@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:10:09 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/02 12:52:13 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/02 13:29:35 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,44 @@ int	ft_check_file_extension(const char *filename, const char *extension)
 
 char	**ft_read_cub_file(const char *filename)
 {
-	(void)filename;
-	return (NULL);
+	int		fd;
+	char	*line;
+	char	**lines;
+	int		i;
+	
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		return (NULL);
+	lines = malloc(sizeof(char *) * (MAX_LINES + 1));
+	if (!lines)
+		return (NULL);
+	i = 0;
+	while (i < MAX_LINES)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break;
+		lines[i] = line;
+		if (!lines[i])
+		{
+			free_file_lines_partial(lines, i);
+			close(fd);
+			return (NULL);
+		}
+		i++;
+	}
+	lines[i] = NULL;
+	close(fd);
+	printf("ft_read_cub_file va retourner lines\n");
+	return (lines);
 }
+
 
 int	parse_textures_and_colors(char **file_lines, t_game_data *game)
 {
 	(void)file_lines;
 	(void)game;
 	return (SUCCESS);
-}
-void	free_file_lines(char **file_lines)
-{
-	(void)file_lines;
 }
 
 int	parse_map_and_player(char **file_lines, t_game_data *game)
