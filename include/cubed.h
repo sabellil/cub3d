@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/02 15:58:48 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:25:15 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 # define WIDTH 1280
 # define HEIGHT 720
-# define MAX_LINES 1024
+# define MAX_LINES 1024 // nb max de lignes supportees 
 
 # define SUCCESS 0
 # define FAILURE 1

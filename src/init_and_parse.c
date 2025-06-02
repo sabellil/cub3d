@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:10:09 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/02 16:12:22 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:21:24 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ char	**read_lines_from_file(int fd)
 	lines[i] = NULL;
 	return (lines);
 }
+
 char	**ft_read_cub_file(const char *filename)
 {
 	int		fd;
@@ -71,8 +72,6 @@ char	**ft_read_cub_file(const char *filename)
 	printf("ft_read_cub_file va retourner lines\n");
 	return (lines);
 }
-
-
 
 int	parse_textures_and_colors(char **file_lines, t_game_data *game)
 {
@@ -102,7 +101,7 @@ int	ft_init_and_parse(t_game_data *game, char *filename)
 	printf("ft_read_cub_file OK\n");
 	if (parse_textures_and_colors(file_lines, game) != SUCCESS)// TODO extraire textures et couleurs (NO, SO, WE, EA, F, C)
 	{
-		free_file_lines(file_lines); // TODO
+		free_file_lines(file_lines);
 		return (ERR_PARSE_FAIL);
 	}
 	printf("parse_textures_and_colors OK\n");
