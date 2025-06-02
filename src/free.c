@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:16:22 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/02 13:22:55 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:07:05 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cubed.h"
+#include "../include/cubed.h"
 
 void	free_file_lines_partial(char **lines, int count)
 {

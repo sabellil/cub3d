@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/02 13:22:41 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:07:04 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,13 @@
 # include <sys/stat.h> // open
 # include <sys/time.h> // gettimeofday
 # include <unistd.h>   // write close read
+# include <X11/X.h>		// define minilibX
+# include <X11/keysym.h>  // define Key_events minilibX
 
 # define WIDTH 1280
 # define HEIGHT 720
 # define MAX_LINES 1024
+# define NAME "(=*.*=) cub3d_cat (=*.*=)"
 
 # define SUCCESS 0
 # define FAILURE 1
@@ -36,9 +39,18 @@
 
 typedef struct s_img
 {
+	void	*new_img;
+	char	*pix_grid;
+	int		grid_len;
+	int		bit_per_pix;
+	int		endien;
+}	t_img;
+
+typedef struct s_asset
+{
 	int			width;
 	int			height;
-}				t_img;
+}				t_asset;
 
 typedef struct s_game_data
 {
@@ -52,20 +64,21 @@ typedef struct s_game_data
 	char		*path_we;
 	char		*path_ea;
 	// Textures POUR LAFFICHAGE GRAPHIQUE DIRECT, chaque tex_ vient avec sa boite outils t_img
-	t_img tex_no;
+	t_asset tex_no;
 		//image chargee depuis path_no (grace a mlx_xmp_file_to_image et get_data_addr)
-	t_img		tex_so;
-	t_img		tex_we;
-	t_img		tex_ea;
+	t_asset		tex_so;
+	t_asset		tex_we;
+	t_asset		tex_ea;
 	// Couleurs sol/plafond
 	int			floor_color;
 	int			ceiling_color;
 	// Joueur
-	double pos_x; //la position du joueur
+	double 		pos_x; //la position du joueur
 	double		pos_y;
-	double dir_x; //le regard du joueur
+	double 		dir_x; //le regard du joueur
 	double		dir_y;
 	//Manquera le field of view (x et y aussi?)
+	//Pour moi le field of view est un angle
 }				t_game_data;
 
 typedef struct s_infra
@@ -100,8 +113,12 @@ void			free_file_lines(char **file_lines);
 //THE BIG BIG LOOP
 int				ft_render_next_frame(void *param);
 
+//INFRA
+int		close_window(t_infra *infra);
+int		handle_keypress(int keycode, t_infra *infra);
+int		ft_init_infra(t_infra *infra);
+
 //OTHER FUNCTIONS JUST SO I CAN COMPILE
-int				ft_init_infra(t_infra *infra, t_game_data *game);
 void			ft_setup_hooks(t_data *data);
 void			ft_clean_exit(t_data *data, int exit_code);
 int				ft_render_next_frame(void *param);

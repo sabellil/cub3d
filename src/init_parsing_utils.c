@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_parsing_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:26:02 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/02 13:21:58 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:07:05 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cubed.h"
+#include "../include/cubed.h"
 
 int	has_single_dot(const char *filename, int len_file)
 {
