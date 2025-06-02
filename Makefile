@@ -6,7 +6,7 @@
 #    By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 15:01:27 by sabellil          #+#    #+#              #
-#    Updated: 2025/05/29 12:44:43 by sabellil         ###   ########.fr        #
+#    Updated: 2025/06/02 12:26:45 by sabellil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ $(MLX):
 	$(MAKE) -C $(MLX_DIR)
 
 $(NAME): $(OBJ) $(LIBFT) $(MLX)
-	$(COMPIL) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) -o $(NAME) -lm
+	$(COMPIL) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) -lXext -lX11 -lm -o $(NAME)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(@D)
