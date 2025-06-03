@@ -12,10 +12,6 @@
 
 #include "../include/cubed.h"
 
-void	ft_setup_hooks(t_data *data)
-{
-	(void)data;
-}
 void	ft_clean_exit(t_data *data, int exit_code)
 {
 	(void)data;
@@ -36,15 +32,16 @@ int	ft_render_next_frame(void *param)
 int	main(int argc, char **argv)
 {
 	t_data	data;
-    int res_game;
+    //int res_game;
     int res_infra;
     
-	if (argc != 2)
+	argc++;
+	argv++;
+	/*if (argc != 2)
 		return (ft_handle_error(ERR_ARG_COUNT));
-	ft_bzero(&data, sizeof(t_data));
 	res_game = ft_init_and_parse(&data.game, argv[1]);
 	if (res_game != SUCCESS)
-		return (ft_handle_error(ERR_PARSE_FAIL));
+		return (ft_handle_error(ERR_PARSE_FAIL));*/
 	res_infra = ft_init_infra(&data.infra);
 	if (res_infra != SUCCESS)
 		return (ft_handle_error(ERR_INFRA_FAIL));

@@ -16,8 +16,8 @@ COMPIL = cc
 CFLAGS = -Wall -Wextra -Werror -g -I include
 
 SRC_DIR = src/
-SRC_LIST = main.c errors.c init_and_parse.c free.c init_parsing_utils.c infra.c
-
+SRC_LIST = main.c errors.c init_and_parse.c free.c init_parsing_utils.c infra.c \
+		handle-events.c
 SRC = $(addprefix $(SRC_DIR), $(SRC_LIST))
 
 OBJ_DIR = obj/

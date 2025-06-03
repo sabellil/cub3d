@@ -16,7 +16,7 @@ void	ft_setup_hooks(t_data *data)
 {
     t_infra *infra;
 
-    infra = data->infra;
+    infra = &data->infra;
     mlx_hook(infra->win, DestroyNotify, StructureNotifyMask, 
         close_window, &infra);
     mlx_key_hook(infra->win, handle_keypress, &infra);
@@ -42,7 +42,6 @@ int	close_window(t_infra *infra)
 	free(infra->img_nxt);
 	infra->win = NULL;
 	infra->mlx = NULL;
-    free(infra->data);
 	exit(SUCCESS);
 }
 
