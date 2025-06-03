@@ -85,8 +85,8 @@ typedef struct s_infra
 {
 	void		*mlx;
 	void		*win;
-	t_img		img_now;
-	t_img		img_nxt;
+	t_img		*img_now;
+	t_img		*img_nxt;
 }				t_infra;
 
 typedef struct s_data

@@ -41,6 +41,7 @@ int	main(int argc, char **argv)
     
 	if (argc != 2)
 		return (ft_handle_error(ERR_ARG_COUNT));
+	ft_bzero(&data, sizeof(t_data));
 	res_game = ft_init_and_parse(&data.game, argv[1]);
 	if (res_game != SUCCESS)
 		return (ft_handle_error(ERR_PARSE_FAIL));
