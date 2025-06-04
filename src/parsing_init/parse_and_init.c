@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_and_parsing.c                                 :+:      :+:    :+:   */
+/*   parse_and_init.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:10:09 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/04 18:26:02 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/04 18:40:52 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,16 @@ char	**ft_read_cub_file(const char *filename)
 	close(fd);
 	return (lines);
 }
+int	ft_is_empty_line(char *lines)
+{
+	(void)lines;
+	return (SUCCESS);
+}
+int	ft_is_map_line(char *lines)
+{
+	(void)lines;
+	return (SUCCESS);
+}
 
 // Lire lignes avant MAP et extraire couleurs et textures
 int	parse_textures_and_colors(char **lines, t_game_data *game)
@@ -72,6 +82,7 @@ int	parse_textures_and_colors(char **lines, t_game_data *game)
 		return (FAILURE);
 	return (SUCCESS);
 }
+
 
 int	parse_map_and_player(char **file_lines, t_game_data *game)
 {

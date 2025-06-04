@@ -6,7 +6,7 @@
 #    By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 15:01:27 by sabellil          #+#    #+#              #
-#    Updated: 2025/06/04 18:30:18 by sabellil         ###   ########.fr        #
+#    Updated: 2025/06/04 18:43:30 by sabellil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,10 @@ SRC_DIR = src/
 SRC_LIST = main.c \
 			errors.c \
 			free.c \
-			/parse_and_init/init_and_parsing.c \
-			/parse_and_init/init_parsing_utils.c \
-			/parse_and_init/parsing_colors.c \
-			/parse_and_init/parsing_texture.C \
+			parsing_init/parse_and_init.c \
+			parsing_init/init_parsing_utils.c \
+			parsing_init/parsing_colors.c \
+			parsing_init/parsing_texture.c
 
 SRC = $(addprefix $(SRC_DIR), $(SRC_LIST))
 
