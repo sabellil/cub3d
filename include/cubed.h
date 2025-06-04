@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/02 16:25:15 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/04 18:18:19 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 # define WIDTH 1280
 # define HEIGHT 720
-# define MAX_LINES 1024 // nb max de lignes supportees 
+# define MAX_LINES 1024
 
 # define SUCCESS 0
 # define FAILURE 1
@@ -42,30 +42,23 @@ typedef struct s_img
 
 typedef struct s_game_data
 {
-	// Map
 	char		**map;
 	int			map_width;
 	int			map_height;
-	// Textures POUR PARSING
-	char *path_no; // stocker chaine char * vers chemin fichier texture nord etc
+	char *path_no;
 	char		*path_so;
 	char		*path_we;
 	char		*path_ea;
-	// Textures POUR LAFFICHAGE GRAPHIQUE DIRECT, chaque tex_ vient avec sa boite outils t_img
-	t_img tex_no;
-		//image chargee depuis path_no (grace a mlx_xmp_file_to_image et get_data_addr)
+	t_img		tex_no;
 	t_img		tex_so;
 	t_img		tex_we;
 	t_img		tex_ea;
-	// Couleurs sol/plafond
 	int			floor_color;
 	int			ceiling_color;
-	// Joueur
-	double pos_x; //la position du joueur
+	double pos_x;
 	double		pos_y;
-	double dir_x; //le regard du joueur
+	double dir_x;
 	double		dir_y;
-	//Manquera le field of view (x et y aussi?)
 }				t_game_data;
 
 typedef struct s_infra
@@ -86,15 +79,20 @@ typedef struct s_data
 int				ft_init_and_parse(t_game_data *game, char *filename);
 int				ft_check_file_extension(const char *filename,
 					const char *extension);
-int				has_single_dot(const char *filename, int len_file);
-void			free_file_lines_partial(char **lines, int count);
-// void			print_file_lines(char **lines);
-char			**read_lines_from_file(int fd);
-int				ft_init_and_parse(t_game_data *game, char *filename);
 char			**ft_read_cub_file(const char *filename);
+char			**read_lines_from_file(int fd);
 int				parse_textures_and_colors(char **file_lines, t_game_data *game);
+//ft is empty line et ft is map line
+int				ft_parse_texture_line(char *line, t_game_data *game);
+int				ft_parse_color_line(char *line, t_game_data *game);
 int				parse_map_and_player(char **file_lines, t_game_data *game);
 
+//INITALIZATION AND PARSING - UTILS
+void			free_file_lines_partial(char **lines, int count);
+int				has_single_dot(const char *filename, int len_file);
+int				ft_starts_with(const char *str, const char *prefix);
+void			print_file_lines(char **lines);
+char			**read_lines_from_file(int fd);
 //ERROR AND FREE MANAGEMENT
 int				ft_handle_error(int code);
 void			free_file_lines(char **file_lines);

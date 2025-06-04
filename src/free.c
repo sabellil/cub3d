@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:16:22 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/02 16:14:01 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/04 18:12:48 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	free_file_lines(char **file_lines)
 	int	i;
 
 	if (!file_lines)
-		return;
+		return ;
 	i = 0;
 	while (file_lines[i])
 	{

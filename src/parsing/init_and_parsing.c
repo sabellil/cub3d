@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_and_parse.c                                   :+:      :+:    :+:   */
+/*   init_and_parsing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:10:09 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/04 17:54:21 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/04 18:21:42 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,33 +32,6 @@ int	ft_check_file_extension(const char *filename, const char *extension)
 	return (SUCCESS);
 }
 
-char	**read_lines_from_file(int fd)
-{
-	char	**lines;
-	char	*line;
-	int		i;
-
-	lines = malloc(sizeof(char *) * (MAX_LINES + 1));
-	if (!lines)
-		return (NULL);
-	i = 0;
-	while (i < MAX_LINES)
-	{
-		line = get_next_line(fd);
-		if (!line)
-			break;
-		lines[i] = line;
-		if (!lines[i])
-		{
-			free_file_lines_partial(lines, i);
-			return (NULL);
-		}
-		i++;
-	}
-	lines[i] = NULL;
-	return (lines);
-}
-
 char	**ft_read_cub_file(const char *filename)
 {
 	int		fd;
@@ -69,45 +42,20 @@ char	**ft_read_cub_file(const char *filename)
 		return (NULL);
 	lines = read_lines_from_file(fd);
 	close(fd);
-	printf("ft_read_cub_file va retourner lines\n");
 	return (lines);
 }
+// Lire lignes avant MAP et extraire couleurs et textures
 
-int	parse_map_and_player(char **file_lines, t_game_data *game)
+int	parse_textures_and_colors(char **lines, t_game_data *game)
 {
-	(void)file_lines;
-	(void)game;
-	return (SUCCESS);
-}
-
-void	print_file_lines(char **lines)//TODO A supprimer a la fin, pour afficher le contenu de file_lines
-{
-	int	i;
-
-	if (!lines)
-	{
-		printf("file_lines est NULL\n");
-		return;
-	}
-	i = 0;
-	while (lines[i])
-	{
-		printf("Ligne %d : %s", i, lines[i]);
-		i++;
-	}
-}
-
-
-int	parse_textures_and_colors(char **lines, t_game_data *game) // Lire lignes avant MAP et extraire couleurs et textures
-{
-	int	i;
-	int	found;
+	int i;
+	int found;
 
 	i = 0;
 	found = 0;
 	while (lines[i])
 	{
-		if (ft_is_empty_line(lines[i]) || ft_is_map_line(lines[i]))//TODO 
+		if (ft_is_empty_line(lines[i]) || ft_is_map_line(lines[i])) //TODO
 		{
 			i++;
 			continue ;
@@ -125,9 +73,16 @@ int	parse_textures_and_colors(char **lines, t_game_data *game) // Lire lignes av
 	return (SUCCESS);
 }
 
+int	parse_map_and_player(char **file_lines, t_game_data *game)
+{
+	(void)file_lines;
+	(void)game;
+	return (SUCCESS);
+}
+
 int	ft_init_and_parse(t_game_data *game, char *filename)
 {
-	char **file_lines;
+	char	**file_lines;
 
 	if (ft_check_file_extension(filename, ".cub") != SUCCESS)// verifier extension .cub
 		return (ERR_PARSE_FAIL);
@@ -135,9 +90,9 @@ int	ft_init_and_parse(t_game_data *game, char *filename)
 	file_lines = ft_read_cub_file(filename);
 	if (!file_lines)
 		return (ERR_PARSE_FAIL);
-	print_file_lines(file_lines);//TODO : pour verifier que le tableau est bien rempli
+	print_file_lines(file_lines); //pour verifier que le tableau est bien rempli
 	printf("ft_read_cub_file OK\n");
-	if (parse_textures_and_colors(file_lines, game) != SUCCESS)// TODO extraire textures et couleurs (NO, SO, WE, EA, F, C)
+	if (parse_textures_and_colors(file_lines, game) != SUCCESS)// TODO EN COURS extraire textures et couleurs (NO, SO, WE, EA, F, C)
 	{
 		free_file_lines(file_lines);
 		return (ERR_PARSE_FAIL);
@@ -149,7 +104,7 @@ int	ft_init_and_parse(t_game_data *game, char *filename)
 		return (ERR_PARSE_FAIL);
 	}
 	printf("parse_map_and_player OK\n");
-	free_file_lines(file_lines); // plus besoin de file_lines apres parsing
+	free_file_lines(file_lines);
 	return (SUCCESS);
 }
-//starting point, direction du regrd, dessin des mur sur la carte.  
+//starting point, direction du regrd, dessin des murs sur la carte.

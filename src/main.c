@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 15:24:08 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/02 16:29:01 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/04 18:19:17 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	ft_setup_hooks(t_data *data)
 {
 	(void)data;
 }
+
 void	ft_clean_exit(t_data *data, int exit_code)
 {
 	(void)data;
@@ -27,18 +28,20 @@ int	ft_render_next_frame(void *param)
 	(void)param;
 	return (0);
 }
+
 int	ft_init_infra(t_infra *infra, t_game_data *game)
 {
 	(void)infra;
 	(void)game;
 	return (SUCCESS);
 }
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
-    int res_game;
-    int res_infra;
-    
+	int		res_game;
+	int		res_infra;
+
 	if (argc != 2)
 		return (ft_handle_error(ERR_ARG_COUNT));
 	res_game = ft_init_and_parse(&data.game, argv[1]);

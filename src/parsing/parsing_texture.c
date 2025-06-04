@@ -6,13 +6,13 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 17:53:47 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/04 17:55:25 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/04 18:20:51 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-
-int	ft_set_texture(char **dest, char *path_str)// Nettoyer le chemin (path_str) et le stocker dans la structure (dest)
+#include "cubed.h"
+// Nettoyer le chemin (path_str) et le stocker dans la structure (dest)
+int	ft_set_texture(char **dest, char *path_str)
 {
 	char	*trimmed;
 
@@ -30,7 +30,7 @@ int	ft_set_texture(char **dest, char *path_str)// Nettoyer le chemin (path_str) 
 
 int	ft_parse_texture_line(char *line, t_game_data *game)
 {
-	if (ft_starts_with(line, "NO "))// TODO Pour verifier le debut de la ligne 
+	if (ft_starts_with(line, "NO "))
 		return (ft_set_texture(&game->tex_no, line + 2));
 	if (ft_starts_with(line, "SO "))
 		return (ft_set_texture(&game->tex_so, line + 2));
