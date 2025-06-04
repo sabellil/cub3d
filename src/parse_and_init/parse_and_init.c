@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:10:09 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/04 18:21:42 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/04 18:26:02 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ char	**ft_read_cub_file(const char *filename)
 	close(fd);
 	return (lines);
 }
-// Lire lignes avant MAP et extraire couleurs et textures
 
+// Lire lignes avant MAP et extraire couleurs et textures
 int	parse_textures_and_colors(char **lines, t_game_data *game)
 {
 	int i;
@@ -84,13 +84,13 @@ int	ft_init_and_parse(t_game_data *game, char *filename)
 {
 	char	**file_lines;
 
-	if (ft_check_file_extension(filename, ".cub") != SUCCESS)// verifier extension .cub
+	if (ft_check_file_extension(filename, ".cub") != SUCCESS)
 		return (ERR_PARSE_FAIL);
 	printf("ft_check_file_extension OK\n");
 	file_lines = ft_read_cub_file(filename);
 	if (!file_lines)
 		return (ERR_PARSE_FAIL);
-	print_file_lines(file_lines); //pour verifier que le tableau est bien rempli
+	print_file_lines(file_lines);
 	printf("ft_read_cub_file OK\n");
 	if (parse_textures_and_colors(file_lines, game) != SUCCESS)// TODO EN COURS extraire textures et couleurs (NO, SO, WE, EA, F, C)
 	{
