@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:10:09 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/02 16:21:24 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/04 17:54:21 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,55 @@ char	**ft_read_cub_file(const char *filename)
 	return (lines);
 }
 
-int	parse_textures_and_colors(char **file_lines, t_game_data *game)
+int	parse_map_and_player(char **file_lines, t_game_data *game)
 {
 	(void)file_lines;
 	(void)game;
 	return (SUCCESS);
 }
 
-int	parse_map_and_player(char **file_lines, t_game_data *game)
+void	print_file_lines(char **lines)//TODO A supprimer a la fin, pour afficher le contenu de file_lines
 {
-	(void)file_lines;
-	(void)game;
+	int	i;
+
+	if (!lines)
+	{
+		printf("file_lines est NULL\n");
+		return;
+	}
+	i = 0;
+	while (lines[i])
+	{
+		printf("Ligne %d : %s", i, lines[i]);
+		i++;
+	}
+}
+
+
+int	parse_textures_and_colors(char **lines, t_game_data *game) // Lire lignes avant MAP et extraire couleurs et textures
+{
+	int	i;
+	int	found;
+
+	i = 0;
+	found = 0;
+	while (lines[i])
+	{
+		if (ft_is_empty_line(lines[i]) || ft_is_map_line(lines[i]))//TODO 
+		{
+			i++;
+			continue ;
+		}
+		if (ft_parse_texture_line(lines[i], game) == SUCCESS)
+			found++;
+		else if (ft_parse_color_line(lines[i], game) == SUCCESS)
+			found++;
+		else
+			return (FAILURE);
+		i++;
+	}
+	if (found < 6)
+		return (FAILURE);
 	return (SUCCESS);
 }
 
@@ -97,7 +135,7 @@ int	ft_init_and_parse(t_game_data *game, char *filename)
 	file_lines = ft_read_cub_file(filename);
 	if (!file_lines)
 		return (ERR_PARSE_FAIL);
-	// print_file_lines(file_lines);//TODO : pour verifier que le tableau est bien rempli
+	print_file_lines(file_lines);//TODO : pour verifier que le tableau est bien rempli
 	printf("ft_read_cub_file OK\n");
 	if (parse_textures_and_colors(file_lines, game) != SUCCESS)// TODO extraire textures et couleurs (NO, SO, WE, EA, F, C)
 	{

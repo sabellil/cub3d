@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:26:02 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/02 13:21:58 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/04 17:55:11 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,3 +30,18 @@ int	has_single_dot(const char *filename, int len_file)
 	return (1);
 }
 
+int	ft_starts_with(const char *str, const char *prefix)
+{
+	int	i;
+
+	if (!str || !prefix)
+		return (0);
+	i = 0;
+	while (prefix[i])
+	{
+		if (str[i] != prefix[i])
+			return (0);
+		i++;
+	}
+	return (1);
+}
