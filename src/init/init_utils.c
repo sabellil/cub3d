@@ -1,33 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_parsing_utils.c                               :+:      :+:    :+:   */
+/*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/28 17:26:02 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/04 18:13:51 by sabellil         ###   ########.fr       */
+/*   Created: 2025/06/06 14:52:02 by sabellil          #+#    #+#             */
+/*   Updated: 2025/06/06 14:52:34 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubed.h"
 
-int	has_single_dot(const char *filename, int len_file)
+int	ft_isdigit_str(const char *str)
 {
 	int	i;
-	int	dot_count;
 
+	if (!str)
+		return (0);
 	i = 0;
-	dot_count = 0;
-	while (i < len_file)
+	while (str[i])
 	{
-		if (filename[i] == '.')
-			dot_count++;
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
 		i++;
 	}
-	if (dot_count != 1)
-		return (0);
 	return (1);
+}
+
+int	ft_strarr_len(char **arr)
+{
+	int	len = 0;
+
+	if (!arr)
+		return (0);
+	while (arr[len])
+		len++;
+	return (len);
+}
+
+void	ft_free_strarr(char **arr)
+{
+	int	i;
+
+	if (!arr)
+		return ;
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }
 
 int	ft_starts_with(const char *str, const char *prefix)
@@ -43,6 +67,7 @@ int	ft_starts_with(const char *str, const char *prefix)
 			return (0);
 		i++;
 	}
+	printf("J'arrive au bout de ft starts with\n");
 	return (1);
 }
 
@@ -61,31 +86,4 @@ void	print_file_lines(char **lines) //TODO A supprimer a la fin, pour afficher l
 		printf("Ligne %d : %s", i, lines[i]);
 		i++;
 	}
-}
-
-char	**read_lines_from_file(int fd)
-{
-	char **lines;
-	char *line;
-	int i;
-
-	lines = malloc(sizeof(char *) * (MAX_LINES + 1));
-	if (!lines)
-		return (NULL);
-	i = 0;
-	while (i < MAX_LINES)
-	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		lines[i] = line;
-		if (!lines[i])
-		{
-			free_file_lines_partial(lines, i);
-			return (NULL);
-		}
-		i++;
-	}
-	lines[i] = NULL;
-	return (lines);
 }

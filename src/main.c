@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 15:24:08 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/04 18:19:17 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/06 16:01:38 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,19 @@ int	ft_init_infra(t_infra *infra, t_game_data *game)
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	int		res_game;
-	int		res_infra;
+	char	**file_lines;
 
 	if (argc != 2)
 		return (ft_handle_error(ERR_ARG_COUNT));
-	res_game = ft_init_and_parse(&data.game, argv[1]);
-	if (res_game != SUCCESS)
+	if((ft_first_parsing(&data.game, argv[1], &file_lines)) != SUCCESS)
 		return (ft_handle_error(ERR_PARSE_FAIL));
-	res_infra = ft_init_infra(&data.infra, &data.game);
-	if (res_infra != SUCCESS)
+	if(ft_init_infra(&data.infra)!= SUCCESS)
 		return (ft_handle_error(ERR_INFRA_FAIL));
+	if (ft_second_parsing_and_init(file_lines, &data.game) != SUCCESS)
+		return (ft_handle_error(ERR_PARSE_FAIL));
 	ft_setup_hooks(&data);
-	// mlx_loop_hook(data.infra.mlx, ft_render_next_frame, &data);
-	// mlx_loop(data.infra.mlx);
+	mlx_loop_hook(data.infra.mlx, ft_render_next_frame, &data);
+	mlx_loop(data.infra.mlx);
 	ft_clean_exit(&data, SUCCESS);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/04 18:18:19 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/06 16:01:01 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,13 @@
 
 typedef struct s_img
 {
-	int			width;
-	int			height;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
 }				t_img;
 
 typedef struct s_game_data
@@ -75,17 +80,20 @@ typedef struct s_data
 	t_infra		infra;
 }				t_data;
 
-//INITALIZATION AND PARSING
-int				ft_init_and_parse(t_game_data *game, char *filename);
+// PARSING
+int				ft_first_parsing(t_game_data *game, char *filename, char ***file_lines_out);
 int				ft_check_file_extension(const char *filename,
 					const char *extension);
 char			**ft_read_cub_file(const char *filename);
 char			**read_lines_from_file(int fd);
+
+//INITALIZATION
+int	ft_second_parsing_and_init(char **file_lines, t_game_data *game);
 int				parse_textures_and_colors(char **file_lines, t_game_data *game);
-//ft is empty line et ft is map line
 int				ft_parse_texture_line(char *line, t_game_data *game);
 int				ft_parse_color_line(char *line, t_game_data *game);
 int				parse_map_and_player(char **file_lines, t_game_data *game);
+int ft_set_texture(t_img *dest, const char *path_str, void *mlx_ptr);
 
 //INITALIZATION AND PARSING - UTILS
 void			free_file_lines_partial(char **lines, int count);
@@ -93,6 +101,9 @@ int				has_single_dot(const char *filename, int len_file);
 int				ft_starts_with(const char *str, const char *prefix);
 void			print_file_lines(char **lines);
 char			**read_lines_from_file(int fd);
+int				ft_strarr_len(char **arr);
+void			ft_free_strarr(char **arr);
+int				ft_isdigit_str(const char *str);
 //ERROR AND FREE MANAGEMENT
 int				ft_handle_error(int code);
 void			free_file_lines(char **file_lines);
