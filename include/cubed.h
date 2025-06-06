@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/06 16:23:09 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/06 17:50:40 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,9 @@ int				ft_check_file_extension(const char *filename,
 							const char *extension);
 char			**ft_read_cub_file(const char *filename);
 char			**read_lines_from_file(int fd);
+// PARSING UTILS
+char			**read_lines_from_file(int fd);
+int				has_single_dot(const char *filename, int len_file);
 
 //INITALIZATION
 int				ft_second_parsing_and_init(char **file_lines,
@@ -109,16 +112,14 @@ int				ft_parse_color_line(char *line, t_game_data *game);
 int				parse_map_and_player(char **file_lines, t_game_data *game);
 int				ft_set_texture(t_asset *dest, const char *path_str,
 					void *mlx_ptr);
-
-//INITALIZATION AND PARSING - UTILS
-void			free_file_lines_partial(char **lines, int count);
-int				has_single_dot(const char *filename, int len_file);
 int				ft_starts_with(const char *str, const char *prefix);
+//INITALIZATION UTILS
 void			print_file_lines(char **lines);
-char			**read_lines_from_file(int fd);
 int				ft_strarr_len(char **arr);
 void			ft_free_strarr(char **arr);
 int				ft_isdigit_str(const char *str);
+int				ft_is_empty_line(const char *line);
+int				ft_is_map_line(const char *line);
 
 //ERROR AND FREE MANAGEMENT
 int				ft_handle_error(int code);

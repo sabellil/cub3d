@@ -6,7 +6,7 @@
 #    By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 15:01:27 by sabellil          #+#    #+#              #
-#    Updated: 2025/06/06 16:13:45 by sabellil         ###   ########.fr        #
+#    Updated: 2025/06/06 17:53:09 by sabellil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,10 @@ SRC_LIST = main.c \
 			infra.c \
 			parsing/parse_and_init.c \
 			parsing/init_parsing_utils.c \
-			parsing/parsing_colors.c \
-			parsing/parsing_texture.c \
-			init/init_data.c \
-			init/init_utils.c
+			init/init_map.c \
+			init/init_utils.c \
+			init/handle_colors.c \
+			init/handle_textures.c \
 
 SRC = $(addprefix $(SRC_DIR), $(SRC_LIST))
 

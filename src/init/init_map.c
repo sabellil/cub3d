@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_data.c                                        :+:      :+:    :+:   */
+/*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:37:16 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/06 17:37:12 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/06 17:52:02 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubed.h"
 
-
-int	ft_is_empty_line(char *lines)
-{
-	(void)lines;
-	return (SUCCESS);
-}
-int	ft_is_map_line(char *lines)
-{
-	(void)lines;
-	return (SUCCESS);
-}
-
 int	parse_textures_and_colors(char **lines, t_game_data *game)
 {
-	int i;
-	int found;
+	int	i;
+	int	found;
 
 	i = 0;
 	found = 0;
@@ -58,7 +46,6 @@ int	parse_map_and_player(char **file_lines, t_game_data *game)
 	return (SUCCESS);
 }
 
-
 int	ft_second_parsing_and_init(char **file_lines, t_game_data *game)
 {
 	if (parse_textures_and_colors(file_lines, game) != SUCCESS)
@@ -74,5 +61,3 @@ int	ft_second_parsing_and_init(char **file_lines, t_game_data *game)
 	free_file_lines(file_lines);
 	return (SUCCESS);
 }
-
-

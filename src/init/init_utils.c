@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:52:02 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/06 14:52:34 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/06 17:52:12 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ int	ft_isdigit_str(const char *str)
 
 int	ft_strarr_len(char **arr)
 {
-	int	len = 0;
+	int	len;
 
+	len = 0;
 	if (!arr)
 		return (0);
 	while (arr[len])
@@ -71,7 +72,7 @@ int	ft_starts_with(const char *str, const char *prefix)
 	return (1);
 }
 
-void	print_file_lines(char **lines) //TODO A supprimer a la fin, pour afficher le contenu de file_lines
+void	print_file_lines(char **lines) //TODO A supprimer a la fin pour afficher le contenu de file_lines
 {
 	int i;
 
