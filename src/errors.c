@@ -6,11 +6,11 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 16:19:42 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/04 18:18:47 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/06 16:16:40 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cubed.h"
+#include "../include/cubed.h"
 
 int	ft_handle_error(int code)
 {

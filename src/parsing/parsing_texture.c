@@ -6,14 +6,14 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 17:53:47 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/06 13:42:38 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/06 16:21:11 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubed.h"
 // Nettoyer le chemin (path_str) et le stocker dans la structure (dest)
 
-int	ft_set_texture(t_img *dest, const char *path_str, void *mlx_ptr)
+int	ft_set_texture(t_asset *dest, const char *path_str, void *mlx_ptr)
 {
 	int	width;
 	int	height;
@@ -44,7 +44,7 @@ int	ft_parse_texture_line(char *line, t_game_data *game)
 {
 	if (ft_starts_with(line, "NO "))
 	{
-		return (ft_set_texture(&game->tex_no, line + 2, ((t_data *)game)->infra.mlx));//src/parsing_init/parsing_texture.c:34:26: error: incompatible pointer types passing 't_img *' (aka 'struct s_img *') to parameter of type 'char *' [-Werror,-Wincompatible-pointer-types] return (ft_set_texture(&game->tex_no, line + 2));
+		return (ft_set_texture(&game->tex_no, line + 2, ((t_data *)game)->infra.mlx));//src/parsing_init/parsing_texture.c:34:26: error: incompatible pointer types passing 't_asset *' (aka 'struct s_img *') to parameter of type 'char *' [-Werror,-Wincompatible-pointer-types] return (ft_set_texture(&game->tex_no, line + 2));
 		printf("NORD OK");
 	}
 	if (ft_starts_with(line, "SO "))

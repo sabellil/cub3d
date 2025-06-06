@@ -6,11 +6,11 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:10:09 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/06 16:02:16 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/06 16:18:52 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cubed.h"
+#include "../include/cubed.h"
 
 int	ft_check_file_extension(const char *filename, const char *extension)
 {
@@ -45,7 +45,7 @@ char	**ft_read_cub_file(const char *filename)
 	return (lines);
 }
 
-int	ft_first_parsing(t_game_data *game, char *filename, char ***file_lines_out)
+int	ft_first_parsing(char *filename, char ***file_lines_out)
 {
 	char	**file_lines;
 

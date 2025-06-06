@@ -6,16 +6,11 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 15:24:08 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/06 16:01:38 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/06 16:19:24 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cubed.h"
-
-void	ft_setup_hooks(t_data *data)
-{
-	(void)data;
-}
+#include "../include/cubed.h"
 
 void	ft_clean_exit(t_data *data, int exit_code)
 {
@@ -29,13 +24,6 @@ int	ft_render_next_frame(void *param)
 	return (0);
 }
 
-int	ft_init_infra(t_infra *infra, t_game_data *game)
-{
-	(void)infra;
-	(void)game;
-	return (SUCCESS);
-}
-
 int	main(int argc, char **argv)
 {
 	t_data	data;
@@ -43,15 +31,15 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (ft_handle_error(ERR_ARG_COUNT));
-	if((ft_first_parsing(&data.game, argv[1], &file_lines)) != SUCCESS)
+	if((ft_first_parsing(argv[1], &file_lines)) != SUCCESS)
 		return (ft_handle_error(ERR_PARSE_FAIL));
 	if(ft_init_infra(&data.infra)!= SUCCESS)
 		return (ft_handle_error(ERR_INFRA_FAIL));
-	if (ft_second_parsing_and_init(file_lines, &data.game) != SUCCESS)
-		return (ft_handle_error(ERR_PARSE_FAIL));
+	// if (ft_second_parsing_and_init(file_lines, &data.game) != SUCCESS)
+	// 	return (ft_handle_error(ERR_PARSE_FAIL));
 	ft_setup_hooks(&data);
 	mlx_loop_hook(data.infra.mlx, ft_render_next_frame, &data);
 	mlx_loop(data.infra.mlx);
 	ft_clean_exit(&data, SUCCESS);
-	return (0);
+	return (SUCCESS);
 }

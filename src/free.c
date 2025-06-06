@@ -6,11 +6,11 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:16:22 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/04 18:12:48 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/06 16:16:26 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cubed.h"
+#include "../include/cubed.h"
 
 void	free_file_lines_partial(char **lines, int count)
 {
