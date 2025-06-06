@@ -18,9 +18,9 @@ void	ft_setup_hooks(t_data *data)
 
     infra = &data->infra;
     mlx_hook(infra->win, DestroyNotify, StructureNotifyMask, 
-        close_window, &infra);
-    mlx_key_hook(infra->win, handle_keypress, &infra);
-	//mlx_mouse_hook(infra->win, handle_mouse_event, &infra);
+        close_window, infra);
+    mlx_key_hook(infra->win, handle_keypress, infra);
+	//mlx_mouse_hook(infra->win, handle_mouse_event, infra);
 }
 
 
