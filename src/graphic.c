@@ -1,0 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   graphic.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/07 18:33:51 by mairivie          #+#    #+#             */
+/*   Updated: 2025/06/07 19:27:21 by mairivie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../include/cubed.h"
+
+int	what_color_is_this_pixel(double x, double y, t_infra *infra)
+{	
+	int	color;
+
+	color = 7556677;
+    (void)x;
+    (void)infra;
+	if (y <= HEIGHT / 2)
+		color = 100000;
+	return (color);
+}

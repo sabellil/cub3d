@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 15:24:08 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/06 16:19:24 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/07 19:10:50 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	ft_clean_exit(t_data *data, int exit_code)
 	exit(exit_code);
 }
 
-int	ft_render_next_frame(void *param)
-{
-	(void)param;
-	return (0);
-}
+// int	ft_render_next_frame(void *param)
+// {
+// 	(void)param;
+// 	return (0);
+// }
 
 int	main(int argc, char **argv)
 {
@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 	// if (ft_second_parsing_and_init(file_lines, &data.game) != SUCCESS)
 	// 	return (ft_handle_error(ERR_PARSE_FAIL));
 	ft_setup_hooks(&data);
-	mlx_loop_hook(data.infra.mlx, ft_render_next_frame, &data);
+	mlx_loop_hook(data.infra.mlx, ft_render, &data);
 	mlx_loop(data.infra.mlx);
 	ft_clean_exit(&data, SUCCESS);
 	return (SUCCESS);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/06 16:23:09 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/07 19:15:10 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,15 +125,17 @@ int				ft_handle_error(int code);
 void			free_file_lines(char **file_lines);
 
 //THE BIG BIG LOOP
-int				ft_render_next_frame(void *param);
 
 //INFRA
 int				close_window(t_infra *infra);
 int				handle_keypress(int keycode, t_infra *infra);
 int				ft_init_infra(t_infra *infra);
 
+//GRAPHIC N RENDER
+int				what_color_is_this_pixel(double x, double y, t_infra *infra);
+int				ft_render(t_data *data);
+
 //OTHER FUNCTIONS JUST SO I CAN COMPILE
 void			ft_setup_hooks(t_data *data);
 void			ft_clean_exit(t_data *data, int exit_code);
-int				ft_render_next_frame(void *param);
 #endif
