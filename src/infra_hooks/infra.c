@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:27:40 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/09 12:13:59 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/09 16:20:38 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ int ft_init_infra(t_infra *infra)
 		return (ft_handle_error(ERR_INFRA_FAIL));
     if (init_double_buffer(infra) == ERR_INFRA_FAIL)
 		return (ft_handle_error(ERR_INFRA_FAIL));
+	infra->ratio = 2;
 	return (SUCCESS);
 }

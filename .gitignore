@@ -35,16 +35,19 @@
 *.i*86
 *.x86_64
 *.hex
+cub3d
 
 # Debug files
 *.dSYM/
 *.su
 *.idb
 *.pdb
+*.log
 
 # Kernel Module Compile Results
 *.mod*
 *.cmd
+*.json
 .tmp_versions/
 modules.order
 Module.symvers

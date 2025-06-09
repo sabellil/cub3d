@@ -6,17 +6,11 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 15:24:08 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/09 16:01:38 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/09 16:21:06 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cubed.h"
-
-int	ft_render_next_frame(void *param)
-{
-	(void)param;
-	return (0);
-}
 
 int	main(int argc, char **argv)
 {
@@ -33,7 +27,7 @@ int	main(int argc, char **argv)
 	if (ft_second_parsing_and_init(file_lines, &data.game) != SUCCESS)
 		return (ft_handle_error(ERR_PARSE_FAIL));
 	ft_setup_hooks(&data);
-	mlx_loop_hook(data.infra.mlx, ft_render_next_frame, &data);
+	mlx_loop_hook(data.infra.mlx, ft_render, &data);
 	mlx_loop(data.infra.mlx);
 	return (SUCCESS);
 }

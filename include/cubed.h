@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/09 15:29:25 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/09 16:18:15 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,16 @@ typedef struct s_game_data
 	int				player_found;
 }					t_game_data;
 
+//ratio = temporaire pour test les touches
 typedef struct s_infra
 {
-	void			*mlx;
-	void			*win;
-	t_img			*img_now;
-	t_img			*img_nxt;
+	void		*mlx;
+	void		*win;
+	t_img		*img_now;
+	t_img		*img_nxt;
+	double		ratio;
 	struct s_data	*data;
-}					t_infra;
+}				t_infra;
 
 typedef struct s_data
 {
@@ -142,15 +144,17 @@ void				free_map(char **map);
 int					ft_free_and_fail(char *tmp, char **split);
 
 //THE BIG BIG LOOP
-int					ft_render_next_frame(void *param);
 
 //INFRA
-int					close_window(t_infra *infra);
-int					handle_keypress(int keycode, t_infra *infra);
-int					ft_init_infra(t_infra *infra);
+int				close_window(t_infra *infra);
+int				handle_keypress(int keycode, t_infra *infra);
+int				ft_init_infra(t_infra *infra);
+
+//GRAPHIC N RENDER
+int				what_color_is_this_pixel(double x, double y, t_infra *infra);
+int				ft_render(t_data *data);
 
 //OTHER FUNCTIONS JUST SO I CAN COMPILE
-void				ft_setup_hooks(t_data *data);
-void				ft_clean_exit(t_data *data, int exit_code);
-int					ft_render_next_frame(void *param);
+void			ft_setup_hooks(t_data *data);
+void			ft_clean_exit(t_data *data, int exit_code);
 #endif
