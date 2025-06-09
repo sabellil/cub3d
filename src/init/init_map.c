@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:37:16 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/09 14:58:58 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/09 15:58:10 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,6 @@ int	parse_map_and_player(char **file_lines, t_game_data *game)
 		printf("Ca merdouille dnas extract map\n");
 		return (ft_handle_error(ERR_PARSE_FAIL));
 	}
-	printf("=== DEBUG: Map extraite ===\n");
-int i = 0;
-while (game->map && game->map[i])
-{
-    printf("map[%d] = '%s'\n", i, game->map[i]);
-    i++;
-}
-printf("=== FIN MAP ===\n");
-
 	if (scan_map(game->map, game) != SUCCESS)
 	{
 		printf("Ca merdouille dnas scan map\n");

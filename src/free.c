@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:16:22 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/09 11:59:02 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/09 15:31:00 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	free_map(char **map)
 	int	i;
 
 	if (!map)
-		return;
+		return ;
 	i = 0;
 	while (map[i])
 	{
@@ -58,4 +58,13 @@ void	free_textures(t_game_data *game, void *mlx)
 		mlx_destroy_image(mlx, game->tex_we.img);
 	if (mlx && game->tex_ea.img)
 		mlx_destroy_image(mlx, game->tex_ea.img);
+}
+
+int	ft_free_and_fail(char *tmp, char **split)
+{
+	if (tmp)
+		free(tmp);
+	if (split)
+		ft_free_strarr(split);
+	return (FAILURE);
 }

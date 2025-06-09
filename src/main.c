@@ -6,17 +6,11 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 15:24:08 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/09 15:09:37 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/09 16:01:38 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cubed.h"
-
-void	ft_clean_exit(t_data *data, int exit_code)
-{
-	(void)data;
-	exit(exit_code);
-}
 
 int	ft_render_next_frame(void *param)
 {
@@ -28,8 +22,8 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 	char	**file_lines;
-memset(&data, 0, sizeof(t_data)); // ou t_game_data si tu utilises juste la structure game
-
+	
+	ft_memset(&data, 0, sizeof(t_data));
 	if (argc != 2)
 		return (ft_handle_error(ERR_ARG_COUNT));
 	if((ft_first_parsing(argv[1], &file_lines)) != SUCCESS)
@@ -41,6 +35,5 @@ memset(&data, 0, sizeof(t_data)); // ou t_game_data si tu utilises juste la stru
 	ft_setup_hooks(&data);
 	mlx_loop_hook(data.infra.mlx, ft_render_next_frame, &data);
 	mlx_loop(data.infra.mlx);
-	ft_clean_exit(&data, SUCCESS);
 	return (SUCCESS);
 }

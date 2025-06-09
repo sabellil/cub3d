@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:17:52 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/09 15:07:30 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/09 15:34:50 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	ft_is_map_lines(const char *line)
 		return (1);
 	return (0);
 }
-int	extract_map(char **file_lines, char ***out_map)
+int	extract_map(char **file_lines, char ***out_map)//TODO A racourcir
 {
 	int	start;
 	int	end;
@@ -76,7 +76,6 @@ int	extract_map(char **file_lines, char ***out_map)
 	int	j;
 
 	start = 0;
-	// TROUVE LA PREMIÈRE LIGNE DE MAP
 	while (file_lines[start] && !ft_is_map_line(file_lines[start]))
 		start++;
 	if (!file_lines[start])
@@ -129,9 +128,9 @@ int	is_line_part_of_map(char *line)
 
 int	scan_map(char **map, t_game_data *game)
 {
-	int y;
-	int x;
-	char c;
+	int		y;
+	int		x;
+	char	c;
 
 	y = 0;
 	while (map[y])
@@ -141,26 +140,17 @@ int	scan_map(char **map, t_game_data *game)
 		{
 			c = map[y][x];
 			if (is_valid_player_char(c))
-{
-    printf("DEBUG: Joueur trouvé à y=%d x=%d char=%c\n", y, x, c);
-    if (count_and_set_player(game, y, x, c) != SUCCESS)
-        return (ft_handle_error(ERR_PARSE_FAIL));
-    // debug après modification
-    int debug_yy = 0;
-    while (map[debug_yy])
-    {
-        printf("DEBUG MAP AFTER SET: map[%d] = '%s'\n", debug_yy, map[debug_yy]);
-        debug_yy++;
-    }
-}
-
-				else if (c != '0' && c != '1'
-						&& c != ' ') return (ft_handle_error(ERR_PARSE_FAIL));
-				x++;
+			{
+				if (count_and_set_player(game, y, x, c) != SUCCESS)
+					return (ft_handle_error(ERR_PARSE_FAIL));
 			}
-			y++;
+			else if (c != '0' && c != '1' && c != ' ')
+				return (ft_handle_error(ERR_PARSE_FAIL));
+			x++;
 		}
-		if (!game->player_found)
-			return (ft_handle_error(ERR_PARSE_FAIL));
-		return (SUCCESS);
+		y++;
 	}
+	if (!game->player_found)
+		return (ft_handle_error(ERR_PARSE_FAIL));
+	return (SUCCESS);
+}
