@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:10:09 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/06 16:18:52 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/09 16:28:11 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,9 @@ int	ft_first_parsing(char *filename, char ***file_lines_out)
 
 	if (ft_check_file_extension(filename, ".cub") != SUCCESS)
 		return (ERR_PARSE_FAIL);
-	printf("ft_check_file_extension OK\n");
 	file_lines = ft_read_cub_file(filename);
 	if (!file_lines)
 		return (ERR_PARSE_FAIL);
-	printf("ft_read_cub_file OK\n");
 	*file_lines_out = file_lines;
 	return (SUCCESS);
 }

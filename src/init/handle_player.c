@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:17:38 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/09 13:03:33 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/09 16:28:20 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	count_and_set_player(t_game_data *game, int y, int x, char c)
 {
 	if (game->player_found)
 	{
-printf("Plus d'un joueur trouvé ! Coord: y=%d, x=%d, char=%c\n", y, x, c);
+// printf("Plus d'un joueur trouvé ! Coord: y=%d, x=%d, char=%c\n", y, x, c);
 		return (ft_handle_error(ERR_PARSE_FAIL));
 	}
 	game->pos_x = x + 0.5;

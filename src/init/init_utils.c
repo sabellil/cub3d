@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:52:02 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/09 12:38:00 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/09 16:27:59 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int	ft_starts_with(const char *str, const char *prefix)
 			return (0);
 		i++;
 	}
-	printf("J'arrive au bout de ft starts with\n");
 	return (1);
 }
 
