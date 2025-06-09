@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   infra.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:27:40 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/02 16:15:30 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/06/09 12:13:59 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	init_double_buffer(t_infra *infra)
 			&infra->img_nxt->endien);
 	return (SUCCESS);
 }
+
+
 
 int ft_init_infra(t_infra *infra)
 {

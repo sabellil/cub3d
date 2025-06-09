@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/06 17:50:40 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/09 15:04:03 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,11 @@ typedef struct s_game_data
 	int			floor_color;
 	int			ceiling_color;
 	// Joueur
-	double		pos_x;
-	double		pos_y;
-	double		dir_x;
-	double		dir_y;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	int		player_found;
 }				t_game_data;
 
 typedef struct s_infra
@@ -85,6 +86,7 @@ typedef struct s_infra
 	void		*win;
 	t_img		*img_now;
 	t_img		*img_nxt;
+	struct s_data *data;
 }				t_infra;
 
 typedef struct s_data
@@ -110,9 +112,16 @@ int				parse_textures_and_colors(char **file_lines, t_game_data *game);
 int				ft_parse_texture_line(char *line, t_game_data *game);
 int				ft_parse_color_line(char *line, t_game_data *game);
 int				parse_map_and_player(char **file_lines, t_game_data *game);
-int				ft_set_texture(t_asset *dest, const char *path_str,
-					void *mlx_ptr);
+int	ft_set_texture(t_asset *dest, char *path_str, void *mlx_ptr);
 int				ft_starts_with(const char *str, const char *prefix);
+int	parse_map_and_player(char **file_lines, t_game_data *game);
+int	scan_map(char **map, t_game_data *game);
+int	extract_map(char **file_lines, char ***map_out);
+int	is_line_part_of_map(char *line);
+int	is_map_closed(char **map);
+int	count_and_set_player(t_game_data *game, int y, int x, char c);
+int	is_valid_player_char(char c);
+
 //INITALIZATION UTILS
 void			print_file_lines(char **lines);
 int				ft_strarr_len(char **arr);
@@ -120,10 +129,13 @@ void			ft_free_strarr(char **arr);
 int				ft_isdigit_str(const char *str);
 int				ft_is_empty_line(const char *line);
 int				ft_is_map_line(const char *line);
+void ft_strip_newline(char *s);
 
 //ERROR AND FREE MANAGEMENT
 int				ft_handle_error(int code);
 void			free_file_lines(char **file_lines);
+void	free_textures(t_game_data *game, void *mlx);
+void	free_map(char **map);
 
 //THE BIG BIG LOOP
 int				ft_render_next_frame(void *param);

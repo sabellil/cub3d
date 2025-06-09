@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 15:24:08 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/06 16:19:24 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/09 15:09:37 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 	char	**file_lines;
+memset(&data, 0, sizeof(t_data)); // ou t_game_data si tu utilises juste la structure game
 
 	if (argc != 2)
 		return (ft_handle_error(ERR_ARG_COUNT));
@@ -35,8 +36,8 @@ int	main(int argc, char **argv)
 		return (ft_handle_error(ERR_PARSE_FAIL));
 	if(ft_init_infra(&data.infra)!= SUCCESS)
 		return (ft_handle_error(ERR_INFRA_FAIL));
-	// if (ft_second_parsing_and_init(file_lines, &data.game) != SUCCESS)
-	// 	return (ft_handle_error(ERR_PARSE_FAIL));
+	if (ft_second_parsing_and_init(file_lines, &data.game) != SUCCESS)
+		return (ft_handle_error(ERR_PARSE_FAIL));
 	ft_setup_hooks(&data);
 	mlx_loop_hook(data.infra.mlx, ft_render_next_frame, &data);
 	mlx_loop(data.infra.mlx);

@@ -6,7 +6,7 @@
 #    By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 15:01:27 by sabellil          #+#    #+#              #
-#    Updated: 2025/06/06 17:53:09 by sabellil         ###   ########.fr        #
+#    Updated: 2025/06/09 11:40:25 by sabellil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,8 @@ SRC_LIST = main.c \
 			init/init_utils.c \
 			init/handle_colors.c \
 			init/handle_textures.c \
+			init/handle_map.c \
+			init/handle_player.c
 
 SRC = $(addprefix $(SRC_DIR), $(SRC_LIST))
 

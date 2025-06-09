@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "../include/cubed.h"
 
 void	ft_setup_hooks(t_data *data)
@@ -25,7 +23,6 @@ void	ft_setup_hooks(t_data *data)
 	//mlx_mouse_hook(infra->win, handle_mouse_event, infra);
 }
 
-
 int	handle_keypress(int keycode, t_infra *infra)
 {
 	if (keycode == XK_Escape)
@@ -34,20 +31,49 @@ int	handle_keypress(int keycode, t_infra *infra)
 }
 
 //ICI COREDUMP
-
 int	close_window(t_infra *infra)
 {
-	mlx_destroy_image(infra->mlx, infra->img_now->new_img);
-	mlx_destroy_image(infra->mlx, infra->img_nxt->new_img);
-	mlx_destroy_window(infra->mlx, infra->win);
-	mlx_destroy_display(infra->mlx);
-	free(infra->mlx);
-	free(infra->img_now);
-	free(infra->img_nxt);
+	// Libère la map et les textures d'abord (besoin du mlx pour les destroy_image !)
+	if (infra->data)
+	{
+		free_map(infra->data->game.map);
+		free_textures(&infra->data->game, infra->mlx);
+	}
+
+	// Ensuite, les double buffers
+	if (infra->img_now)
+	{
+		if (infra->img_now->new_img)
+			mlx_destroy_image(infra->mlx, infra->img_now->new_img);
+		free(infra->img_now);
+	}
+	if (infra->img_nxt)
+	{
+		if (infra->img_nxt->new_img)
+			mlx_destroy_image(infra->mlx, infra->img_nxt->new_img);
+		free(infra->img_nxt);
+	}
+
+	// Puis la fenêtre
+	if (infra->win)
+		mlx_destroy_window(infra->mlx, infra->win);
+
+	// Enfin, le display MLX et le free du mlx lui-même
+	if (infra->mlx)
+	{
+		mlx_destroy_display(infra->mlx);
+		free(infra->mlx);
+	}
+
+	infra->img_now = NULL;
+	infra->img_nxt = NULL;
 	infra->win = NULL;
 	infra->mlx = NULL;
+
 	exit(SUCCESS);
 }
+
+
 
 /*int	handle_mouse_event(int button, int x, int y, t_infra *infra)
 {
