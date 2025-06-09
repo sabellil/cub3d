@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/09 12:53:08 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/06/09 15:27:20 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct s_game_data
 	double		dir_y;
 }				t_game_data;
 
+//ratio = temporaire pour test les touches
 typedef struct s_infra
 {
 	void		*mlx;
