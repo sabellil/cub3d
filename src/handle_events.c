@@ -30,7 +30,7 @@ int	handle_keypress(int keycode, t_infra *infra)
 	return (SUCCESS);
 }
 
-//ICI COREDUMP
+//ICI COREDUM
 int	close_window(t_infra *infra)
 {
 	if (infra->data)
