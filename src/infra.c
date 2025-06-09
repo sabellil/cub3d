@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:27:40 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/02 16:15:30 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/06/09 12:50:25 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ int ft_init_infra(t_infra *infra)
 		return (ft_handle_error(ERR_INFRA_FAIL));
     if (init_double_buffer(infra) == ERR_INFRA_FAIL)
 		return (ft_handle_error(ERR_INFRA_FAIL));
+	infra->ratio = 2;
 	return (SUCCESS);
 }

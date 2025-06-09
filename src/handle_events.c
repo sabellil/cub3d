@@ -14,6 +14,19 @@
 
 #include "../include/cubed.h"
 
+int	key_up(t_infra *infra)
+{
+	infra->ratio = infra->ratio + 0.2;
+	return (SUCCESS);
+}
+
+int	key_down(t_infra *infra)
+{
+	if (infra->ratio > 1.3)
+		infra->ratio = infra->ratio - 0.2;
+	return (SUCCESS);
+}
+
 void	ft_setup_hooks(t_data *data)
 {
     t_infra *infra;
@@ -26,10 +39,23 @@ void	ft_setup_hooks(t_data *data)
 }
 
 
+// #define XK_KP_Left                       0xff96
+// #define XK_KP_Up                         0xff97
+// #define XK_KP_Right                      0xff98
+// #define XK_KP_Down                       0xff99
+
 int	handle_keypress(int keycode, t_infra *infra)
 {
 	if (keycode == XK_Escape)
 		close_window(infra);
+	if (keycode == XK_Up)
+		key_up(infra);
+	if (keycode == XK_Down)
+		key_down(infra);
+	if (keycode == XK_Left)
+		key_up(infra);
+	if (keycode == XK_Right)
+		key_down(infra);
 	return (SUCCESS);
 }
 
@@ -48,6 +74,8 @@ int	close_window(t_infra *infra)
 	infra->mlx = NULL;
 	exit(SUCCESS);
 }
+
+
 
 /*int	handle_mouse_event(int button, int x, int y, t_infra *infra)
 {

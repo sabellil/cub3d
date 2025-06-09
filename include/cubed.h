@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/07 19:15:10 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/06/09 12:53:08 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct s_infra
 	void		*win;
 	t_img		*img_now;
 	t_img		*img_nxt;
+	double		ratio;
 }				t_infra;
 
 typedef struct s_data
