@@ -56,8 +56,7 @@ int	handle_keypress(int keycode, t_infra *infra)
 	return (SUCCESS);
 }
 
-//ICI COREDUM
-
+//ICI COREDUMP
 int	close_window(t_infra *infra)
 {
 	if (infra->data)
@@ -67,16 +66,12 @@ int	close_window(t_infra *infra)
 	}
 	if (infra->img_now)
 	{
-		if (infra->img_now->pix_grid)
-			free(infra->img_now->pix_grid);
 		if (infra->img_now->new_img)
 			mlx_destroy_image(infra->mlx, infra->img_now->new_img);
 		free(infra->img_now);
 	}
 	if (infra->img_nxt)
 	{
-		if (infra->img_nxt->pix_grid)
-			free(infra->img_nxt->pix_grid);
 		if (infra->img_nxt->new_img)
 			mlx_destroy_image(infra->mlx, infra->img_nxt->new_img);
 		free(infra->img_nxt);

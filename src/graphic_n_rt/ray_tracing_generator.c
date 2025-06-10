@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:39:08 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/09 16:40:48 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/10 14:20:25 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	ft_render(t_data *data)
 	mlx_put_image_to_window(infra->mlx, infra->win,
 		infra->img_now->new_img, 0, 0);
 	paint_each_pixel(infra->img_nxt, infra);
-	printf("ratio: %f\n", infra->ratio);
+	// printf("ratio: %f\n", infra->ratio);
 	swap_buffer(infra);
 	return (SUCCESS);
 }
