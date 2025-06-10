@@ -60,7 +60,7 @@ int	handle_keypress(int keycode, t_infra *infra)
 int	close_window(t_infra *infra)
 {
 	if (infra->data)
-	{
+	{	
 		free_map(infra->data->game.map);
 		free_textures(&infra->data->game, infra->mlx);
 	}

@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:16:22 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/09 15:31:00 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/10 12:05:09 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	free_map(char **map)
 	}
 	free(map);
 }
+
 void	free_textures(t_game_data *game, void *mlx)
 {
 	if (game->path_no)

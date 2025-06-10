@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_tracing_generator.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:39:08 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/09 13:07:45 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/06/09 16:40:48 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	ft_render(t_data *data)
 	mlx_put_image_to_window(infra->mlx, infra->win,
 		infra->img_now->new_img, 0, 0);
 	paint_each_pixel(infra->img_nxt, infra);
+	printf("ratio: %f\n", infra->ratio);
 	swap_buffer(infra);
 	return (SUCCESS);
 }
