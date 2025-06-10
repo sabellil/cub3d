@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/10 11:44:20 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/10 12:33:22 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ void				free_file_lines(char **file_lines);
 void				free_textures(t_game_data *game, void *mlx);
 void				free_map(char **map);
 int					ft_free_and_fail(char *tmp, char **split);
-void				free_out_map(char ***out_map);
+void				free_infra(t_infra *infra);
 //THE BIG BIG LOOP
 
 //INFRA

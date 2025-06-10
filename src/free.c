@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:16:22 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/10 12:05:09 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/10 12:32:11 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,42 @@ void	free_file_lines(char **file_lines)
 	}
 	free(file_lines);
 }
+#include "cubed.h"
+
+/*
+ * Dégage tout ce que ft_init_infra a alloué,
+ * sans toucher à data.game (map, textures).
+ */
+void free_infra(t_infra *infra)
+{
+    if (!infra)
+        return;
+    if (infra->img_now)
+    {
+        free(infra->img_now->pix_grid);
+        if (infra->img_now->new_img)
+            mlx_destroy_image(infra->mlx, infra->img_now->new_img);
+        free(infra->img_now);
+        infra->img_now = NULL;
+    }
+    if (infra->img_nxt)
+    {
+        free(infra->img_nxt->pix_grid);
+        if (infra->img_nxt->new_img)
+            mlx_destroy_image(infra->mlx, infra->img_nxt->new_img);
+        free(infra->img_nxt);
+        infra->img_nxt = NULL;
+    }
+    if (infra->win)
+        mlx_destroy_window(infra->mlx, infra->win);
+    if (infra->mlx)
+    {
+        mlx_destroy_display(infra->mlx);
+        free(infra->mlx);
+        infra->mlx = NULL;
+    }
+}
+
 void	free_map(char **map)
 {
 	int	i;
