@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 17:41:28 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/09 16:27:12 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:30:21 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	ft_is_map_line(const char *line)
 	i = 0;
 	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 		i++;
-	// N'accepte que les lignes qui commencent par un chiffre (souvent 1 ou 0 pour les maps 42)
 	if (line[i] == '1' || line[i] == '0')
 		return (1);
 	return (0);

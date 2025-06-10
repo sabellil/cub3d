@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:37:16 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/10 12:56:11 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/10 14:32:47 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,16 @@ int	parse_map_and_player(char **file_lines, t_game_data *game)
 	if (extract_map(file_lines, &game->map) != SUCCESS)
 	{
 		printf("1\n");
-		// free_file_lines(file_lines);
-		// free_map(game->map);
 		return (ERR_PARSE_FAIL);
 	}
 	if (scan_map(game->map, game) != SUCCESS)
 	{
 		printf("2\n");
-		// free_file_lines(file_lines);
-		// free_map(game->map);
 		return (ERR_PARSE_FAIL);
 	}
 	if (!is_map_closed(game->map))
 	{
 		printf("3\n");
-		// free_file_lines(file_lines);
-		// free_map(game->map);
 		return (ERR_PARSE_FAIL);
 	}
 	return (SUCCESS);

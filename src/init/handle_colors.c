@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 16:15:05 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/09 15:31:06 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:50:45 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	parse_rgb_component(const char *str, int *component)
 	return (SUCCESS);
 }
 
-int	ft_set_color(int *dest, char *color_str)
+int	ft_set_color(int *dest, char *color_str)// CORRIGER exemple C 22,30,0
 {
 	char	**split;
 	char	*tmp;

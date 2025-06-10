@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:17:52 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/10 11:48:16 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:37:35 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,39 +73,39 @@ int	extract_map(char **file_lines, char ***out_map)//TODO A racourcir
 	int	end;
 	int	len;
 	int	i;
-	int	j;
+	int	i_error;
 
 	start = 0;
-	while (file_lines[start] && !ft_is_map_line(file_lines[start]))
+	while (file_lines[start] && !ft_is_map_line(file_lines[start]))//trouve la premiere ligne
 		start++;
 	if (!file_lines[start])
 		return (FAILURE);
 	end = start;
-	while (file_lines[end] && ft_is_map_line(file_lines[end]))
+	while (file_lines[end] && ft_is_map_line(file_lines[end]))//trouve la derniere ligne
 		end++;
 	len = end - start;
-	*out_map = (char **)malloc(sizeof(char *) * (len + 1));
+	*out_map = (char **)malloc(sizeof(char *) * (len + 1));//allouer le tab de sortie et len +1 pour pointeur null final
 	if (!*out_map)
 		return (FAILURE);
 	i = 0;
 	while (i < len)
 	{
-		(*out_map)[i] = ft_strdup(file_lines[start + i]);
-		if (!(*out_map)[i])
+		(*out_map)[i] = ft_strdup(file_lines[start + i]);//duplique les lignes de la carte
+		if (!(*out_map)[i])//juste si echec du ft strdup
 		{
-			j = 0;
-			while (j < i)
+			i_error = 0;
+			while (i_error < i)
 			{
-				free((*out_map)[j]);
-				j++;
+				free((*out_map)[i_error]);
+				i_error++;
 			}
 			free(*out_map);
 			return (FAILURE);
 		}
-		ft_strip_newline((*out_map)[i]);
+		ft_strip_newline((*out_map)[i]);//on enelve un eventuel \n
 		i++;
 	}
-	(*out_map)[len] = NULL;
+	(*out_map)[len] = NULL;//terminer le tab proprement avec un NULL
 	return (SUCCESS);
 }
 
@@ -142,15 +142,15 @@ int	scan_map(char **map, t_game_data *game)
 			if (is_valid_player_char(c))
 			{
 				if (count_and_set_player(game, y, x, c) != SUCCESS)
-					return (ft_handle_error(ERR_PARSE_FAIL));
+					return (ERR_PARSE_FAIL);
 			}
 			else if (c != '0' && c != '1' && c != ' ')
-				return (ft_handle_error(ERR_PARSE_FAIL));
+				return (ERR_PARSE_FAIL);
 			x++;
 		}
 		y++;
 	}
 	if (!game->player_found)
-		return (ft_handle_error(ERR_PARSE_FAIL));
+		return (ERR_PARSE_FAIL);
 	return (SUCCESS);
 }
