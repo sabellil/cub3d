@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/10 15:49:16 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/12 12:50:33 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,8 @@ int					is_map_closed(char **map);
 int					count_and_set_player(t_game_data *game, int y, int x,
 						char c);
 int					is_valid_player_char(char c);
+int					get_map_width(char **map);
+int					get_map_height(char **map);
 
 //INITALIZATION UTILS
 void				print_file_lines(char **lines);
@@ -157,4 +159,8 @@ int				ft_render(t_data *data);
 //OTHER FUNCTIONS JUST SO I CAN COMPILE
 void			ft_setup_hooks(t_data *data);
 void			ft_clean_exit(t_data *data, int exit_code);
+
+//GRID VIEW
+//draw_square
+//draw_minimap
 #endif

@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:39:08 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/10 14:20:25 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/12 12:51:05 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ void	paint_each_pixel(t_img *ptr, t_infra *skelet)
 
 int	ft_render(t_data *data)
 {
-    t_infra *infra;
+	t_infra	*infra;
 
-    infra = &data->infra;
+	infra = &data->infra;
+	paint_each_pixel(infra->img_nxt, infra);
+	// draw_minimap(data);//Lancement de la minimap
 	mlx_put_image_to_window(infra->mlx, infra->win,
 		infra->img_now->new_img, 0, 0);
-	paint_each_pixel(infra->img_nxt, infra);
-	// printf("ratio: %f\n", infra->ratio);
 	swap_buffer(infra);
 	return (SUCCESS);
 }
