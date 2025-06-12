@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:37:16 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/12 12:52:38 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/12 12:52:59 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ int	get_map_height(char **map)
 		i++;
 	return (i);
 }
-
 
 int	ft_second_parsing_and_init(char **file_lines, t_game_data *game)
 {
