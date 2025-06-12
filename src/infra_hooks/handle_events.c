@@ -10,15 +10,39 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cubed.h"
+#include "../../include/cubed.h"
 
 int	key_up(t_infra *infra)
+{
+	infra->data->game.pos_x++;
+	return (SUCCESS);
+}
+
+int	key_down(t_infra *infra)
+{
+	infra->data->game.pos_x--;
+	return (SUCCESS);
+}
+
+int	key_left(t_infra *infra)
+{
+	infra->data->game.pos_x++;
+	return (SUCCESS);
+}
+
+int	key_right(t_infra *infra)
+{
+	infra->data->game.pos_x--;
+	return (SUCCESS);
+}
+
+int	key_turn_left(t_infra *infra)
 {
 	infra->ratio = infra->ratio + 0.2;
 	return (SUCCESS);
 }
 
-int	key_down(t_infra *infra)
+int	key_turn_right(t_infra *infra)
 {
 	if (infra->ratio > 1.3)
 		infra->ratio = infra->ratio - 0.2;
@@ -45,14 +69,18 @@ int	handle_keypress(int keycode, t_infra *infra)
 {
 	if (keycode == XK_Escape)
 		close_window(infra);
-	if (keycode == XK_Up)
-		key_up(infra);
-	if (keycode == XK_Down)
-		key_down(infra);
+	if (keycode == XK_Up || keycode == XK_w || keycode == XK_W)
+		key_up(infra); //haut = moove y++
+	if (keycode == XK_Down || keycode == XK_s || keycode == XK_S)
+		key_down(infra); //bas = moove y--
+	if (keycode == XK_d || keycode == XK_D)
+		key_right(infra); //key right droite = moove x++
+	if (keycode == XK_a || keycode == XK_A)
+		key_left(infra); //key righht gauche = moove x--
 	if (keycode == XK_Left)
-		key_up(infra);
+		key_turn_left(infra); //angle ++
 	if (keycode == XK_Right)
-		key_down(infra);
+		key_turn_right(infra); //angle --
 	return (SUCCESS);
 }
 
