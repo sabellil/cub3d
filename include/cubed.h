@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/13 10:34:44 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/13 12:16:07 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,22 @@
 # define ERR_PARSE_FAIL 12
 # define ERR_INFRA_FAIL 13
 
+typedef struct s_tile_info
+{
+	int		x;
+	int		y;
+	int		size;
+	char	tile;
+}	t_tile_info;
+
+typedef struct s_square
+{
+	int	x;
+	int	y;
+	int	size;
+	int	color;
+}	t_square;
+ 
 typedef struct s_img
 {
 	void			*new_img;
@@ -144,6 +160,8 @@ void				free_file_lines(char **file_lines);
 void				free_textures(t_game_data *game, void *mlx);
 void				free_map(char **map);
 int					ft_free_and_fail(char *tmp, char **split);
+void				destroy_images_and_window(t_infra *infra);
+void				free_mlx_and_data(t_infra *infra);
 
 //INFRA
 int					close_window(t_infra *infra);
@@ -152,7 +170,6 @@ int					ft_init_infra(t_infra *infra);
 void				ft_setup_hooks(t_data *data);
 
 //GRID VIEW
-void				draw_square(t_img *img, int x, int y, int size, int color);
 void				draw_minimap(t_data *data);
 
 //GRAPHIC N RENDER

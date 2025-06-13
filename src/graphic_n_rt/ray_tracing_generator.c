@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:39:08 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/13 10:29:40 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/13 11:59:32 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	ft_render(t_data *data)
 
 	infra = &data->infra;
 	paint_each_pixel(infra->img_nxt, infra);
-	draw_minimap(data);//Lancement de la minimap
+	draw_minimap(data);
 	mlx_put_image_to_window(infra->mlx, infra->win,
 		infra->img_now->new_img, 0, 0);
 	swap_buffer(infra);

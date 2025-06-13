@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:16:22 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/10 15:19:39 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/13 12:02:51 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,39 @@ int	ft_free_and_fail(char *tmp, char **split)
 	if (split)
 		ft_free_strarr(split);
 	return (FAILURE);
+}
+void	destroy_images_and_window(t_infra *infra)
+{
+	if (infra->img_now)
+	{
+		if (infra->img_now->new_img)
+			mlx_destroy_image(infra->mlx, infra->img_now->new_img);
+		free(infra->img_now);
+	}
+	if (infra->img_nxt)
+	{
+		if (infra->img_nxt->new_img)
+			mlx_destroy_image(infra->mlx, infra->img_nxt->new_img);
+		free(infra->img_nxt);
+	}
+	if (infra->win)
+		mlx_destroy_window(infra->mlx, infra->win);
+}
+
+void	free_mlx_and_data(t_infra *infra)
+{
+	if (infra->data)
+	{
+		free_map(infra->data->game.map);
+		free_textures(&infra->data->game, infra->mlx);
+	}
+	if (infra->mlx)
+	{
+		mlx_destroy_display(infra->mlx);
+		free(infra->mlx);
+	}
+	infra->img_now = NULL;
+	infra->img_nxt = NULL;
+	infra->win = NULL;
+	infra->mlx = NULL;
 }
