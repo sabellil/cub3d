@@ -6,7 +6,7 @@
 #    By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 15:01:27 by sabellil          #+#    #+#              #
-#    Updated: 2025/06/09 16:25:37 by sabellil         ###   ########.fr        #
+#    Updated: 2025/06/13 10:32:31 by sabellil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC_LIST = main.c \
 			free.c \
 			infra_hooks/handle_events.c \
 			infra_hooks/infra.c \
+			graphic_n_rt/draw_minimap.c \
 			graphic_n_rt/graphic.c \
 			graphic_n_rt/ray_tracing_generator.c \
 			parsing/parse_and_init.c \

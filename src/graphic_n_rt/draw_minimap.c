@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:42:21 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/13 10:22:15 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/13 10:37:20 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	draw_minimap(t_data *data)
 		}
 		y++;
 	}
-	draw_square(img, pos_x * tile_size, pos_y * tile_size, 4, couleurrouge);
+	draw_square(img, (int)(data->game.pos_x * tile_size), (int)(data->game.pos_y * tile_size), 4, 0xFF0000);
 }
 
 void	draw_square(t_img *img, int x, int y, int size, int color)
@@ -53,7 +53,12 @@ void	draw_square(t_img *img, int x, int y, int size, int color)
 	while (i < size)
 	{
 		j = 0;
-		while ()
+		while (j < size)
+		{
+			put_pixel(img, color, x + j, y + i);
+			j++;
+		}
+		i++;
 	}
 }
 // DESSINER LA MINIMAP ET LE JOUEUR
