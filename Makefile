@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+         #
+#    By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 15:01:27 by sabellil          #+#    #+#              #
-#    Updated: 2025/06/09 16:25:37 by sabellil         ###   ########.fr        #
+#    Updated: 2025/06/13 11:27:59 by mairivie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 
 COMPIL = cc
-CFLAGS = -Wall -Wextra -Werror -g -I include
+CFLAGS = -Wall -Wextra -Werror -g -I include -MD
 
 SRC_DIR = src/
 SRC_LIST = main.c \
@@ -84,4 +84,6 @@ val:
 	rm -f valgrind_report.log
 
 .PHONY: all clean fclean re val valclean
+
+-include $(OBJ:.o=.d)
 	
