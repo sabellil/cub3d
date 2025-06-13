@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/10 15:49:16 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/13 12:16:07 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,22 @@
 # define ERR_PARSE_FAIL 12
 # define ERR_INFRA_FAIL 13
 
+typedef struct s_tile_info
+{
+	int		x;
+	int		y;
+	int		size;
+	char	tile;
+}	t_tile_info;
+
+typedef struct s_square
+{
+	int	x;
+	int	y;
+	int	size;
+	int	color;
+}	t_square;
+ 
 typedef struct s_img
 {
 	void			*new_img;
@@ -83,13 +99,13 @@ typedef struct s_game_data
 //ratio = temporaire pour test les touches
 typedef struct s_infra
 {
-	void		*mlx;
-	void		*win;
-	t_img		*img_now;
-	t_img		*img_nxt;
-	double		ratio;
+	void			*mlx;
+	void			*win;
+	t_img			*img_now;
+	t_img			*img_nxt;
+	double			ratio;
 	struct s_data	*data;
-}				t_infra;
+}					t_infra;
 
 typedef struct s_data
 {
@@ -126,6 +142,8 @@ int					is_map_closed(char **map);
 int					count_and_set_player(t_game_data *game, int y, int x,
 						char c);
 int					is_valid_player_char(char c);
+int					get_map_width(char **map);
+int					get_map_height(char **map);
 
 //INITALIZATION UTILS
 void				print_file_lines(char **lines);
@@ -142,19 +160,22 @@ void				free_file_lines(char **file_lines);
 void				free_textures(t_game_data *game, void *mlx);
 void				free_map(char **map);
 int					ft_free_and_fail(char *tmp, char **split);
-void				free_infra(t_infra *infra);
-//THE BIG BIG LOOP
+void				destroy_images_and_window(t_infra *infra);
+void				free_mlx_and_data(t_infra *infra);
 
 //INFRA
-int				close_window(t_infra *infra);
-int				handle_keypress(int keycode, t_infra *infra);
-int				ft_init_infra(t_infra *infra);
+int					close_window(t_infra *infra);
+int					handle_keypress(int keycode, t_infra *infra);
+int					ft_init_infra(t_infra *infra);
+void				ft_setup_hooks(t_data *data);
+
+//GRID VIEW
+void				draw_minimap(t_data *data);
 
 //GRAPHIC N RENDER
-int				what_color_is_this_pixel(double x, double y, t_infra *infra);
-int				ft_render(t_data *data);
+int					what_color_is_this_pixel(double x, double y,
+						t_infra *infra);
+int					ft_render(t_data *data);
+void				put_pixel(t_img *image, int color, int x, int y);
 
-//OTHER FUNCTIONS JUST SO I CAN COMPILE
-void			ft_setup_hooks(t_data *data);
-void			ft_clean_exit(t_data *data, int exit_code);
 #endif
