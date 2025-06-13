@@ -6,11 +6,12 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:42:21 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/13 12:15:53 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/13 13:49:11 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubed.h"
+
 
 static void	draw_square(t_img *img, t_square sq)
 {
