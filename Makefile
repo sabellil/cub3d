@@ -6,7 +6,7 @@
 #    By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 15:01:27 by sabellil          #+#    #+#              #
-#    Updated: 2025/06/13 13:14:12 by mairivie         ###   ########.fr        #
+#    Updated: 2025/06/13 13:39:41 by mairivie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,15 +19,15 @@ SRC_DIR = src/
 SRC_LIST = main.c \
 			errors.c \
 			free.c \
-			infra_hooks/handle_events.c \
-			infra_hooks/infra.c \
-			graphic_n_rt/draw_minimap.c \
-			graphic_n_rt/graphic.c \
-			graphic_n_rt/ray_tracing_generator.c \
+			game/draw_minimap.c \
+			game/graphic.c \
+			game/ray_tracing_generator.c \
+			game/handle_events.c \
 			parsing/parse_and_init.c \
 			parsing/init_parsing_utils.c \
 			init/init_map.c \
 			init/init_utils.c \
+			init/init_infra_and_buffer.c \
 			init/handle_colors.c \
 			init/handle_textures.c \
 			init/handle_map.c \

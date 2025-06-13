@@ -17,25 +17,25 @@
 
 int	key_up(t_infra *infra)
 {
-	infra->data->game.pos_x++;
+	infra->data->game.pos_y--;
 	return (SUCCESS);
 }
 
 int	key_down(t_infra *infra)
 {
-	infra->data->game.pos_x--;
+	infra->data->game.pos_y++;
 	return (SUCCESS);
 }
 
 int	key_left(t_infra *infra)
 {
-	infra->data->game.pos_x++;
+	infra->data->game.pos_x--;
 	return (SUCCESS);
 }
 
 int	key_right(t_infra *infra)
 {
-	infra->data->game.pos_x--;
+	infra->data->game.pos_x++;
 	return (SUCCESS);
 }
 
