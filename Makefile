@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+         #
+#    By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 15:01:27 by sabellil          #+#    #+#              #
-#    Updated: 2025/06/13 13:39:41 by mairivie         ###   ########.fr        #
+#    Updated: 2025/06/16 12:21:04 by sabellil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SRC_LIST = main.c \
 			game/draw_minimap.c \
 			game/graphic.c \
 			game/ray_tracing_generator.c \
+			game/ray.c \
+			game/ray_utils.c \
 			game/handle_events.c \
 			parsing/parse_and_init.c \
 			parsing/init_parsing_utils.c \

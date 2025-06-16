@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/16 11:43:33 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/16 12:21:20 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,5 +178,7 @@ int					what_color_is_this_pixel(double x, double y,
 						t_infra *infra);
 int					ft_render(t_data *data);
 void				put_pixel(t_img *image, int color, int x, int y);
+
+//RAY
 
 #endif

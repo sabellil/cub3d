@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:37:16 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/12 12:52:59 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/16 11:45:32 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,11 @@ int	parse_textures_and_colors(char **lines, t_game_data *game)
 int	parse_map_and_player(char **file_lines, t_game_data *game)
 {
 	if (extract_map(file_lines, &game->map) != SUCCESS)
-	{
-		printf("1\n");
 		return (ERR_PARSE_FAIL);
-	}
 	if (scan_map(game->map, game) != SUCCESS)
-	{
-		printf("2\n");
 		return (ERR_PARSE_FAIL);
-	}
 	if (!is_map_closed(game->map))
-	{
-		printf("3\n");
 		return (ERR_PARSE_FAIL);
-	}
 	return (SUCCESS);
 }
 
