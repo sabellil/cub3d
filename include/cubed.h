@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/13 12:16:07 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/16 11:43:33 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef struct s_game_data
 	double			dir_x;
 	double			dir_y;
 	int				player_found;
+	char			spawn_dir;
 }					t_game_data;
 
 //ratio = temporaire pour test les touches

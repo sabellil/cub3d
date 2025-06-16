@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:17:38 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/10 16:32:54 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/16 11:44:25 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	count_and_set_player(t_game_data *game, int y, int x, char c)
 		game->dir_x = 1;//vers la droite
 	else if (c == 'W')
 		game->dir_x = -1;// vers la gauche
+	game->spawn_dir = c;
 	game->map[y][x] = '0';//remplacer la lettre du joueur dans la map par case vide pour pas la gerer ocmme mur dans la suite du jeu
 	return (SUCCESS);
 }
