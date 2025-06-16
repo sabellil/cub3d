@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   infra.c                                            :+:      :+:    :+:   */
+/*   init_infra_and_buffer.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:27:40 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/09 16:20:38 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/16 11:24:07 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cubed.h"
-
 
 int	init_double_buffer(t_infra *infra)
 {
@@ -35,8 +34,6 @@ int	init_double_buffer(t_infra *infra)
 			&infra->img_nxt->endien);
 	return (SUCCESS);
 }
-
-
 
 int ft_init_infra(t_infra *infra)
 {

@@ -6,12 +6,11 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:42:21 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/13 13:49:11 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/16 11:25:17 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubed.h"
-
 
 static void	draw_square(t_img *img, t_square sq)
 {
@@ -74,7 +73,6 @@ static void	draw_minimap_tiles(t_data *data, t_img *img, int tile_size)
 		y++;
 	}
 }
-
 void	draw_minimap(t_data *data)
 {
 	t_img		*img;
@@ -84,9 +82,9 @@ void	draw_minimap(t_data *data)
 	tile_size = 10;
 	img = data->infra.img_nxt;
 	draw_minimap_tiles(data, img, tile_size);
-	sq.x = (int)(data->game.pos_x * tile_size);
-	sq.y = (int)(data->game.pos_y * tile_size);
 	sq.size = 4;
 	sq.color = 0xFF0000;
+	sq.x = (int)(data->game.pos_x * tile_size - sq.size / 2);
+	sq.y = (int)(data->game.pos_y * tile_size - sq.size / 2);
 	draw_square(img, sq);
 }

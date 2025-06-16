@@ -2,14 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   handle_events.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
-	+:+     */
-/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+      
-	+#+        */
-/*                                                +#+#+#+#+#+  
-	+#+           */
-/*   Created: 2025/06/06 16:17:58 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/06 16:17:58 by sabellil         ###   ########.fr       */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/16 11:22:21 by sabellil          #+#    #+#             */
+/*   Updated: 2025/06/16 11:22:21 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +14,7 @@
 
 int	key_up(t_infra *infra)
 {
+	// if (infra->data->game.pos_y > 0)
 	infra->data->game.pos_y--;
 	return (SUCCESS);
 }
