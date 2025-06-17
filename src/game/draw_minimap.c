@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:42:21 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/16 12:21:45 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/17 11:33:31 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	draw_minimap(t_data *data)
 	draw_minimap_tiles(data, img, tile_size);
 	sq.size = 4;
 	sq.color = 0xFF0000;
-	sq.x = (int)(data->game.pos_x * tile_size - sq.size / 2);
-	sq.y = (int)(data->game.pos_y * tile_size - sq.size / 2);
+	sq.x = (int)(data->game.pos_x * tile_size - sq.size / 2);//calcul de la position du joueur et centrage
+	sq.y = (int)(data->game.pos_y * tile_size - sq.size / 2);//conversion de la pos du joueur (float) en position en pixel 
 	draw_square(img, sq);
 }
