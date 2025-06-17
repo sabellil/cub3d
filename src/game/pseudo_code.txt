@@ -6,7 +6,7 @@
 #    By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/17 14:47:28 by mairivie          #+#    #+#              #
-#    Updated: 2025/06/17 15:28:56 by mairivie         ###   ########.fr        #
+#    Updated: 2025/06/17 16:22:03 by mairivie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,13 +21,13 @@ Etape 3 :
 
 player_pos_x 
 player_pos_y
-vector_dir_x
+vector_dir_x (composante x du vecteur)
 vector_dir_y
-angle_dir_radian
+angle_dir_radian (par rapport a la portion positive de l'axe de abscisses = les x)
 field_of_view_radian (60 deg = PI/3 rad)
-delta_rad = fov / WIDTH
+delta_rad = fov / WIDTH (la micro variation d'angle qui permet de viser la colonne de pixels d'a cote)
 
-angle tempo qui va de [angle_dir - (demi_FoV)] a [angle_dir + (demi_Fov)]
+=> pour peindre tout l'ecran, on va avoir un angle temporaire qui va de [angle_dir - (demi_FoV)] a [angle_dir + (demi_Fov)]
 en WIDTH baby steps
 
 posX du jouer initial = caseX+0.5
@@ -47,16 +47,19 @@ trouver distance intesection mur x
     ->calculer le y avec dir_y (start_y + z*dir_y)
     -> utiliser ce y tronque pour trouver le bloc de jonction
     -> regarder si jonction = mur
-        -> si oui = calculer et stocker distance + couleur du mur frappe
+        -> si oui = calculer et stocker distance (avec x et y pos du jouer et x et y pos de l'intersection avec le mur) 
+                + stocker couleur du mur frappe d'apres les valeur positives ou negatives des composantes du vecteur
         -> si non = recommencer avec le passage d'x sur chiffre rond suivant
 
 Faire la meme chose avec l'axe des y
 
-comparer distance x et distance y 
-garder la plus courte
+comparer distance interception  x et distance interception y 
+garder la plus courte pour les calculs sur cette colonne de pixels
 
-si distance 0 = hauteur 1
-distance x = hauteur 1/(1+abs de x)
+si distance 0 (= on est colle au mur) = hauteur maximale du mur affiche
+on calcul la hauteur des murs pour chaque pixel en faisant une proportionalite
+distance x = hauteur max/(1+abs de x)
+
 Sur la colonne de pixel, en partant du milieu de l'ecran
 Peindre hauteur/2 pixel en bas et hauteur/2 pixel en haut 
 
