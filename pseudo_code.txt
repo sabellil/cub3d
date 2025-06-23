@@ -6,7 +6,7 @@
 #    By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/17 14:47:28 by mairivie          #+#    #+#              #
-#    Updated: 2025/06/17 16:22:03 by mairivie         ###   ########.fr        #
+#    Updated: 2025/06/20 13:58:06 by mairivie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,13 +27,24 @@ angle_dir_radian (par rapport a la portion positive de l'axe de abscisses = les 
 field_of_view_radian (60 deg = PI/3 rad)
 delta_rad = fov / WIDTH (la micro variation d'angle qui permet de viser la colonne de pixels d'a cote)
 
+TODO: initi ces valeurs lors de l'init des structures
+
 => pour peindre tout l'ecran, on va avoir un angle temporaire qui va de [angle_dir - (demi_FoV)] a [angle_dir + (demi_Fov)]
 en WIDTH baby steps
 
 posX du jouer initial = caseX+0.5
 posY du joueur initial = caseY+0.5
 
-Pour chaqun de ces 1000+ angles Ang
+pour affichage d'une (1) colonne de pixel je need :
+coordones actuels du joueur
+angle ABC ou AB est la droite qui passe par la colonne de pix et le Joueur 
+et BC la droite qui relie le joueur et la base (axe des x)
+
+Avec l'angle, j'obtient dir_x et dir_y (cos et sinus)
+dir x et dir y sont utilises pour 
+trouver le distances d'intersection avec le mur le plus proche
+puis pour me donner la texture du mnur concerne
+
 
 vector_dir_x = cos(Ang)
 -> Si dir_x ++ => mur x = est
@@ -41,6 +52,9 @@ vector_dir_x = cos(Ang)
 vector_dir_y = sin(Ang)
 -> Si dir_y ++ => mur y = nord
 -> Si dir_y -- => mur y = sud
+
+nedd l'angle
+renvoit les infosn mur x et y
 
 trouver distance intesection mur x
 -> pour chaque passage d'x sur un chiffre rond, (aka start_x + z*dir_x)
