@@ -3,7 +3,8 @@
 1/
 Modif fonction d’init existante pour que 
 
-Valeur d'init de l'angle directeur
+INIT l'angle directeur
+Valeur d'init de l'angle directeur SARAAAA
 E = 0
 N = ½ PI rad
 O = 1 PI rad
@@ -13,7 +14,7 @@ Puis initi valeur de dir x et dir y
 Dir x = cos (alpha)
 Dir y = sin (alpha)
 
-[...]
+[...] au dessus SARA / En dessous MADDY
 
 modif fonction de déplacement pour que avancer/reculer 
 sur l'axe des x : x +/-= 0.2 * dirx et y +/-= 0.2 diry
@@ -37,7 +38,7 @@ si ça doit tomber sous 0 ça devient 2PI)
 Projet Pink Floyd -THE WALL
 ---------
 
-Int ft_paint_the_wall(t_game *data)
+Int ft_paint_the_wall(t_game *data) MADDY
 
 Int y = 1 (premiere colonne de pixel)
 Float delta = FOV / Width => variation d'angle
@@ -45,7 +46,7 @@ Float alpha_tmp = alpha - FOV/2 => angle temporaire
 
 While (y < width)
 {
-    posx_wall = ft_where_is_the_wall_x (*game, alpha_tmp)
+    posx_wall = ft_where_is_the_wall_x (*game, alpha_tmp) MADDY a reformuler (un seul appel donc des pointeurs)
     posy_wall = ft_where_is_the_wall_y (*game, alpha_tmp)
 	Dst = calcul_dst (posx_wall, posy_wall) => calcul a partir de x et y du mur
 	Color = ft_color_of_the_wall (*game, posx_wall, posy_wall)
@@ -74,14 +75,16 @@ NB tete froide=> probablement pas necessaire comme on check systematiquement que
 toutes les paires de coorodonéés x+y ou la droite de l'angle croise un bord de case]
 
 envoie de ces paires de coordonées dans une fonction qui regarde si on tombe sur  un mur ou pas
+int ft_is_it_a_wall(t_game_data *game, float x, float y) SARAAAAA
+{return SUCCESS si c'est un wall}
 
-si oui : calcul de la distance, save de ces coordonées, retour ft_paint_the_wall
+si oui : save de ces coordonées, retour ft_paint_the_wall
 sinon : on passe a la paire de coordonés suivante
 
 }
 
 
-int ft_check_if_wall_to_redo (dst, color, game)
+int ft_check_if_wall_to_redo (dst, color, game) SARA
 {
 int wall_height
 

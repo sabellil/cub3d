@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/23 12:56:29 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/06/23 13:24:47 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,7 @@ typedef struct s_game_data
 	double			dir_x;
 	double			dir_y;
 	int				player_found;
-	double			angle; //angle milieu du champs de vision
-	double			delta_ang; //pas sur de le  stocker si c'est une const
+	double			angle; //angle directeur
 }					t_game_data;
 
 //ratio = temporaire pour test les touches
