@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 13:39:09 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/24 15:08:07 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/24 15:10:51 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,17 @@ int	ft_is_it_a_wall(t_game_data *game, float x, float y)
 	}
 }
 
-// int ft_check_if_wall_to_redo (dst, color, game) 
+// int ft_check_if_wall_to_redo (dst, color, game)
 // {
-    
-// }
 
+// }
 
 // int ft_check_if_wall_to_redo (dst, color, game) SARA
 // {
 // int wall_height
 
 // (proportionalite si dst = 1 (= collé au mur) => height==90% hauteur totale (0.9 * HEIGHT)
-//     plus dst est grand, + wall_height est petit          
+//     plus dst est grand, + wall_height est petit
 //     wall_height = height / dst)
 
 // if x est entre (Height/2 + wall_height/2) et (Height/2 - wall_height/2)

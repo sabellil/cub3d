@@ -6,26 +6,11 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:16:22 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/13 12:02:51 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/24 15:36:03 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cubed.h"
-
-void	free_file_lines(char **file_lines)
-{
-	int	i;
-
-	if (!file_lines)
-		return ;
-	i = 0;
-	while (file_lines[i])
-	{
-		free(file_lines[i]);
-		i++;
-	}
-	free(file_lines);
-}
 
 void	free_map(char **map)
 {
@@ -70,6 +55,7 @@ int	ft_free_and_fail(char *tmp, char **split)
 		ft_free_strarr(split);
 	return (FAILURE);
 }
+
 void	destroy_images_and_window(t_infra *infra)
 {
 	if (infra->img_now)

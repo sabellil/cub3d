@@ -6,11 +6,26 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:52:02 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/09 16:27:59 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/24 15:35:31 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubed.h"
+
+void	free_file_lines(char **file_lines)
+{
+	int	i;
+
+	if (!file_lines)
+		return ;
+	i = 0;
+	while (file_lines[i])
+	{
+		free(file_lines[i]);
+		i++;
+	}
+	free(file_lines);
+}
 
 int	ft_isdigit_str(const char *str)
 {
@@ -69,21 +84,4 @@ int	ft_starts_with(const char *str, const char *prefix)
 		i++;
 	}
 	return (1);
-}
-
-void	print_file_lines(char **lines) //TODO A supprimer a la fin pour afficher le contenu de file_lines
-{
-	int i;
-
-	if (!lines)
-	{
-		printf("file_lines est NULL\n");
-		return ;
-	}
-	i = 0;
-	while (lines[i])
-	{
-		printf("Ligne %d : %s", i, lines[i]);
-		i++;
-	}
 }

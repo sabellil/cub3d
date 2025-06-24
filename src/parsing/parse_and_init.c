@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:10:09 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/09 16:28:11 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/24 15:09:53 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,3 @@ int	ft_first_parsing(char *filename, char ***file_lines_out)
 	*file_lines_out = file_lines;
 	return (SUCCESS);
 }
-
-//starting point, direction du regrd, dessin des murs sur la carte.

@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:17:38 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/24 12:10:17 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/24 15:41:12 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,9 @@ int	count_and_set_player(t_game_data *game, int y, int x, char c)
 {
 	if (game->player_found)
 		return (ERR_PARSE_FAIL);
-
 	game->pos_x = x + 0.5;
 	game->pos_y = y + 0.5;
 	game->player_found = 1;
-
 	if (c == 'N')
 		game->angle = PI / 2;
 	else if (c == 'S')
@@ -34,10 +32,8 @@ int	count_and_set_player(t_game_data *game, int y, int x, char c)
 		game->angle = 0;
 	else if (c == 'W')
 		game->angle = PI;
-
 	game->dir_x = cos(game->angle);
 	game->dir_y = sin(game->angle);
-
 	game->map[y][x] = '0';
 	return (SUCCESS);
 }
