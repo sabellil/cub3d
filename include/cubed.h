@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/24 11:39:11 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/24 13:50:45 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,5 +180,5 @@ int					what_color_is_this_pixel(double x, double y,
 						t_infra *infra);
 int					ft_render(t_data *data);
 void				put_pixel(t_img *image, int color, int x, int y);
-
+int					ft_is_it_a_wall(t_game_data *game, float x, float y);
 #endif
