@@ -49,6 +49,7 @@ int	key_turn_right(t_infra *infra)
 	return (SUCCESS);
 }
 
+
 void	ft_setup_hooks(t_data *data)
 {
 	t_infra	*infra;
