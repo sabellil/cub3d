@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:52:02 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/09 16:27:59 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/24 14:19:38 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cubed.h"
+#include "../../include/cubed.h"
 
 int	ft_isdigit_str(const char *str)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   handle_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:17:38 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/24 12:10:17 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/24 14:19:36 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cubed.h"
+#include "../../include/cubed.h"
 
 int	is_valid_player_char(char c)
 {

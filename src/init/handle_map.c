@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   handle_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:17:52 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/10 16:37:35 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/24 14:19:35 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cubed.h"
+#include "../../include/cubed.h"
 
 static int	is_inside(char **map, int y, int x)
 {

@@ -6,11 +6,11 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:39:08 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/20 11:50:30 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/06/24 14:20:11 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cubed.h"
+#include "../../include/cubed.h"
 
 int	rgb_to_int(unsigned char r, unsigned char g, unsigned char b)
 {
