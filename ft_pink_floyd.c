@@ -83,7 +83,6 @@ sinon : on passe a la paire de coordonés suivante
 
 }
 
-
 int ft_check_if_wall_to_redo (dst, color, game) SARA
 {
 int wall_height
