@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/24 11:39:11 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/24 16:37:47 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,5 +180,10 @@ int					what_color_is_this_pixel(double x, double y,
 						t_infra *infra);
 int					ft_render(t_data *data);
 void				put_pixel(t_img *image, int color, int x, int y);
+int					move_up(t_infra *infra);
+int					move_down(t_infra *infra);
+int					move_right(t_infra *infra);
+int					move_left(t_infra *infra);
+int					move_turn(t_infra *infra, int keycode);
 
 #endif

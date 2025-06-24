@@ -12,50 +12,6 @@
 
 #include "../../include/cubed.h"
 
-int	key_up(t_infra *infra)
-{
-	infra->data->game.pos_y -= 0.2 * infra->data->game.dir_y ;
-	infra->data->game.pos_x -= 0.2 * infra->data->game.dir_x ;
-	return (SUCCESS);
-}
-
-int	key_down(t_infra *infra)
-{
-	infra->data->game.pos_y += 0.2 * infra->data->game.dir_y ;
-	infra->data->game.pos_x += 0.2 * infra->data->game.dir_x ;
-	return (SUCCESS);
-}
-int	key_left(t_infra *infra)
-{
-	infra->data->game.pos_y += 0.2 * infra->data->game.dir_x ;
-	infra->data->game.pos_x -= 0.2 * infra->data->game.dir_y ;
-	return (SUCCESS);
-}
-
-int	key_right(t_infra *infra)
-{
-	infra->data->game.pos_y -= 0.2 * infra->data->game.dir_x ;
-	infra->data->game.pos_x += 0.2 * infra->data->game.dir_y ;
-	return (SUCCESS);
-}
-
-int	key_turn_left(t_infra *infra)
-{
-	infra->data->game.angle += 0.2;
-	infra->data->game.dir_x = cos (infra->data->game.angle);
-	infra->data->game.dir_y = sin (infra->data->game.angle);
-	return (SUCCESS);
-}
-
-int	key_turn_right(t_infra *infra)
-{
-	infra->data->game.angle -= 0.2;
-	infra->data->game.dir_x = cos (infra->data->game.angle);
-	infra->data->game.dir_y = sin (infra->data->game.angle);
-	return (SUCCESS);
-}
-
-
 void	ft_setup_hooks(t_data *data)
 {
 	t_infra	*infra;
@@ -77,17 +33,15 @@ int	handle_keypress(int keycode, t_infra *infra)
 	if (keycode == XK_Escape)
 		close_window(infra);
 	if (keycode == XK_w || keycode == XK_W)
-		key_up(infra); //haut = moove y++
+		move_up(infra); //haut = moove y++
 	if (keycode == XK_s || keycode == XK_S)
-		key_down(infra); //bas = moove y--
+		move_down(infra); //bas = moove y--
 	if (keycode == XK_d || keycode == XK_D)
-		key_right(infra); //key right droite = moove x++
+		move_right(infra); //key right droite = moove x++
 	if (keycode == XK_a || keycode == XK_A)
-		key_left(infra); //key righht gauche = moove x--
-	if (keycode == XK_Left)
-		key_turn_left(infra); //angle ++
-	if (keycode == XK_Right)
-		key_turn_right(infra); //angle --
+		move_left(infra); //key righht gauche = moove x--
+	if (keycode == XK_Left || keycode == XK_Right)
+		move_turn(infra, keycode);
 	printf("x: %f / y: %f / A: %f \n", infra->data->game.pos_x, infra->data->game.pos_y, infra->data->game.angle);
 	return (SUCCESS);
 }
