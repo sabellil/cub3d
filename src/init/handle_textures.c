@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 17:41:28 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/24 14:38:23 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/24 14:40:18 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,27 +62,20 @@ int	ft_set_texture(t_asset *dest, char *path_str, void *mlx_ptr)
 	free(trimmed);
 	return (SUCCESS);
 }
+
 int	ft_parse_texture_line(char *line, t_game_data *game)
 {
 	if (ft_starts_with(line, "NO "))
-	{
-		int ret = ft_set_texture(&game->tex_no, line + 3, ((t_data *)game)->infra.mlx);
-		return (ret);
-	}
+		return (ft_set_texture(&game->tex_no, line + 3,
+				((t_data *)game)->infra.mlx));
 	if (ft_starts_with(line, "SO "))
-	{
-		int ret = ft_set_texture(&game->tex_so, line + 3, ((t_data *)game)->infra.mlx);
-		return (ret);
-	}
+		return (ft_set_texture(&game->tex_so, line + 3,
+				((t_data *)game)->infra.mlx));
 	if (ft_starts_with(line, "WE "))
-	{
-		int ret = ft_set_texture(&game->tex_we, line + 3, ((t_data *)game)->infra.mlx);
-		return (ret);
-	}
+		return (ft_set_texture(&game->tex_we, line + 3,
+				((t_data *)game)->infra.mlx));
 	if (ft_starts_with(line, "EA "))
-	{
-		int ret = ft_set_texture(&game->tex_ea, line + 3, ((t_data *)game)->infra.mlx);
-		return (ret);
-	}
+		return (ft_set_texture(&game->tex_ea, line + 3,
+				((t_data *)game)->infra.mlx));
 	return (FAILURE);
 }

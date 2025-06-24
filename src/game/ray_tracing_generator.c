@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:39:08 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/24 14:39:05 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/24 14:40:09 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,6 @@ static void	test_is_it_a_wall(t_game_data *game)
 		i++;
 	}
 	printf("===========================\n\n");
-}
-
-static void	print_map(char **map, int height)
-{
-
 }
 
 int	ft_render(t_data *data)
