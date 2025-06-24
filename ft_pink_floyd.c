@@ -97,7 +97,6 @@ if x est entre (Height/2 + wall_height/2) et (Height/2 - wall_height/2)
 
 
 }
-
  
 
 */
