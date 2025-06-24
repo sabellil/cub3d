@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 13:39:09 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/24 14:39:48 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/24 15:08:07 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,20 @@ int	ft_is_it_a_wall(t_game_data *game, float x, float y)
 	cell = game->map[map_y][map_x];
 	if (cell == '1' || cell == ' ')
 	{
-		printf("C'EST UN MUR\n");
+		// printf("C'EST UN MUR\n");
 		return (SUCCESS);
 	}
 	else
 	{
-		printf("ce n'est PAS un mur\n");
+		// printf("ce n'est PAS un mur\n");
 		return (FAILURE);
 	}
 }
 
-int ft_check_if_wall_to_redo (dst, color, game) 
-{
+// int ft_check_if_wall_to_redo (dst, color, game) 
+// {
     
-}
+// }
 
 
 // int ft_check_if_wall_to_redo (dst, color, game) SARA
