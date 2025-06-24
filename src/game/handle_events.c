@@ -14,38 +14,44 @@
 
 int	key_up(t_infra *infra)
 {
-	infra->data->game.pos_y -= 0.2;
+	infra->data->game.pos_y -= 0.2 * infra->data->game.dir_y ;
+	infra->data->game.pos_x -= 0.2 * infra->data->game.dir_x ;
 	return (SUCCESS);
 }
 
 int	key_down(t_infra *infra)
 {
-	infra->data->game.pos_y += 0.2;
+	infra->data->game.pos_y += 0.2 * infra->data->game.dir_y ;
+	infra->data->game.pos_x += 0.2 * infra->data->game.dir_x ;
 	return (SUCCESS);
 }
-
 int	key_left(t_infra *infra)
 {
-	infra->data->game.pos_x -= 0.2;
+	infra->data->game.pos_y += 0.2 * infra->data->game.dir_x ;
+	infra->data->game.pos_x -= 0.2 * infra->data->game.dir_y ;
 	return (SUCCESS);
 }
 
 int	key_right(t_infra *infra)
 {
-	infra->data->game.pos_x += 0.2;
+	infra->data->game.pos_y -= 0.2 * infra->data->game.dir_x ;
+	infra->data->game.pos_x += 0.2 * infra->data->game.dir_y ;
 	return (SUCCESS);
 }
 
 int	key_turn_left(t_infra *infra)
 {
-	infra->ratio = infra->ratio + 0.2;
+	infra->data->game.angle += 0.2;
+	infra->data->game.dir_x = cos (infra->data->game.angle);
+	infra->data->game.dir_y = sin (infra->data->game.angle);
 	return (SUCCESS);
 }
 
 int	key_turn_right(t_infra *infra)
 {
-	if (infra->ratio > 1.3)
-		infra->ratio = infra->ratio - 0.2;
+	infra->data->game.angle -= 0.2;
+	infra->data->game.dir_x = cos (infra->data->game.angle);
+	infra->data->game.dir_y = sin (infra->data->game.angle);
 	return (SUCCESS);
 }
 
@@ -70,9 +76,9 @@ int	handle_keypress(int keycode, t_infra *infra)
 {
 	if (keycode == XK_Escape)
 		close_window(infra);
-	if (keycode == XK_Up || keycode == XK_w || keycode == XK_W)
+	if (keycode == XK_w || keycode == XK_W)
 		key_up(infra); //haut = moove y++
-	if (keycode == XK_Down || keycode == XK_s || keycode == XK_S)
+	if (keycode == XK_s || keycode == XK_S)
 		key_down(infra); //bas = moove y--
 	if (keycode == XK_d || keycode == XK_D)
 		key_right(infra); //key right droite = moove x++
@@ -82,10 +88,10 @@ int	handle_keypress(int keycode, t_infra *infra)
 		key_turn_left(infra); //angle ++
 	if (keycode == XK_Right)
 		key_turn_right(infra); //angle --
+	printf("x: %f / y: %f / A: %f \n", infra->data->game.pos_x, infra->data->game.pos_y, infra->data->game.angle);
 	return (SUCCESS);
 }
 
-//ICI COREDUMP
 int	close_window(t_infra *infra)
 {
 	destroy_images_and_window(infra);
