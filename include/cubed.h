@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/23 13:24:47 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/06/24 11:39:11 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <X11/X.h>      // define minilibX
 # include <X11/keysym.h> // define Key_events minilibX
 # include <fcntl.h>      // open
-# include <math.h>
+#include <math.h>		// pour cos et sin
 # include <stdio.h>    // printf perror
 # include <stdlib.h>   // malloc free exit
 # include <string.h>   // strerror

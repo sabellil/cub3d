@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:42:21 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/13 12:15:53 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/24 11:44:47 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,11 @@ static void	draw_minimap_tiles(t_data *data, t_img *img, int tile_size)
 		x = 0;
 		while (x < data->game.map_width)
 		{
-			if (x < (int)ft_strlen(current_line))//certaine slignes peuvent etre plus courtes que map_wdith
+			if (x < (int)ft_strlen(current_line))
+			//certaine slignes peuvent etre plus courtes que map_wdith
 				info.tile = current_line[x];
 			else
-				info.tile = '1';// mur hors map
+				info.tile = '1'; // mur hors map
 			info.x = x;
 			draw_map_tile(img, info.tile, info);
 			x++;
@@ -83,9 +84,9 @@ void	draw_minimap(t_data *data)
 	tile_size = 10;
 	img = data->infra.img_nxt;
 	draw_minimap_tiles(data, img, tile_size);
-	sq.x = (int)(data->game.pos_x * tile_size);
-	sq.y = (int)(data->game.pos_y * tile_size);
 	sq.size = 4;
 	sq.color = 0xFF0000;
+	sq.x = (int)(data->game.pos_x * tile_size - sq.size / 2.0);
+	sq.y = (int)(data->game.pos_y * tile_size - sq.size / 2.0);
 	draw_square(img, sq);
 }
