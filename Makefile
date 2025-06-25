@@ -21,6 +21,7 @@ SRC_LIST = main.c \
 			free.c \
 			game/draw_minimap.c \
 			game/graphic.c \
+			game/paint_walls.c \
 			game/ray_tracing_generator.c \
 			game/handle_events.c \
 			game/move_handlers.c \

@@ -18,7 +18,7 @@
 # include <X11/X.h>      // define minilibX
 # include <X11/keysym.h> // define Key_events minilibX
 # include <fcntl.h>      // open
-#include <math.h>		// pour cos et sin
+#include <math.h>		// pour cos et sin, sqrt, floor
 # include <stdio.h>    // printf perror
 # include <stdlib.h>   // malloc free exit
 # include <string.h>   // strerror
@@ -46,6 +46,13 @@ typedef struct s_tile_info
 	int		size;
 	char	tile;
 }	t_tile_info;
+
+typedef struct s_pairf
+{
+    float x;
+    float y;
+}               t_pairf;
+
 
 typedef struct s_square
 {

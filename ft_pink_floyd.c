@@ -99,4 +99,18 @@ if x est entre (Height/2 + wall_height/2) et (Height/2 - wall_height/2)
 }
  
 
+void ft_where_is_the_wall(t_game_data *game, float alpha, float *x, float *y)
+{
+    float   dir_alpha_x;
+    float   dir_alpha_y;
+    float   start_x;
+    float   start_y;
+
+    dir_alpha_x = cos (alpha);
+    dir_alpha_y = sin (alpha);
+    start_x = *x;
+    start_y = *y;
+
+    
+
 */
