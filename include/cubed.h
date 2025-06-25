@@ -30,7 +30,7 @@
 # define HEIGHT 720
 # define MAX_LINES 1024
 # define NAME "(=*.*=) cub3d_cat (=*.*=)"
-# define FOV 
+# define FOV 1
 # define PI 3.1416
 
 # define SUCCESS 0
