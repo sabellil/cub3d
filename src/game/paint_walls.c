@@ -81,14 +81,26 @@ float ft_where_is_the_wall_y(t_game_data *game, float alpha, float *current_x, f
     }
 }
 
-//TODO replace NULL par IMG Next
+//tempo pour test
+int ft_check_if_wall_to_redo (float dst_wall, int color, t_game_data *game, float x)
+{
+    float     wall_height;
+
+    wall_height = HEIGHT / dst_wall;
+    (void)color;
+    (void)game;
+    if (x < (HEIGHT/2 + wall_height/2) && x > (HEIGHT/2 - wall_height/2))
+        return SUCCESS;
+    return FAILURE;
+}
+
 int ft_paint_one_pix_collumn(t_game_data *game, float alpha_tmp, float y)
 {
     t_pairf     dst;
     t_pairf     player_pos;
     int         color;
     float       dst_wall;
-    int         x;
+    float         x;
 
     player_pos.x = game->pos_x;
     player_pos.y = game->pos_y;
@@ -108,13 +120,15 @@ int ft_paint_one_pix_collumn(t_game_data *game, float alpha_tmp, float y)
         color++;
         //color = north_or_south(alpha_tmp);
     }
-    x = 0;
-    while (x <= HEIGHT)
+    x = 1;
+    while (x < HEIGHT)
     {
-        // if (ft_check_if_wall_to_redo (dst_wall, color, game, x) == SUCCESS)
-        //     put_pixel(NULL, color, x, y);
+        if (ft_check_if_wall_to_redo (dst_wall, color, game, x) == SUCCESS)
+        {
+            printf("dst_wall = %f x = %f et y = %f \n",dst_wall, x, y);
+            put_pixel(game->data->infra.img_nxt, color, x, y);
+        }
         x++;
-        (void)y;
     }
     return SUCCESS;
 }
@@ -127,8 +141,8 @@ int ft_paint_the_wall(t_game_data *game)
 
     delta = FOV / WIDTH;
     alpha_tmp = game->angle - (FOV / 2);
-    y = 0;
-
+    y = 1;
+    printf("before while y\n");
     while (y < WIDTH)
     {
         ft_paint_one_pix_collumn(game, alpha_tmp, y);

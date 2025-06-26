@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/24 16:37:47 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/06/26 12:32:48 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_asset
 
 typedef struct s_game_data
 {
+	struct s_data	*data;
 	char			**map;
 	int				map_width;
 	int				map_height;
@@ -186,6 +187,7 @@ void				draw_minimap(t_data *data);
 int					what_color_is_this_pixel(double x, double y,
 						t_infra *infra);
 int					ft_render(t_data *data);
+int 				ft_paint_the_wall(t_game_data *game);
 void				put_pixel(t_img *image, int color, int x, int y);
 int					move_up(t_infra *infra);
 int					move_down(t_infra *infra);

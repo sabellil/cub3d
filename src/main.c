@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 15:24:08 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/10 16:05:18 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/26 12:12:19 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	main(int argc, char **argv)
 		return (ft_handle_error(ERR_PARSE_FAIL));
 	if(ft_init_infra(&data.infra)!= SUCCESS)
 		return (ft_handle_error(ERR_INFRA_FAIL));
-	data.infra.data = &data;// pour que close window qui prend t_infra puisse recuperer la data entiere et donc liberer
+	data.infra.data = &data;
+	data.game.data = &data;// pour que close window qui prend t_infra puisse recuperer la data entiere et donc liberer
 	if (ft_second_parsing_and_init(file_lines, &data.game) != SUCCESS)
 	{		
 		ft_handle_error(ERR_PARSE_FAIL);
