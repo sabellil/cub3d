@@ -72,7 +72,7 @@ float ft_where_is_the_wall_x(t_game_data *game, float alpha, float *current_x, f
         cross.y = *current_y + dif.y;
         *current_x = cross.x;
         *current_y = cross.y;
-        printf("OUIIIIIIIIIIIIIIIIIIIII cross.x = %f cross_y = %f\n", cross.x, cross.y);
+        // printf("OUIIIIIIIIIIIIIIIIIIIII cross.x = %f cross_y = %f\n", cross.x, cross.y);
         //if (ft_is_it_a_wall(game, cross.x + offset_x, cross.y) == SUCCESS)
     }
     return (ft_get_wall_distance(game, cross));
@@ -102,7 +102,7 @@ float ft_where_is_the_wall_y(t_game_data *game, float alpha, float *current_x, f
         cross.x = *current_x + dif.x;
         *current_x = cross.x;
         *current_y = cross.y;
-        printf("cross.x = %f cross_y = %f dir.x = %f dir.y = %f\n", cross.x, cross.y, dir.x, dir.y);
+        // printf("cross.x = %f cross_y = %f dir.x = %f dir.y = %f\n", cross.x, cross.y, dir.x, dir.y);
         //if (ft_is_it_a_wall(game, cross.x, cross.y + offset_y) == SUCCESS)
     }
     return (ft_get_wall_distance(game, cross));
@@ -131,13 +131,13 @@ int ft_paint_one_pix_collumn(t_game_data *game, float alpha_tmp, float y)
 
     player_pos.x = game->pos_x;
     player_pos.y = game->pos_y;
-        printf("player pos set\n");
+        //printf("player pos set\n");
     if (sqrtf(cosf(alpha_tmp) * cosf(alpha_tmp)) >= 1)
     dst.x = ft_where_is_the_wall_x(game, alpha_tmp, &player_pos.x, &player_pos.y);
-        printf("dst.x = %f\n", dst.x);
+        // printf("dst.x = %f\n", dst.x);
     if (sqrtf(cosf(alpha_tmp) * cosf(alpha_tmp)) >= 1)
     dst.y = ft_where_is_the_wall_y(game, alpha_tmp, &player_pos.x, &player_pos.y);
-        printf("dst.y = %f\n", dst.y);
+        // printf("dst.y = %f\n", dst.y);
     if (dst.x < dst.y)
     {
         dst_wall = dst.x;
@@ -157,7 +157,7 @@ int ft_paint_one_pix_collumn(t_game_data *game, float alpha_tmp, float y)
     {
         if (!ft_check_if_wall_to_redo (dst_wall, color, game, x))
             return (FAILURE);
-        printf("dst_wall = %f x = %f et y = %f \n",dst_wall, x, y);
+        // printf("dst_wall = %f x = %f et y = %f \n",dst_wall, x, y);
         put_pixel(game->data->infra.img_nxt, color, x, y);
         x++;
     }
@@ -176,13 +176,10 @@ int ft_paint_the_wall(t_game_data *game)
     while (y < WIDTH)
     {
         if (ft_paint_one_pix_collumn(game, alpha_tmp, y) == FAILURE)
-        {
-            
             return (FAILURE);
-        }
         y++;
         alpha_tmp = alpha_tmp + delta;
-        printf("y = %f alpha = %f delta = %f\n", y, alpha_tmp, delta);
+        //printf("y = %f alpha = %f delta = %f\n", y, alpha_tmp, delta);
     }
     return SUCCESS;
 }

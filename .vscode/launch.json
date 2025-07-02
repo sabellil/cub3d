@@ -9,7 +9,7 @@
       "stopAtEntry": false,
       "externalConsole": false,
       "cwd": "/home/mairivie/00_github/42_cub3d/repo_git/src",
-      "program": "/home/mairivie/00_github/42_cub3d/repo_git/src/build/Debug/outDebug",
+      "program": "/home/mairivie/00_github/42_cub3d/repo_git/cub3d",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
