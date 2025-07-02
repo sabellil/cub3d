@@ -72,7 +72,7 @@ float ft_where_is_the_wall_x(t_game_data *game, float alpha, float *current_x, f
         cross.y = *current_y + dif.y;
         *current_x = cross.x;
         *current_y = cross.y;
-        printf("cross.x = %f cross_y = %f\n", cross.x, cross.y);
+        printf("OUIIIIIIIIIIIIIIIIIIIII cross.x = %f cross_y = %f\n", cross.x, cross.y);
         //if (ft_is_it_a_wall(game, cross.x + offset_x, cross.y) == SUCCESS)
     }
     return (ft_get_wall_distance(game, cross));
@@ -132,10 +132,10 @@ int ft_paint_one_pix_collumn(t_game_data *game, float alpha_tmp, float y)
     player_pos.x = game->pos_x;
     player_pos.y = game->pos_y;
         printf("player pos set\n");
-    if (sqrtf(cosf(alpha_tmp) * cosf(alpha_tmp)) >= 0.5)
+    if (sqrtf(cosf(alpha_tmp) * cosf(alpha_tmp)) >= 1)
     dst.x = ft_where_is_the_wall_x(game, alpha_tmp, &player_pos.x, &player_pos.y);
         printf("dst.x = %f\n", dst.x);
-    if (sqrtf(cosf(alpha_tmp) * cosf(alpha_tmp)) >= 0.5)
+    if (sqrtf(cosf(alpha_tmp) * cosf(alpha_tmp)) >= 1)
     dst.y = ft_where_is_the_wall_y(game, alpha_tmp, &player_pos.x, &player_pos.y);
         printf("dst.y = %f\n", dst.y);
     if (dst.x < dst.y)
