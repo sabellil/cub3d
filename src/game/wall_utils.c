@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 13:39:09 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/02 12:38:04 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/02 15:23:42 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ int	ft_check_if_wall_to_redo(float dst, int color, t_game_data *game, int x)//qu
 	float	wall_height;
 	float	start;
 	float	end;
-	(void)color;// on applique pas la couleur ici donc jignore
+	(void)color;//on applique pas la couleur ici donc jignore
 	(void)game;
 	if (dst <= 0.0f)//si la distance est nulle ou negatif je dessie pas
-		return (0);
+		return (FAILURE);
 	wall_height = (float)HEIGHT / dst;//calcul de la hauteur du mur a lecran
 	start = (float)HEIGHT / 2.0f - wall_height / 2.0f;//calcul  ou commence le et finit le mur su rlecran
 	end = (float)HEIGHT / 2.0f + wall_height / 2.0f;
-	if (x >= (int)start && x <= (int)end)// verif si x envoye est dans la zone du mur
-		return (1); //je dessine
-	return (0);//je dessine pas car le pixel ne fiat pas partie du mur
+	if (x >= (int)start && x <= (int)end)//verif si x envoye est dans la zone du mur
+		return (SUCCESS);//je dessine
+	return (FAILURE);//je dessine pas car le pixel ne fiat pas partie du mur
 }
