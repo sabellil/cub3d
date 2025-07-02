@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/02 16:16:18 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/02 16:37:26 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,5 +194,7 @@ int					move_left(t_infra *infra);
 int					move_turn(t_infra *infra, int keycode);
 int					ft_is_it_a_wall(t_game_data *game, float x, float y);
 int					ft_check_if_wall_to_redo(float dst, int color, t_game_data *game, int x);
+void				free_file_lines_partial(char **lines, int count);
+void    free_file_lines(char **file_lines);
 
 #endif

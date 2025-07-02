@@ -6,13 +6,13 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:26:02 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/02 16:24:34 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/02 16:28:49 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
 
-static void	free_file_lines_partial(char **lines, int count)
+void	free_file_lines_partial(char **lines, int count)
 {
 	int	i;
 
