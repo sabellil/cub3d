@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/24 13:50:45 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/06/24 15:47:47 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@
 # include <X11/X.h>      // define minilibX
 # include <X11/keysym.h> // define Key_events minilibX
 # include <fcntl.h>      // open
-#include <math.h>		// pour cos et sin
-# include <stdio.h>    // printf perror
-# include <stdlib.h>   // malloc free exit
-# include <string.h>   // strerror
-# include <sys/stat.h> // open
-# include <sys/time.h> // gettimeofday
-# include <unistd.h>   // write close read
+# include <math.h>       // pour cos et sin
+# include <stdio.h>      // printf perror
+# include <stdlib.h>     // malloc free exit
+# include <string.h>     // strerror
+# include <sys/stat.h>   // open
+# include <sys/time.h>   // gettimeofday
+# include <unistd.h>     // write close read
 
 # define WIDTH 1280
 # define HEIGHT 720
 # define MAX_LINES 1024
 # define NAME "(=*.*=) cub3d_cat (=*.*=)"
-# define FOV 
+# define FOV
 # define PI 3.1416
 
 # define SUCCESS 0
@@ -41,20 +41,20 @@
 
 typedef struct s_tile_info
 {
-	int		x;
-	int		y;
-	int		size;
-	char	tile;
-}	t_tile_info;
+	int				x;
+	int				y;
+	int				size;
+	char			tile;
+}					t_tile_info;
 
 typedef struct s_square
 {
-	int	x;
-	int	y;
-	int	size;
-	int	color;
-}	t_square;
- 
+	int				x;
+	int				y;
+	int				size;
+	int				color;
+}					t_square;
+
 typedef struct s_img
 {
 	void			*new_img;
@@ -90,16 +90,14 @@ typedef struct s_game_data
 	t_asset			tex_ea;
 	int				floor_color;
 	int				ceiling_color;
-	// Joueur
 	double			pos_x;
 	double			pos_y;
 	double			dir_x;
 	double			dir_y;
 	int				player_found;
-	double			angle; //angle directeur
+	double			angle;
 }					t_game_data;
 
-//ratio = temporaire pour test les touches
 typedef struct s_infra
 {
 	void			*mlx;

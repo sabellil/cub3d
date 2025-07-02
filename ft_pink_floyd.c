@@ -56,6 +56,7 @@ While (y < width)
     {
         if (ft_check_if_wall_to_redo (dst, color, game, x)) == yes
             pixel_color = color
+            put_pixel_to_image(game, y, x, color);
         x++
     }
     y++
