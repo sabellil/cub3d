@@ -56,6 +56,7 @@ While (y < width)
     {
         if (ft_check_if_wall_to_redo (dst, color, game, x)) == yes
             pixel_color = color
+            put_pixel_to_image(game, y, x, color);
         x++
     }
     y++
@@ -82,7 +83,6 @@ si oui : save de ces coordonées, retour ft_paint_the_wall
 sinon : on passe a la paire de coordonés suivante
 
 }
-
 
 int ft_check_if_wall_to_redo (dst, color, game) SARA
 {

@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:26:02 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/24 14:20:22 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/02 16:24:34 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ int	has_single_dot(const char *filename, int len_file)
 
 char	**read_lines_from_file(int fd)
 {
-	char **lines;
-	char *line;
-	int i;
+	char	**lines;
+	char	*line;
+	int		i;
 
 	lines = malloc(sizeof(char *) * (MAX_LINES + 1));
 	if (!lines)

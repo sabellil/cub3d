@@ -2,9 +2,12 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   handle_events.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2025/06/23 12:56:53 by mairivie          #+#    #+#             */
 /*   Updated: 2025/06/23 12:56:53 by mairivie         ###   ########.fr       */
 /*                                                                            */
@@ -12,13 +15,51 @@
 
 #include "../../include/cubed.h"
 
+
+int	key_up(t_infra *infra)
+{
+	infra->data->game.pos_y -= 0.2;
+	return (SUCCESS);
+}
+
+int	key_down(t_infra *infra)
+{
+	infra->data->game.pos_y += 0.2;
+	return (SUCCESS);
+}
+
+int	key_left(t_infra *infra)
+{
+	infra->data->game.pos_x -= 0.2;
+	return (SUCCESS);
+}
+
+int	key_right(t_infra *infra)
+{
+	infra->data->game.pos_x += 0.2;
+	return (SUCCESS);
+}
+
+int	key_turn_left(t_infra *infra)
+{
+	infra->ratio = infra->ratio + 0.2;
+	return (SUCCESS);
+}
+
+int	key_turn_right(t_infra *infra)
+{
+	if (infra->ratio > 1.3)
+		infra->ratio = infra->ratio - 0.2;
+	return (SUCCESS);
+}
+
 void	ft_setup_hooks(t_data *data)
 {
-	t_infra	*infra;
+	t_infra *infra;
 
 	infra = &data->infra;
 	mlx_hook(infra->win, DestroyNotify, StructureNotifyMask, close_window,
-		infra);
+			infra);
 	mlx_key_hook(infra->win, handle_keypress, infra);
 	//mlx_mouse_hook(infra->win, handle_mouse_event, infra);
 }

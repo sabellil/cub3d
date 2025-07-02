@@ -1,24 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphic.c                                          :+:      :+:    :+:   */
+/*   init_map_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/07 18:33:51 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/24 15:11:08 by sabellil         ###   ########.fr       */
+/*   Created: 2025/06/24 15:40:04 by sabellil          #+#    #+#             */
+/*   Updated: 2025/06/24 15:41:22 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cubed.h"
+#include "cubed.h"
 
-int	what_color_is_this_pixel(double x, double y, t_infra *infra)
+int	get_map_width(char **map)
 {
-	int	color;
+	int	i;
+	int	max;
+	int	len;
 
-	color = infra->data->game.floor_color;
-	(void)x;
-	if (y <= HEIGHT / infra->ratio)
-		color = infra->data->game.ceiling_color;
-	return (color);
+	i = 0;
+	max = 0;
+	while (map[i])
+	{
+		len = ft_strlen(map[i]);
+		if (len > max)
+			max = len;
+		i++;
+	}
+	return (max);
+}
+
+int	get_map_height(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/26 12:32:48 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/02 16:16:18 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 # include <X11/X.h>      // define minilibX
 # include <X11/keysym.h> // define Key_events minilibX
 # include <fcntl.h>      // open
-#include <math.h>		// pour cos et sin, sqrt, floor
-# include <stdio.h>    // printf perror
-# include <stdlib.h>   // malloc free exit
-# include <string.h>   // strerror
-# include <sys/stat.h> // open
-# include <sys/time.h> // gettimeofday
-# include <unistd.h>   // write close read
+# include <math.h>       // pour cos et sin, sqrt, floor
+# include <stdio.h>      // printf perror
+# include <stdlib.h>     // malloc free exit
+# include <string.h>     // strerror
+# include <sys/stat.h>   // open
+# include <sys/time.h>   // gettimeofday
+# include <unistd.h>     // write close read
 
 # define WIDTH 1280
 # define HEIGHT 720
@@ -41,11 +41,11 @@
 
 typedef struct s_tile_info
 {
-	int		x;
-	int		y;
-	int		size;
-	char	tile;
-}	t_tile_info;
+	int				x;
+	int				y;
+	int				size;
+	char			tile;
+}					t_tile_info;
 
 typedef struct s_pairf
 {
@@ -56,12 +56,12 @@ typedef struct s_pairf
 
 typedef struct s_square
 {
-	int	x;
-	int	y;
-	int	size;
-	int	color;
-}	t_square;
- 
+	int				x;
+	int				y;
+	int				size;
+	int				color;
+}					t_square;
+
 typedef struct s_img
 {
 	void			*new_img;
@@ -98,16 +98,14 @@ typedef struct s_game_data
 	t_asset			tex_ea;
 	int				floor_color;
 	int				ceiling_color;
-	// Joueur
 	double			pos_x;
 	double			pos_y;
 	double			dir_x;
 	double			dir_y;
 	int				player_found;
-	double			angle; //angle directeur
+	double			angle;
 }					t_game_data;
 
-//ratio = temporaire pour test les touches
 typedef struct s_infra
 {
 	void			*mlx;
@@ -194,5 +192,7 @@ int					move_down(t_infra *infra);
 int					move_right(t_infra *infra);
 int					move_left(t_infra *infra);
 int					move_turn(t_infra *infra, int keycode);
+int					ft_is_it_a_wall(t_game_data *game, float x, float y);
+int					ft_check_if_wall_to_redo(float dst, int color, t_game_data *game, int x);
 
 #endif

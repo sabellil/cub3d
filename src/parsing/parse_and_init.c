@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:10:09 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/24 14:20:26 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/02 16:24:53 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,3 @@ int	ft_first_parsing(char *filename, char ***file_lines_out)
 	*file_lines_out = file_lines;
 	return (SUCCESS);
 }
-
-//starting point, direction du regrd, dessin des murs sur la carte.

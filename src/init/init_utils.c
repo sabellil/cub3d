@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:52:02 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/24 14:19:38 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/02 16:24:18 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,21 +69,4 @@ int	ft_starts_with(const char *str, const char *prefix)
 		i++;
 	}
 	return (1);
-}
-
-void	print_file_lines(char **lines) //TODO A supprimer a la fin pour afficher le contenu de file_lines
-{
-	int i;
-
-	if (!lines)
-	{
-		printf("file_lines est NULL\n");
-		return ;
-	}
-	i = 0;
-	while (lines[i])
-	{
-		printf("Ligne %d : %s", i, lines[i]);
-		i++;
-	}
 }

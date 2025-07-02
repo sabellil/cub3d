@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:27:40 by mairivie          #+#    #+#             */
-/*   Updated: 2025/06/24 14:20:17 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/02 16:23:49 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ int	init_double_buffer(t_infra *infra)
 	return (SUCCESS);
 }
 
-
-
-int ft_init_infra(t_infra *infra)
+int	ft_init_infra(t_infra *infra)
 {
 	infra->mlx = mlx_init();
 	if (infra->mlx == NULL)
@@ -46,7 +44,7 @@ int ft_init_infra(t_infra *infra)
 	infra->win = mlx_new_window(infra->mlx, WIDTH, HEIGHT, NAME);
 	if (infra->win == NULL)
 		return (ft_handle_error(ERR_INFRA_FAIL));
-    if (init_double_buffer(infra) == ERR_INFRA_FAIL)
+	if (init_double_buffer(infra) == ERR_INFRA_FAIL)
 		return (ft_handle_error(ERR_INFRA_FAIL));
 	infra->ratio = 2;
 	return (SUCCESS);
