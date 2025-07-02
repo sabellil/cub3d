@@ -24,29 +24,29 @@ float ft_get_wall_distance(t_game_data *game, t_pairf wall_pos)
     return (dst);
 }
 
-int	ft_is_it_a_wall(t_game_data *game, float x, float y)
-{
-	int		map_x;
-	int		map_y;
-	char	cell;
+// int	ft_is_it_a_wall(t_game_data *game, float x, float y)
+// {
+// 	int		map_x;
+// 	int		map_y;
+// 	char	cell;
 
-	map_x = (int)x;
-	map_y = (int)y;
-	if (map_y < 0 || map_y >= game->map_height || map_x < 0
-		|| map_x >= game->map_width)
-		return (ERR_PARSE_FAIL);
-	cell = game->map[map_y][map_x];
-	if (cell == '1' || cell == ' ')
-	{
-		// printf("C'EST UN MUR\n");
-		return (SUCCESS);
-	}
-	else
-	{
-		// printf("ce n'est PAS un mur\n");
-		return (FAILURE);
-	}
-}
+// 	map_x = (int)x;
+// 	map_y = (int)y;
+// 	if (map_y < 0 || map_y >= game->map_height || map_x < 0
+// 		|| map_x >= game->map_width)
+// 		return (ERR_PARSE_FAIL);
+// 	cell = game->map[map_y][map_x];
+// 	if (cell == '1' || cell == ' ')
+// 	{
+// 		// printf("C'EST UN MUR\n");
+// 		return (SUCCESS);
+// 	}
+// 	else
+// 	{
+// 		// printf("ce n'est PAS un mur\n");
+// 		return (FAILURE);
+// 	}
+// }
 
 float ft_where_is_the_wall_x(t_game_data *game, float alpha, float *current_x, float *current_y)
 {
@@ -106,18 +106,18 @@ float ft_where_is_the_wall_y(t_game_data *game, float alpha, float *current_x, f
     return (ft_get_wall_distance(game, cross));
 }
 
-//tempo pour test
-int ft_check_if_wall_to_redo (float dst_wall, int color, t_game_data *game, float x)
-{
-    float     wall_height;
+// //tempo pour test
+// int ft_check_if_wall_to_redo (float dst_wall, int color, t_game_data *game, float x)
+// {
+//     float     wall_height;
 
-    wall_height = HEIGHT / dst_wall;
-    (void)color;
-    (void)game;
-    if (x < (HEIGHT/2 + wall_height/2) && x > (HEIGHT/2 - wall_height/2))
-        return SUCCESS;
-    return FAILURE;
-}
+//     wall_height = HEIGHT / dst_wall;
+//     (void)color;
+//     (void)game;
+//     if (x < (HEIGHT/2 + wall_height/2) && x > (HEIGHT/2 - wall_height/2))
+//         return SUCCESS;
+//     return FAILURE;
+// }
 
 int ft_paint_one_pix_collumn(t_game_data *game, float alpha_tmp, float y)
 {
@@ -151,11 +151,10 @@ int ft_paint_one_pix_collumn(t_game_data *game, float alpha_tmp, float y)
     x = 1;
     while (x < HEIGHT)
     {
-        if (ft_check_if_wall_to_redo (dst_wall, color, game, x) == SUCCESS)
-        {
-            printf("dst_wall = %f x = %f et y = %f \n",dst_wall, x, y);
-            put_pixel(game->data->infra.img_nxt, color, x, y);
-        }
+        if (!ft_check_if_wall_to_redo (dst_wall, color, game, x))
+            return (FAILURE);
+        printf("dst_wall = %f x = %f et y = %f \n",dst_wall, x, y);
+        put_pixel(game->data->infra.img_nxt, color, x, y);
         x++;
     }
     return SUCCESS;
@@ -172,7 +171,8 @@ int ft_paint_the_wall(t_game_data *game)
     y = 1;
     while (y < WIDTH)
     {
-        ft_paint_one_pix_collumn(game, alpha_tmp, y);
+        if (ft_paint_one_pix_collumn(game, alpha_tmp, y) == FAILURE)
+            return (FAILURE);
         y++;
         alpha_tmp = alpha_tmp + delta;
         printf("y = %f alpha = %f delta = %f\n", y, alpha_tmp, delta);
