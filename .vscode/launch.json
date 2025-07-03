@@ -1,15 +1,16 @@
 {
   "version": "0.2.0",
   "configurations": [
+
     {
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
-      "args": [],
+      "args": ["map/map.cub"],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/mairivie/00_github/42_cub3d/repo_git/src",
-      "program": "/home/mairivie/00_github/42_cub3d/repo_git/src/build/Debug/outDebug",
+      "cwd": "/home/mairivie/00_github/42_cub3d/repo_git/",
+      "program": "/home/mairivie/00_github/42_cub3d/repo_git/cub3d",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
