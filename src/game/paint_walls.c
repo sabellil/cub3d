@@ -55,15 +55,13 @@ float ft_where_is_the_wall_x(t_game_data *game, float alpha, float *current_x, f
     t_pairf dif;
     float offset_x;
 
-    offset_x = 0.001f;
+    offset_x = 0.000001f;
     dir.x = cosf(alpha);
     dir.y = sinf(alpha);
     if (dir.x < 0)
-        offset_x = -0.001f;
+        offset_x = -0.000001f;
     cross.y = floorf(*current_y);
     cross.x = floorf(*current_x);
-    // dif.x = 0;
-    // dif.y = 0;
     
     while (ft_is_it_a_wall(game, cross.x + offset_x, cross.y) != SUCCESS)
     {
@@ -91,15 +89,15 @@ float ft_where_is_the_wall_y(t_game_data *game, float alpha, float *current_x, f
     t_pairf dif;
     float offset_y;
 
-    offset_y = 0.001f;
+    offset_y = 0.000001f;
     dir.x = cosf(alpha);
     dir.y = sinf(alpha);
     if (dir.y < 0)
-        offset_y = -0.001f;
+        offset_y = -0.000001f;
     cross.y = floorf(*current_y);
     cross.x = floorf(*current_x);
     
-    while (ft_is_it_a_wall(game, cross.y + offset_y, cross.x) != SUCCESS)
+    while (ft_is_it_a_wall(game, cross.x, cross.y + offset_y) != SUCCESS)
     {
         cross.y++;
         if (dir.y > 0)
@@ -188,19 +186,19 @@ int ft_paint_one_pix_collumn(t_game_data *game, float alpha_tmp, float y)
     float       dst_wall;
     float       x;
 
-    printf("pos.x %f y:%f\n", game->pos_x, y);
+    //printf("pos.x %f y:%f\n", game->pos_x, y);
     player_pos.x = game->pos_x;
-    printf("player_pos.x %f \n", player_pos.x);
+    //printf("player_pos.x %f \n", player_pos.x);
     player_pos.y = game->pos_y;
     dst.x = player_pos.x;
     dst.y = player_pos.y;
-        printf("player_pos.x = %f  player_pos.y = %f\n", player_pos.x, player_pos.y);
+        //printf("player_pos.x = %f  player_pos.y = %f\n", player_pos.x, player_pos.y);
     dst.x = ft_where_is_the_wall_x(game, alpha_tmp, &player_pos.x, &player_pos.y);
         printf("dst.x = %f\n", dst.x);
-    // player_pos.x = game->pos_x;
-    // player_pos.y = game->pos_y;
-    // dst.y = ft_where_is_the_wall_y(game, alpha_tmp, &player_pos.x, &player_pos.y);
-    //     printf("dst.y = %f\n", dst.y);
+     player_pos.x = game->pos_x;
+     player_pos.y = game->pos_y;
+     dst.y = ft_where_is_the_wall_y(game, alpha_tmp, &player_pos.x, &player_pos.y);
+        printf("dst.y = %f\n", dst.y);
 //     
     if (dst.x < dst.y)
     {
