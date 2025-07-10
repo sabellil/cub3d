@@ -6,7 +6,7 @@
 #    By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 15:01:27 by sabellil          #+#    #+#              #
-#    Updated: 2025/07/02 16:16:57 by mairivie         ###   ########.fr        #
+#    Updated: 2025/07/10 18:44:03 by mairivie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,6 @@ SRC_LIST = main.c \
 			game/ray_tracing_generator.c \
 			game/handle_events.c \
 			game/move_handlers.c \
-			game/wall_utils.c \
 			parsing/parse_and_init.c \
 			parsing/init_parsing_utils.c \
 			init/init_map.c \
