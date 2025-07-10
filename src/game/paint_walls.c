@@ -38,12 +38,10 @@ int	ft_is_it_a_wall(t_game_data *game, float x, float y)
 	cell = game->map[map_y][map_x];
 	if (cell == '1' || cell == ' ')
 	{
-		// printf("C'EST UN MUR\n");
 		return (SUCCESS);
 	}
 	else
 	{
-		// printf("ce n'est PAS un mur\n");
 		return (FAILURE);
 	}
 }
@@ -55,11 +53,11 @@ float ft_where_is_the_wall_x(t_game_data *game, float alpha, float *current_x, f
     t_pairf dif;
     float offset_x;
 
-    offset_x = 0.000001f;
+    offset_x = 0.001f;
     dir.x = cosf(alpha);
     dir.y = sinf(alpha);
     if (dir.x < 0)
-        offset_x = -0.000001f;
+        offset_x = -0.001f;
     cross.y = floorf(*current_y);
     cross.x = floorf(*current_x);
     
@@ -203,13 +201,17 @@ int ft_paint_one_pix_collumn(t_game_data *game, float alpha_tmp, float y)
     if (dst.x < dst.y)
     {
         dst_wall = dst.x;
-        color = 100000;
+        color = 1703705; //vert
+        if (cosf(alpha_tmp) >= 0)
+            color = 16435200; //jaune moche
         //color = east_or_west(alpha_tmp);
     }
     else
     {
         dst_wall = dst.y;
-        color = 20000;
+        color = 1645055; //blue
+        if (sinf(alpha_tmp) >= 0)
+            color = 16416000; //orange
         //color = north_or_south(alpha_tmp);
     }
     x = 0;
