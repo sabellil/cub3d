@@ -53,17 +53,17 @@ float ft_where_is_the_wall_x(t_game_data *game, float alpha, float *current_x, f
     t_pairf dif;
     float offset_x;
 
-    offset_x = 0.001f;
+    offset_x = 1.0f;
     dir.x = cosf(alpha);
     dir.y = sinf(alpha);
     if (dir.x < 0)
-        offset_x = -0.001f;
+        offset_x = -1.0f;
     cross.y = floorf(*current_y);
     cross.x = floorf(*current_x);
     
     while (ft_is_it_a_wall(game, cross.x + offset_x, cross.y) != SUCCESS)
     {
-        cross.x++;
+        cross.x += offset_x;
         // if (dir.x > 0)
         //     cross.x += 1.0f;
         dif.x = fabsf(cross.x - *current_x);
@@ -81,17 +81,17 @@ float ft_where_is_the_wall_y(t_game_data *game, float alpha, float *current_x, f
     t_pairf dif;
     float offset_y;
 
-    offset_y = 0.000001f;
+    offset_y = 1.0f;
     dir.x = cosf(alpha);
     dir.y = sinf(alpha);
     if (dir.y < 0)
-        offset_y = -0.000001f;
+        offset_y = -1.0f;
     cross.y = floorf(*current_y);
     cross.x = floorf(*current_x);
     
     while (ft_is_it_a_wall(game, cross.x, cross.y + offset_y) != SUCCESS)
     {
-        cross.y++;
+        cross.y += offset_y;
         // if (dir.y > 0)
         //     cross.y += 1.0f;
         dif.y = fabsf(cross.y - *current_y);
