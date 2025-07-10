@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:39:08 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/02 16:21:41 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/10 18:30:50 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	put_pixel(t_img *image, int color, int x, int y)
 	int		shifting;
 	char	*pix_target;
 
+	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT)
+		return;
 	shifting = y * image->grid_len + x * (image->bit_per_pix / 8);
 	pix_target = image->pix_grid + shifting;
 	*(unsigned int *)pix_target = color;
@@ -45,6 +47,7 @@ void	paint_each_pixel(t_img *ptr, t_infra *skelet)
 	double			y;
 	unsigned int	color;
 
+	
 	x = 0.0;
 	y = HEIGHT;
 	color = 0;

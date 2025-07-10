@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/02 16:37:26 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/10 18:33:02 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 # define HEIGHT 720
 # define MAX_LINES 1024
 # define NAME "(=*.*=) cub3d_cat (=*.*=)"
-# define FOV 1
-# define PI 3.1416
+# define FOV 1.0f
+# define PI 3.1416f
 
 # define SUCCESS 0
 # define FAILURE 1
@@ -98,12 +98,13 @@ typedef struct s_game_data
 	t_asset			tex_ea;
 	int				floor_color;
 	int				ceiling_color;
-	double			pos_x;
-	double			pos_y;
-	double			dir_x;
-	double			dir_y;
+	// Joueur
+	float			pos_x;
+	float			pos_y;
+	float			dir_x;
+	float			dir_y;
 	int				player_found;
-	double			angle;
+	float			angle; //angle directeur
 }					t_game_data;
 
 typedef struct s_infra

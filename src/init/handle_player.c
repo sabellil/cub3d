@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:17:38 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/02 16:22:41 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/10 18:35:48 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	count_and_set_player(t_game_data *game, int y, int x, char c)
 	game->dir_y = sin(game->angle);
 
 	//printf("dir_x = %f - dir_y = %f \n", game->dir_x, game->dir_y);
+
 	game->map[y][x] = '0';
 	return (SUCCESS);
 }
