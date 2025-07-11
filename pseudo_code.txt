@@ -6,7 +6,7 @@
 #    By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/17 14:47:28 by mairivie          #+#    #+#              #
-#    Updated: 2025/06/20 13:58:06 by mairivie         ###   ########.fr        #
+#    Updated: 2025/07/11 17:01:55 by mairivie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ angle_dir_radian (par rapport a la portion positive de l'axe de abscisses = les 
 field_of_view_radian (60 deg = PI/3 rad)
 delta_rad = fov / WIDTH (la micro variation d'angle qui permet de viser la colonne de pixels d'a cote)
 
-TODO: initi ces valeurs lors de l'init des structures
+TODO initi ces valeurs lors de l'init des structures
 
 => pour peindre tout l'ecran, on va avoir un angle temporaire qui va de [angle_dir - (demi_FoV)] a [angle_dir + (demi_Fov)]
 en WIDTH baby steps

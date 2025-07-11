@@ -16,7 +16,7 @@
 float ft_get_wall_distance(t_game_data *game, int side, t_pairf wall_pos)
 {
     (void) game;
-    //TODO: rework this fonction
+    //TODO rework this fonction
     if(side)
         return (wall_pos.y);
     return (wall_pos.x);
@@ -39,7 +39,7 @@ int	ft_is_it_a_wall(t_game_data *game, float y, float x)
 	else
 		return (FAILURE);
 }
-//TODO: oh l'enfer que ca va etre a refacto, faut envoyer une paire avec le currentx et current y
+//TODO oh l'enfer que ca va etre a refacto, faut envoyer une paire avec le currentx et current y
 float get_wall_distance_x_y(t_game_data *game, float alpha, int *color, float *current_x, float *current_y)
 {
     t_pairf dir;
@@ -90,7 +90,7 @@ float get_wall_distance_x_y(t_game_data *game, float alpha, int *color, float *c
             side = 1;
         }
     }
-    //TODO:cidessous faire un ft dediee
+    //TODOcidessous faire un ft dediee
     return (ft_get_wall_distance(game, side, (t_pairf){
         .x = (side_dist_x - delta_dist_x),
         .y = (side_dist_y - delta_dist_y)
@@ -106,7 +106,7 @@ int	ft_check_if_wall_to_redo(float dst, int color, t_game_data *game, int x)//qu
 	(void)game;
 	wall_height = (float)HEIGHT / dst;//calcul de la hauteur du mur a lecran
 	return (FAILURE);//je dessine pas car le pixel ne fiat pas partie du mur
-    //TODO:rename et reorga cette ft: elle donne la hauteur du mur a dessiner + modifier ici pour avoir la hauteur max du mur un peu plus petite que la hauteur dela fenetre
+    //TODOrename et reorga cette ft: elle donne la hauteur du mur a dessiner + modifier ici pour avoir la hauteur max du mur un peu plus petite que la hauteur dela fenetre
 }
 
 int ft_paint_one_pix_collumn(t_game_data *game, float alpha_tmp, float y)
