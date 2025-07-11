@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:17:38 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/10 18:35:48 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/11 12:54:23 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	count_and_set_player(t_game_data *game, int y, int x, char c)
 {
 	if (game->player_found)
 		return (ERR_PARSE_FAIL);
-	game->pos_x = x + 0.5;
-	game->pos_y = y + 0.5;
+game->pos_x = y + 0.5; // ligne
+game->pos_y = x + 0.5; // colonne
 	game->player_found = 1;
 	if (c == 'N')
 		game->angle = PI / 2;

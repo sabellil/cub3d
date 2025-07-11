@@ -20,7 +20,7 @@ float ft_get_wall_distance(t_game_data *game, int side, t_pairf wall_pos)
     return (wall_pos.x);
 }
 
-int	ft_is_it_a_wall(t_game_data *game, float x, float y)
+int	ft_is_it_a_wall(t_game_data *game, float y, float x)
 {
 	int		map_x;
 	int		map_y;
@@ -46,11 +46,10 @@ float get_wall_distance_x_y(t_game_data *game, float alpha, int *color, float *c
 {
     t_pairf dir;
     t_pairf cross;
-    // t_pairf dif;
     float offset_y;
     float offset_x;
     char  side = 0;
-    
+
     dir.x = cosf(alpha);
     dir.y = sinf(alpha);
     cross.y = floorf(*current_y);
@@ -61,37 +60,44 @@ float get_wall_distance_x_y(t_game_data *game, float alpha, int *color, float *c
     float side_dist_y = (*current_y - cross.y) * delta_dist_y;
     offset_x = -1;
     offset_y = -1;
-    if(dir.x > 0){
+    if (dir.x > 0)
+    {
         side_dist_x  = (cross.x + 1  - *current_x) * delta_dist_x;
         offset_x = 1;
     }
-    if(dir.y > 0){
+    if (dir.y > 0)
+    {
         side_dist_y  = (cross.y + 1  - *current_y) * delta_dist_y;
         offset_y = 1;
     }
-
-    while (ft_is_it_a_wall(game, cross.x , cross.y) != SUCCESS)
+    while (ft_is_it_a_wall(game, cross.y, cross.x) != SUCCESS)
     {
-        if(side_dist_x < side_dist_y) {
+        if (side_dist_x < side_dist_y)
+        {
             side_dist_x += delta_dist_x;
             cross.x += offset_x;
-             *color = 1703705; //vert
+            *color = 1703705; // vert
             if (cosf(alpha) >= 0)
-                 *color = 16435200; //jaune moche
+                *color = 16435200; // jaune moche
             side = 0;
-        } else {
+        }
+        else
+        {
             side_dist_y += delta_dist_y;
             cross.y += offset_y;
-            *color = 1645055; //blue
+            *color = 1645055; // bleu
             if (sinf(alpha) >= 0)
-                *color = 16416000; //orange
+                *color = 16416000; // orange
             side = 1;
         }
     }
 
-    //ft_is_it_a_wall(game, cross.x, cross.y + offset_y)
-    return (ft_get_wall_distance(game, side, (t_pairf){.x=(side_dist_x - delta_dist_x), .y=(side_dist_y - delta_dist_y)}));
+    return (ft_get_wall_distance(game, side, (t_pairf){
+        .x = (side_dist_x - delta_dist_x),
+        .y = (side_dist_y - delta_dist_y)
+    }));
 }
+
 
 int	ft_check_if_wall_to_redo(float dst, int color, t_game_data *game, int x)//quelle huateur de mur afficher selon ma position
 {
@@ -124,7 +130,8 @@ int ft_paint_one_pix_collumn(t_game_data *game, float alpha_tmp, float y)
     //  player_pos.x = game->pos_x;
     //  player_pos.y = game->pos_y;
     color = 1703705;
-     dst_wall = get_wall_distance_x_y(game, alpha_tmp, &color, &player_pos.x, &player_pos.y);
+     dst_wall = get_wall_distance_x_y(game, alpha_tmp, &color, &player_pos.y, &player_pos.x);
+
      dst_wall *= cos(alpha_tmp - game->angle);
     if (dst_wall < 0.01)
 		dst_wall = 0.01;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:42:21 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/02 16:19:09 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/11 13:26:31 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ static void	draw_minimap_tiles(t_data *data, t_img *img, int tile_size)
 	info.size = tile_size;
 	while (y < data->game.map_height)
 	{
-		info.y = y;
 		current_line = data->game.map[y];
+		info.y = data->game.map_height - y - 1; // 👈 inversion verticale
 		x = 0;
 		while (x < data->game.map_width)
 		{
@@ -74,18 +74,46 @@ static void	draw_minimap_tiles(t_data *data, t_img *img, int tile_size)
 	}
 }
 
+// void	draw_minimap(t_data *data)
+// {
+// 	t_img		*img;
+// 	t_square	sq;
+// 	int			tile_size;
+// 	int			map_height;
+
+// 	tile_size = 10;
+// 	map_height = data->game.map_height;
+// 	img = data->infra.img_nxt;
+// 	draw_minimap_tiles(data, img, tile_size);
+// sq.size = 4;
+// sq.color = 0xFF0000;
+
+// sq.x = (int)((data->game.map_width - data->game.pos_y - 1) * tile_size - sq.size / 2.0);
+// sq.y = (int)((data->game.map_height - data->game.pos_x - 1) * tile_size - sq.size / 2.0);
+
+// draw_square(img, sq);
+
+
+// }
+
 void	draw_minimap(t_data *data)
 {
 	t_img		*img;
 	t_square	sq;
 	int			tile_size;
 
-	tile_size = 10;
+	tile_size = 20;
 	img = data->infra.img_nxt;
+
 	draw_minimap_tiles(data, img, tile_size);
+
 	sq.size = 4;
 	sq.color = 0xFF0000;
-	sq.x = (int)(data->game.pos_x * tile_size - sq.size / 2.0);
-	sq.y = (int)(data->game.pos_y * tile_size - sq.size / 2.0);
+
+	sq.x = (int)((data->game.pos_y) * tile_size - sq.size / 2.0);
+	sq.y = (int)((data->game.pos_x) * tile_size - sq.size / 2.0);
+
+	
+
 	draw_square(img, sq);
 }
