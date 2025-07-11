@@ -75,18 +75,18 @@ float get_wall_distance_x_y(t_game_data *game, float alpha, int *color, float *c
         {
             side_dist_x += delta_dist_x;
             cross.x += offset_x;
-            *color = 1703705; // vert
+            *color = GREEN;
             if (cosf(alpha) >= 0)
-                *color = 16435200; // jaune moche
+                *color = YELLOW;
             side = 0;
         }
         else
         {
             side_dist_y += delta_dist_y;
             cross.y += offset_y;
-            *color = 1645055; // bleu
+            *color = BLUE;
             if (sinf(alpha) >= 0)
-                *color = 16416000; // orange
+                *color = ORANGE;
             side = 1;
         }
     }
