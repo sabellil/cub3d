@@ -12,27 +12,28 @@
 
 #include "../../include/cubed.h"
 
-int	move_up(t_infra *infra)
+int	move_down(t_infra *infra)
 {
 	infra->data->game.pos_y -= 0.2 * infra->data->game.dir_y ;
 	infra->data->game.pos_x -= 0.2 * infra->data->game.dir_x ;
 	return (SUCCESS);
 }
 
-int	move_down(t_infra *infra)
+int	move_up(t_infra *infra)
 {
 	infra->data->game.pos_y += 0.2 * infra->data->game.dir_y ;
 	infra->data->game.pos_x += 0.2 * infra->data->game.dir_x ;
 	return (SUCCESS);
 }
-int	move_left(t_infra *infra)
+
+int	move_right(t_infra *infra)
 {
 	infra->data->game.pos_y += 0.2 * infra->data->game.dir_x ;
 	infra->data->game.pos_x -= 0.2 * infra->data->game.dir_y ;
 	return (SUCCESS);
 }
 
-int	move_right(t_infra *infra)
+int	move_left(t_infra *infra)
 {
 	infra->data->game.pos_y -= 0.2 * infra->data->game.dir_x ;
 	infra->data->game.pos_x += 0.2 * infra->data->game.dir_y ;

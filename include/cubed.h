@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/10 18:33:02 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/10 20:33:12 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,8 +188,8 @@ int					what_color_is_this_pixel(double x, double y,
 int					ft_render(t_data *data);
 int 				ft_paint_the_wall(t_game_data *game);
 void				put_pixel(t_img *image, int color, int x, int y);
-int					move_up(t_infra *infra);
 int					move_down(t_infra *infra);
+int					move_up(t_infra *infra);
 int					move_right(t_infra *infra);
 int					move_left(t_infra *infra);
 int					move_turn(t_infra *infra, int keycode);

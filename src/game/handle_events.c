@@ -74,9 +74,9 @@ int	handle_keypress(int keycode, t_infra *infra)
 	if (keycode == XK_Escape)
 		close_window(infra);
 	if (keycode == XK_w || keycode == XK_W)
-		move_up(infra); //haut = moove y++
+		move_up(infra); //bas = moove y--
 	if (keycode == XK_s || keycode == XK_S)
-		move_down(infra); //bas = moove y--
+		move_down(infra); //haut = moove y++
 	if (keycode == XK_d || keycode == XK_D)
 		move_right(infra); //key right droite = moove x++
 	if (keycode == XK_a || keycode == XK_A)
