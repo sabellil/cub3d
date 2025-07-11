@@ -12,9 +12,11 @@
 
 #include "../../include/cubed.h"
 
+
 float ft_get_wall_distance(t_game_data *game, int side, t_pairf wall_pos)
 {
     (void) game;
+    //TODO: rework this fonction
     if(side)
         return (wall_pos.y);
     return (wall_pos.x);
@@ -33,27 +35,24 @@ int	ft_is_it_a_wall(t_game_data *game, float y, float x)
 		return (SUCCESS);
 	cell = game->map[map_y][map_x];
 	if (cell == '1' || cell == ' ')
-	{
 		return (SUCCESS);
-	}
 	else
-	{
 		return (FAILURE);
-	}
 }
-
+//TODO: oh l'enfer que ca va etre a refacto, faut envoyer une paire avec le currentx et current y
 float get_wall_distance_x_y(t_game_data *game, float alpha, int *color, float *current_x, float *current_y)
 {
     t_pairf dir;
     t_pairf cross;
-    float offset_y;
+    float offset_y; //un seul offset ici ? Sinon faire une t_pair
     float offset_x;
-    char  side = 0;
+    char  side = 0; //Gab ? besoin d'info sur ce truc
 
     dir.x = cosf(alpha);
     dir.y = sinf(alpha);
     cross.y = floorf(*current_y);
     cross.x = floorf(*current_x);
+
     float delta_dist_x = fabsf(1 / dir.x);
     float delta_dist_y = fabsf(1 / dir.y);
     float side_dist_x = (*current_x - cross.x) * delta_dist_x;
@@ -91,7 +90,7 @@ float get_wall_distance_x_y(t_game_data *game, float alpha, int *color, float *c
             side = 1;
         }
     }
-
+    //TODO:cidessous faire un ft dediee
     return (ft_get_wall_distance(game, side, (t_pairf){
         .x = (side_dist_x - delta_dist_x),
         .y = (side_dist_y - delta_dist_y)
@@ -105,10 +104,9 @@ int	ft_check_if_wall_to_redo(float dst, int color, t_game_data *game, int x)//qu
     (void) x;
 	(void)color;//on applique pas la couleur ici donc jignore
 	(void)game;
-	// if (dst <= 0.0f)//si la distance est nulle ou negatif je dessie pas
-	// 	return (FAILURE);
 	wall_height = (float)HEIGHT / dst;//calcul de la hauteur du mur a lecran
 	return (FAILURE);//je dessine pas car le pixel ne fiat pas partie du mur
+    //TODO:rename et reorga cette ft: elle donne la hauteur du mur a dessiner + modifier ici pour avoir la hauteur max du mur un peu plus petite que la hauteur dela fenetre
 }
 
 int ft_paint_one_pix_collumn(t_game_data *game, float alpha_tmp, float y)
@@ -116,23 +114,14 @@ int ft_paint_one_pix_collumn(t_game_data *game, float alpha_tmp, float y)
     t_pairf     player_pos;
     int         color;
     float       dst_wall;
-    // float       x;
 	float	start;
 	float	end;
 
-    //printf("pos.x %f y:%f\n", game->pos_x, y);
     player_pos.x = game->pos_x;
-    //printf("player_pos.x %f \n", player_pos.x);
     player_pos.y = game->pos_y;
-    //     //printf("player_pos.x = %f  player_pos.y = %f\n", player_pos.x, player_pos.y);
-    // dst.x = ft_where_is_the_wall_x(game, alpha_tmp, &player_pos.x, &player_pos.y);
-    //     printf("dst.x = %f\n", dst.x);
-    //  player_pos.x = game->pos_x;
-    //  player_pos.y = game->pos_y;
     color = 1703705;
-     dst_wall = get_wall_distance_x_y(game, alpha_tmp, &color, &player_pos.y, &player_pos.x);
-
-     dst_wall *= cos(alpha_tmp - game->angle);
+    dst_wall = get_wall_distance_x_y(game, alpha_tmp, &color, &player_pos.y, &player_pos.x);
+    dst_wall *= cos(alpha_tmp - game->angle); //correction du fisheye
     if (dst_wall < 0.01)
 		dst_wall = 0.01;
     int wall_height = (float)HEIGHT / dst_wall;//calcul de la hauteur du mur a lecran
@@ -140,12 +129,9 @@ int ft_paint_one_pix_collumn(t_game_data *game, float alpha_tmp, float y)
 	end = (float)HEIGHT / 2.0f + wall_height / 2.0f;
     while (start < end)
     {
-        // if (!ft_check_if_wall_to_redo (dst_wall, color, game, x))
-        // printf("dst_wall = %f x = %f et y = %f \n",dst_wall, x, y);
         put_pixel(game->data->infra.img_nxt, color, y, start);
         start++;
     }
-    //(void)alpha_tmp;
     return SUCCESS;
 }
 
@@ -160,7 +146,6 @@ int ft_paint_the_wall(t_game_data *game)
     y = 0;
     while (y < 1280.0f)
     {
-        //printf("y = %f alpha = %f delta = %f\n", y, alpha_tmp, delta);
         if (ft_paint_one_pix_collumn(game, alpha_tmp, y) == FAILURE)
             return (FAILURE);
         y++;
