@@ -83,7 +83,7 @@ int	handle_keypress(int keycode, t_infra *infra)
 		move_left(infra); //key righht gauche = moove x--
 	if (keycode == XK_Left || keycode == XK_Right)
 		move_turn(infra, keycode);
-	printf("x: %f / y: %f / A: %f \n", infra->data->game.pos_x, infra->data->game.pos_y, infra->data->game.angle);
+	// printf("x: %f / y: %f / A: %f \n", infra->data->game.pos_x, infra->data->game.pos_y, infra->data->game.angle);
 	return (SUCCESS);
 }
 
