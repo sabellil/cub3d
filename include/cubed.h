@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/10 20:33:12 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/15 19:35:14 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,16 @@
 # define NAME "(=*.*=) cub3d_cat (=*.*=)"
 # define FOV 1.0f
 # define PI 3.1416f
+# define TEXTURE_SIZE 64
 
 # define SUCCESS 0
 # define FAILURE 1
 # define ERR_ARG_COUNT 11
 # define ERR_PARSE_FAIL 12
 # define ERR_INFRA_FAIL 13
+
+typedef struct s_asset t_asset;
+
 
 typedef struct s_tile_info
 {
@@ -52,6 +56,22 @@ typedef struct s_pairf
     float x;
     float y;
 }               t_pairf;
+
+typedef struct s_dst_side
+{
+	int 	side;
+	float	wall_dst;
+}			t_dst_side;
+
+typedef struct s_param_w
+{
+	t_asset 	*texture;
+	t_dst_side  dst_side;
+	float		texture_x;
+	float		texture_pos;
+	float		y;
+	float		alpha;
+}				t_param_w;
 
 
 typedef struct s_square
