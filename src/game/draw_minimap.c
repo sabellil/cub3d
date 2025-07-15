@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:42:21 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/15 16:42:45 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/15 17:09:16 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ void	draw_minimap(t_data *data)
 	draw_minimap_tiles(data, img, tile_size);
 	sq.size = 4;
 	sq.color = 0xFF0000;
-	sq.x = (int)((data->game.pos_y) * tile_size - sq.size / 2.0);
-	sq.y = (int)((data->game.pos_x) * tile_size - sq.size / 2.0);
-	if (sq.x < 0)
+	sq.x = (int)(data->game.pos_y * tile_size - sq.size / 2.0);
+	sq.y = (int)(data->game.pos_x * tile_size - sq.size / 2.0);
+	if (sq.x < 0)//ajout pour ne pas faire depasser le joueur de la minimap
 		sq.x = 0;
 	else if (sq.x + sq.size > map_width_px)
 		sq.x = map_width_px - sq.size;
