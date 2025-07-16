@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/16 18:07:45 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/16 20:55:48 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include <unistd.h>     // write close read
 
 # define WIDTH 1280
-# define HEIGHT 720
+# define HEIGHT 800
 # define MAX_LINES 1024
 # define NAME "(=*.*=) cub3d_cat (=*.*=)"
 # define FOV 1.0f
@@ -70,9 +70,10 @@ typedef struct s_dst_side
 typedef struct s_param_w
 {
 	t_asset 	*texture;
-	t_dst_side  dst_side;
+	int			wall_heigth;
+	int			side;
 	float		texture_x;
-	float		texture_pos;
+	int			texture_pos;
 	float		y;
 	float		alpha;
 }				t_param_w;

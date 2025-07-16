@@ -120,16 +120,16 @@ static float	get_start_of_wall(const t_pairf *player_pos, t_dst_side *dst_side, 
 	float	wall_x;
 
 	if (dst_side->side == 0)
-		wall_x = player_pos->y + dst_side->wall_dst
-			* sinf(alpha);
+		wall_x = player_pos->y + (dst_side->wall_dst
+			* sinf(alpha));
 	else
-		wall_x = player_pos->x + dst_side->wall_dst
-			*  cosf(alpha);
+		wall_x = player_pos->x + (dst_side->wall_dst
+			*  cosf(alpha));
     
 	return (fabsf(wall_x - floorf(wall_x)));
 }
 
-float	ft_min(size_t n, size_t n2)
+size_t	ft_min(size_t n, size_t n2)
 {
 	if (n < n2)
 		return (n);
@@ -157,12 +157,12 @@ void    draw_wall(t_game_data *game, t_param_w *params, int start, int end) {
 	float			step;
 
 
-    step = 1.0f * params->texture->height / (int)params->dst_side.wall_dst;
-    tex_pos = (start - HEIGHT / 2 + params->dst_side.wall_dst / 2) * step;
+    step = 1.0f * params->texture->height / (int)params->wall_heigth;
+    tex_pos = (start - HEIGHT / 2 + params->wall_heigth / 2) * step;
     params->texture_pos = ft_min(params->texture->width, params->texture_x * params->texture->width) /*(TEXTURE_SIZE)*/;
-    if (params->dst_side.side == 0 && cosf(params->alpha) > 0)
+    if (params->side == 0 && cosf(params->alpha) > 0)
         params->texture_pos = params->texture->width - params->texture_pos - 1;
-    else if (params->dst_side.side  == 1 && sinf(params->alpha) < 0)
+    else if (params->side  == 1 && sinf(params->alpha) < 0)
         params->texture_pos = params->texture->width - params->texture_pos - 1;
     while (start < end)
     {
@@ -176,12 +176,11 @@ void    draw_wall(t_game_data *game, t_param_w *params, int start, int end) {
 
  void   draw_vertical_line_with_texture(t_game_data *game, t_param_w params)
  {
-    float	start;
-	float	end;
+    int	start;
+	int	end;
 
-    params.dst_side.wall_dst = (float)HEIGHT / params.dst_side.wall_dst; //calcul de la hauteur du mur a lecran
-    start = ((float)HEIGHT / 2.0f) - (params.dst_side.wall_dst / 2.0f);//calcul  ou commence le et finit le mur su rlecran
-    end = ((float)HEIGHT / 2.0f) + (params.dst_side.wall_dst  / 2.0f);
+    start = ((float)HEIGHT / 2.0f) - (params.wall_heigth / 2.0f);//calcul  ou commence le et finit le mur su rlecran
+    end = ((float)HEIGHT / 2.0f) + (params.wall_heigth  / 2.0f);
     draw_wall(game, &params, start, end);
 }
 
@@ -190,6 +189,7 @@ int ft_paint_one_pix_collumn(t_game_data *game, float alpha_tmp, float y)
 {
     t_pairf     player_pos;
     t_dst_side  dst_side;
+    t_dst_side  copy;
 
     player_pos.x = game->pos_x;
     player_pos.y = game->pos_y;
@@ -197,11 +197,13 @@ int ft_paint_one_pix_collumn(t_game_data *game, float alpha_tmp, float y)
     player_pos.x = game->pos_x;
     player_pos.y = game->pos_y;
 
-    dst_side.wall_dst *= cos(alpha_tmp - game->angle);
-    if (dst_side.wall_dst < 0.01)
-		dst_side.wall_dst = 0.01;
+    copy = dst_side;
+    copy.wall_dst *= cos(alpha_tmp - game->angle);
+    if (copy.wall_dst < 0.01)
+		copy.wall_dst = 0.01;
     draw_vertical_line_with_texture(game, (t_param_w){
-        .dst_side = dst_side,
+        .wall_heigth = (HEIGHT / copy.wall_dst),
+        .side = dst_side.side,
         .texture = get_texture_by_oriantation(game, dst_side.side, alpha_tmp),
         .texture_x = get_start_of_wall(&player_pos, &dst_side, alpha_tmp),
         .texture_pos = 0,

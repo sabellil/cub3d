@@ -36,6 +36,7 @@
 *.x86_64
 *.hex
 cub3d
+cube3D
 
 # Debug files
 *.dSYM/
