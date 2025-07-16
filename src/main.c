@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 15:24:08 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/02 16:20:53 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/16 18:46:13 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,3 +36,5 @@ int	main(int argc, char **argv)
 	mlx_loop(data.infra.mlx);
 	return (SUCCESS);
 }
+//Ne plus accepter plus de 1 C et un F
+//Avoir un max x et max  pour eviter que le point joueru ne bouge
