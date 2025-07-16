@@ -6,11 +6,11 @@
 #    By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 15:01:27 by sabellil          #+#    #+#              #
-#    Updated: 2025/07/15 16:47:00 by mairivie         ###   ########.fr        #
+#    Updated: 2025/07/16 18:17:02 by mairivie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
+NAME = cub3D
 
 COMPIL = cc
 CFLAGS = -Wall -Wextra -Werror -g -I include -MD

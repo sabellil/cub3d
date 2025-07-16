@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 17:41:28 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/02 16:22:52 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/15 19:09:03 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	ft_set_texture(t_asset *dest, char *path_str, void *mlx_ptr)
 		free(trimmed);
 		return (FAILURE);
 	}
+	dest->addr = mlx_get_data_addr(dest->img, &dest->bpp, &dest->line_len, &dest->endian);
 	dest->width = width;
 	dest->height = height;
 	free(trimmed);
