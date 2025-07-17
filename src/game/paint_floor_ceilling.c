@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 18:39:08 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/17 18:08:39 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/17 18:16:10 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	put_pixel(t_img *image, int color, int x, int y)
 	*(unsigned int *)pix_target = color;
 }
 
-void	paint_each_pixel(t_img *ptr, t_infra *skelet)
+void	paint_floor_ceilling(t_img *ptr, t_infra *skelet)
 {
 	double			x;
 	double			y;

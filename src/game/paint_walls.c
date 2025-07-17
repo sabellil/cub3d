@@ -103,7 +103,7 @@ void   draw_vertical_line_with_texture(t_game_data *game, t_param_w params)
     draw_wall(game, &params, start, end);
 }
 
-
+//t_dst_side get_wall_data(t_game_data *game, float alpha, float *current_x, float *current_y)
 
 int ft_paint_one_pix_collumn(t_game_data *game, float alpha_tmp, float y)
 {
