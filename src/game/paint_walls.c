@@ -46,9 +46,9 @@ t_dst_side get_wall_distance_x_y(t_game_data *game, float alpha, float *current_
 {
     t_pairf dir;
     t_pairf cross;
-    float offset_y; //un seul offset ici ? Sinon faire une t_pair
+    float offset_y;
     float offset_x;
-    char  side = 0; //Gab ? besoin d'info sur ce truc
+    char  side = 0;
 
     dir.x = cosf(alpha);
     dir.y = sinf(alpha);
