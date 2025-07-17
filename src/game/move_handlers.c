@@ -12,33 +12,75 @@
 
 #include "../../include/cubed.h"
 
-
-
-int	move_up(t_infra *infra)// ON GARDE CA AU CHAUD
+int	move_up(t_infra *infra)
 {
-	infra->data->game.pos_x += 0.2 * infra->data->game.dir_y;
-	infra->data->game.pos_y += 0.2 * infra->data->game.dir_x;
+	t_game_data	*game;
+	float		new_x;
+	float		new_y;
+
+	game = &infra->data->game;
+	new_x = game->pos_x + 0.2 * game->dir_y;
+	new_y = game->pos_y + 0.2 * game->dir_x;
+
+	if (game->map[(int)new_x][(int)new_y] != '1')
+	{
+		game->pos_x = new_x;
+		game->pos_y = new_y;
+	}
 	return (SUCCESS);
 }
 
 int	move_down(t_infra *infra)
 {
-	infra->data->game.pos_x -= 0.2 * infra->data->game.dir_y;
-	infra->data->game.pos_y -= 0.2 * infra->data->game.dir_x;
+	t_game_data	*game;
+	float		new_x;
+	float		new_y;
+
+	game = &infra->data->game;
+	new_x = game->pos_x - 0.2 * game->dir_y;
+	new_y = game->pos_y - 0.2 * game->dir_x;
+
+	if (game->map[(int)new_x][(int)new_y] != '1')
+	{
+		game->pos_x = new_x;
+		game->pos_y = new_y;
+	}
 	return (SUCCESS);
 }
 
 int	move_right(t_infra *infra)
 {
-	infra->data->game.pos_x += 0.2 * infra->data->game.dir_x;
-	infra->data->game.pos_y -= 0.2 * infra->data->game.dir_y;
+	t_game_data	*game;
+	float		new_x;
+	float		new_y;
+
+	game = &infra->data->game;
+	new_x = game->pos_x + 0.2 * game->dir_x;
+	new_y = game->pos_y - 0.2 * game->dir_y;
+
+	if (game->map[(int)new_x][(int)new_y] != '1')
+	{
+		game->pos_x = new_x;
+		game->pos_y = new_y;
+	}
 	return (SUCCESS);
 }
 
 int	move_left(t_infra *infra)
 {
-	infra->data->game.pos_x -= 0.2 * infra->data->game.dir_x;
-	infra->data->game.pos_y += 0.2 * infra->data->game.dir_y;
+	t_game_data	*game;
+	float		new_x;
+	float		new_y;
+
+	game = &infra->data->game;
+	new_x = game->pos_x - 0.2 * game->dir_x;
+	new_y = game->pos_y + 0.2 * game->dir_y;
+
+	if (game->map[(int)new_x][(int)new_y] != '1')
+	{
+		game->pos_x = new_x;
+		game->pos_y = new_y;
+	}
 	return (SUCCESS);
 }
 
