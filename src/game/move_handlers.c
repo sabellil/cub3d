@@ -12,7 +12,9 @@
 
 #include "../../include/cubed.h"
 
-int	move_up(t_infra *infra)
+
+
+int	move_up(t_infra *infra)// ON GARDE CA AU CHAUD
 {
 	infra->data->game.pos_x += 0.2 * infra->data->game.dir_y;
 	infra->data->game.pos_y += 0.2 * infra->data->game.dir_x;
