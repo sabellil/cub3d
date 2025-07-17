@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:37:16 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/17 14:51:25 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/17 15:02:39 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int	ft_second_parsing_and_init(char **file_lines, t_game_data *game)
 {
 	if (parse_textures_and_colors(file_lines, game) != SUCCESS)
 	{
-		printf("J'ai echoue apres parse textures\n");
 		free_file_lines(file_lines);
 		return (ERR_PARSE_FAIL);
 	}
