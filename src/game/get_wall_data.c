@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/17 17:36:30 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/17 19:07:09 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ t_dst_side ft_calc_dst_and_side(t_dda_data   data)
 {
     t_dst_side  result;
 
-    result.side = data.side;
+    result.axis = data.axis_wall_hit;
     result.wall_dst = data.side_dist.x - data.delta_dist.x;
-    if(data.side)
+    if(data.axis_wall_hit)
         result.wall_dst = data.side_dist.y - data.delta_dist.y;
     return (result);
 }
@@ -65,7 +65,7 @@ static void	ft_init_dda_data(t_dda_data *d, float alpha,
 	d->offset.y = -1;
 	d->side_dist.x = (*current_x - d->cross.x) * d->delta_dist.x;
 	d->side_dist.y = (*current_y - d->cross.y) * d->delta_dist.y;
-    d->side = 0;
+    d->axis_wall_hit = 0;
 	if (d->dir.x > 0)
 	{
 		d->side_dist.x = (d->cross.x + 1 - *current_x) * d->delta_dist.x;
@@ -90,13 +90,13 @@ t_dst_side get_wall_data(t_game_data *game, float alpha, float *current_x, float
         {
             d.side_dist.x += d.delta_dist.x;
             d.cross.x += d.offset.x;
-            d.side = 0;
+            d.axis_wall_hit = 0;
         }
         else
         {
             d.side_dist.y += d.delta_dist.y;
             d.cross.y += d.offset.y;
-            d.side = 1;
+            d.axis_wall_hit = 1;
         }
     }
     return (ft_calc_dst_and_side(d));

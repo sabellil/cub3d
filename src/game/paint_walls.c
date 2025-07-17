@@ -12,8 +12,10 @@
 
 #include "../../include/cubed.h"
 
-t_asset *get_texture_by_oriantation(t_game_data *game, int side, float alpha) {
-    if (side) {
+t_asset *get_texture_by_orientation(t_game_data *game, int side, float alpha) 
+{
+    if (side) 
+    {
         if (sinf(alpha) >= 0)
             return &game->tex_ea;
         return &game->tex_so;
@@ -23,29 +25,18 @@ t_asset *get_texture_by_oriantation(t_game_data *game, int side, float alpha) {
     return &game->tex_no;
 }
 
-
-int	ft_check_if_wall_to_redo(float dst, int color, t_game_data *game, int x)//quelle huateur de mur afficher selon ma position
-{
-	float	wall_height;
-    (void) x;
-	(void)color;//on applique pas la couleur ici donc jignore
-	(void)game;
-	wall_height = (float)HEIGHT / dst;//calcul de la hauteur du mur a lecran
-	return (FAILURE);//je dessine pas car le pixel ne fiat pas partie du mur
-}
-
 static float	get_start_of_wall(const t_pairf *player_pos, t_dst_side *dst_side, float alpha)
 {
 	float	wall_x;
+    float   start_of_wall;
 
-	if (dst_side->side == 0)
-		wall_x = player_pos->y + (dst_side->wall_dst
-			* sinf(alpha));
+	if (dst_side->axis == 0)
+		wall_x = player_pos->y + (dst_side->wall_dst * sinf(alpha));
 	else
-		wall_x = player_pos->x + (dst_side->wall_dst
-			*  cosf(alpha));
-    
-	return (fabsf(wall_x - floorf(wall_x)));
+		wall_x = player_pos->x + (dst_side->wall_dst * cosf(alpha));
+    start_of_wall = fabsf(wall_x - floorf(wall_x));
+
+	return (start_of_wall);
 }
 
 size_t	ft_min(size_t n, size_t n2)
@@ -54,7 +45,6 @@ size_t	ft_min(size_t n, size_t n2)
 		return (n);
 	return (n2);
 }
-
 
 unsigned int	get_pixel_from_texture(t_asset *texture, int x, int y)
 {
@@ -79,9 +69,9 @@ void    draw_wall(t_game_data *game, t_param_w *params, int start, int end) {
     step = 1.0f * params->texture->height / (int)params->wall_heigth;
     tex_pos = (start - HEIGHT / 2 + params->wall_heigth / 2) * step;
     params->texture_pos = ft_min(params->texture->width, params->texture_x * params->texture->width) /*(TEXTURE_SIZE)*/;
-    if (params->side == 0 && cosf(params->alpha) > 0)
+    if (params->axis_wall_hit == 0 && cosf(params->alpha) > 0)
         params->texture_pos = params->texture->width - params->texture_pos - 1;
-    else if (params->side  == 1 && sinf(params->alpha) < 0)
+    else if (params->axis_wall_hit  == 1 && sinf(params->alpha) < 0)
         params->texture_pos = params->texture->width - params->texture_pos - 1;
     while (start < end)
     {
@@ -103,9 +93,8 @@ void   draw_vertical_line_with_texture(t_game_data *game, t_param_w params)
     draw_wall(game, &params, start, end);
 }
 
-//t_dst_side get_wall_data(t_game_data *game, float alpha, float *current_x, float *current_y)
-
-int ft_paint_one_pix_collumn(t_game_data *game, float alpha_tmp, float y)
+//render collumn with texture
+int ft_paint_collumn_with_texture(t_game_data *game, float alpha_tmp, float y)
 {
     t_pairf     player_pos;
     t_dst_side  dst_side;
@@ -123,8 +112,8 @@ int ft_paint_one_pix_collumn(t_game_data *game, float alpha_tmp, float y)
 		copy.wall_dst = 0.01;
     draw_vertical_line_with_texture(game, (t_param_w){
         .wall_heigth = (HEIGHT / copy.wall_dst),
-        .side = dst_side.side,
-        .texture = get_texture_by_oriantation(game, dst_side.side, alpha_tmp),
+        .axis_wall_hit = dst_side.axis,
+        .texture = get_texture_by_orientation(game, dst_side.axis, alpha_tmp),
         .texture_x = get_start_of_wall(&player_pos, &dst_side, alpha_tmp),
         .texture_pos = 0,
         .y = y,
@@ -142,9 +131,9 @@ int ft_paint_the_wall(t_game_data *game)
     delta = FOV / WIDTH;
     alpha_tmp = game->angle - (FOV / 2);
     y = 0;
-    while (y < 1280.0f)
+    while (y < WIDTH)
     {
-        if (ft_paint_one_pix_collumn(game, alpha_tmp, y) == FAILURE)
+        if (ft_paint_collumn_with_texture(game, alpha_tmp, y) == FAILURE)
             return (FAILURE);
         y++;
         alpha_tmp = alpha_tmp + delta;

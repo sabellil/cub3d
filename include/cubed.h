@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/17 18:19:36 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/17 19:07:09 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@
 # define BLUE 1645055
 # define ORANGE 16416000
 
+# define X_AXIS 0
+# define Y_AXIS 1
+
 typedef struct s_asset t_asset;
 
 typedef struct s_tile_info
@@ -63,7 +66,7 @@ typedef struct s_pairf
 
 typedef struct s_dst_side
 {
-	int 	side;
+	int 	axis;
 	float	wall_dst;
 }			t_dst_side;
 
@@ -74,14 +77,14 @@ typedef struct s_dda_data
 	t_pairf	offset;
 	t_pairf	cross;
 	t_pairf	dir;
-	int		side;
+	int		axis_wall_hit;
 }	t_dda_data;
 
 typedef struct s_param_w
 {
 	t_asset 	*texture;
 	int			wall_heigth;
-	int			side;
+	int			axis_wall_hit;
 	float		texture_x;
 	int			texture_pos;
 	float		y;
@@ -230,7 +233,6 @@ int					move_right(t_infra *infra);
 int					move_left(t_infra *infra);
 int					move_turn(t_infra *infra, int keycode);
 int					ft_is_it_a_wall(t_game_data *game, float x, float y);
-int					ft_check_if_wall_to_redo(float dst, int color, t_game_data *game, int x);
 void				free_file_lines_partial(char **lines, int count);
 void    			free_file_lines(char **file_lines);
 
