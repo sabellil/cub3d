@@ -6,31 +6,11 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:39:08 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/16 18:13:10 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/17 18:10:25 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
-
-int	rgb_to_int(unsigned char r, unsigned char g, unsigned char b)
-{
-	int	color;
-
-	color = (255 << 24) | (r << 16) | (g << 8) | b;
-	return (color);
-}
-
-void	put_pixel(t_img *image, int color, int x, int y)
-{
-	int		shifting;
-	char	*pix_target;
-
-	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT)
-		return ;
-	shifting = y * image->grid_len + x * (image->bit_per_pix / 8);
-	pix_target = image->pix_grid + shifting;
-	*(unsigned int *)pix_target = color;
-}
 
 void	swap_buffer(t_infra *infra)
 {
@@ -39,26 +19,6 @@ void	swap_buffer(t_infra *infra)
 	temp = infra->img_now;
 	infra->img_now = infra->img_nxt;
 	infra->img_nxt = temp;
-}
-
-void	paint_each_pixel(t_img *ptr, t_infra *skelet)
-{
-	double			x;
-	double			y;
-	unsigned int	color;
-
-	x = 0.0;
-	y = HEIGHT;
-	color = 0;
-	while (y-- > 0)
-	{
-		x = 0;
-		while (x++ < WIDTH)
-		{
-			color = what_color_is_this_pixel(x, y, skelet);
-			put_pixel(ptr, color, x, y);
-		}
-	}
 }
 
 int	ft_render(t_data *data)

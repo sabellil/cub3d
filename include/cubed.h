@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/17 17:37:25 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/17 18:10:53 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,6 +219,7 @@ void				draw_minimap(t_data *data);
 
 //GRAPHIC N RENDER
 int					what_color_is_this_pixel(double x, double y, t_infra *infra);
+void				paint_each_pixel(t_img *ptr, t_infra *skelet);
 int					ft_render(t_data *data);
 int 				ft_paint_the_wall(t_game_data *game);
 t_dst_side			get_wall_data(t_game_data *game, float alpha, float *current_x, float *current_y);
