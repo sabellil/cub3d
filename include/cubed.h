@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/17 16:42:05 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/17 17:37:25 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,10 +218,10 @@ void				ft_setup_hooks(t_data *data);
 void				draw_minimap(t_data *data);
 
 //GRAPHIC N RENDER
-int					what_color_is_this_pixel(double x, double y,
-						t_infra *infra);
+int					what_color_is_this_pixel(double x, double y, t_infra *infra);
 int					ft_render(t_data *data);
 int 				ft_paint_the_wall(t_game_data *game);
+t_dst_side			get_wall_data(t_game_data *game, float alpha, float *current_x, float *current_y);
 void				put_pixel(t_img *image, int color, int x, int y);
 int					move_down(t_infra *infra);
 int					move_up(t_infra *infra);
@@ -231,6 +231,6 @@ int					move_turn(t_infra *infra, int keycode);
 int					ft_is_it_a_wall(t_game_data *game, float x, float y);
 int					ft_check_if_wall_to_redo(float dst, int color, t_game_data *game, int x);
 void				free_file_lines_partial(char **lines, int count);
-void    free_file_lines(char **file_lines);
+void    			free_file_lines(char **file_lines);
 
 #endif

@@ -12,97 +12,6 @@
 
 #include "../../include/cubed.h"
 
-
-t_dst_side ft_get_dst_side(int side, t_pairf wall_pos)
-{
-    t_dst_side  result;
-
-    result.side = side;
-    result.wall_dst = wall_pos.x;
-    if(side)
-        result.wall_dst = wall_pos.y;
-    return (result);
-}
-
-int	ft_is_it_a_wall(t_game_data *game, float y, float x)
-{
-	int		map_x;
-	int		map_y;
-	char	cell;
-
-	map_x = round(x);
-	map_y = round(y);
-	if (map_y < 0 || map_y >= game->map_height || map_x < 0
-		|| map_x >= game->map_width)
-		return (SUCCESS);
-	cell = game->map[map_y][map_x];
-	if (cell == '1' || cell == ' ')
-		return (SUCCESS);
-	else
-		return (FAILURE);
-}
-
-// typedef struct s_dda_data
-// {
-// 	t_pairf	delta_dist;
-// 	t_pairf	side_dist;
-// 	t_pairf	offset;
-// 	t_pairf	cross;
-// 	t_pairf	dir;
-// 	int		side;
-// }	t_dda_data;
-
-t_dst_side get_wall_distance_x_y(t_game_data *game, float alpha, float *current_x, float *current_y)
-{
-    t_pairf dir;
-    t_pairf cross;
-    float offset_y;
-    float offset_x;
-    char  side = 0;
-
-    dir.x = cosf(alpha);
-    dir.y = sinf(alpha);
-    cross.y = floorf(*current_y);
-    cross.x = floorf(*current_x);
-
-    float delta_dist_x = fabsf(1 / dir.x);
-    float delta_dist_y = fabsf(1 / dir.y);
-    float side_dist_x = (*current_x - cross.x) * delta_dist_x;
-    float side_dist_y = (*current_y - cross.y) * delta_dist_y;
-    offset_x = -1;
-    offset_y = -1;
-    if (dir.x > 0)
-    {
-        side_dist_x  = (cross.x + 1  - *current_x) * delta_dist_x;
-        offset_x = 1;
-    }
-    if (dir.y > 0)
-    {
-        side_dist_y  = (cross.y + 1  - *current_y) * delta_dist_y;
-        offset_y = 1;
-    }
-    while (ft_is_it_a_wall(game, cross.y, cross.x) != SUCCESS)
-    {
-        if (side_dist_x < side_dist_y)
-        {
-            side_dist_x += delta_dist_x;
-            cross.x += offset_x;
-            side = 0;
-        }
-        else
-        {
-            side_dist_y += delta_dist_y;
-            cross.y += offset_y;
-            side = 1;
-        }
-    }
-
-    return (ft_get_dst_side(side, (t_pairf){
-        .x = (side_dist_x - delta_dist_x),
-        .y = (side_dist_y - delta_dist_y)
-    }));
-}
-
 t_asset *get_texture_by_oriantation(t_game_data *game, int side, float alpha) {
     if (side) {
         if (sinf(alpha) >= 0)
@@ -184,8 +93,8 @@ void    draw_wall(t_game_data *game, t_param_w *params, int start, int end) {
     }
 }
 
- void   draw_vertical_line_with_texture(t_game_data *game, t_param_w params)
- {
+void   draw_vertical_line_with_texture(t_game_data *game, t_param_w params)
+{
     int	start;
 	int	end;
 
@@ -193,6 +102,7 @@ void    draw_wall(t_game_data *game, t_param_w *params, int start, int end) {
     end = ((float)HEIGHT / 2.0f) + (params.wall_heigth  / 2.0f);
     draw_wall(game, &params, start, end);
 }
+
 
 
 int ft_paint_one_pix_collumn(t_game_data *game, float alpha_tmp, float y)
@@ -203,7 +113,7 @@ int ft_paint_one_pix_collumn(t_game_data *game, float alpha_tmp, float y)
 
     player_pos.x = game->pos_x;
     player_pos.y = game->pos_y;
-    dst_side = get_wall_distance_x_y(game, alpha_tmp, &player_pos.y, &player_pos.x);
+    dst_side = get_wall_data(game, alpha_tmp, &player_pos.y, &player_pos.x);
     player_pos.x = game->pos_x;
     player_pos.y = game->pos_y;
 

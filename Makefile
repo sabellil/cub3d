@@ -6,7 +6,7 @@
 #    By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 15:01:27 by sabellil          #+#    #+#              #
-#    Updated: 2025/07/16 18:17:02 by mairivie         ###   ########.fr        #
+#    Updated: 2025/07/17 17:34:44 by mairivie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC_LIST = main.c \
 			free.c \
 			game/draw_minimap.c \
 			game/graphic.c \
+			game/get_wall_data.c \
 			game/paint_walls.c \
 			game/ray_casting_generator.c \
 			game/handle_events.c \
