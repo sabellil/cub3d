@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 15:24:08 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/16 18:46:13 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/17 14:51:19 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int argc, char **argv)
 	char	**file_lines;
 
 	ft_memset(&data, 0, sizeof(t_data));
+	init_game_data(&data.game);
 	if (argc != 2)
 		return (ft_handle_error(ERR_ARG_COUNT));
 	if ((ft_first_parsing(argv[1], &file_lines)) != SUCCESS)
@@ -30,6 +31,7 @@ int	main(int argc, char **argv)
 	{
 		ft_handle_error(ERR_PARSE_FAIL);
 		close_window(&data.infra);
+		return (FAILURE);
 	}
 	ft_setup_hooks(&data);
 	mlx_loop_hook(data.infra.mlx, ft_render, &data);

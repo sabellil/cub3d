@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_colors.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 16:15:05 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/02 16:21:52 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/17 14:45:49 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,15 @@ int	ft_set_color(int *dest, char *color_str)
 	return (SUCCESS);
 }
 
+
 int	ft_parse_color_line(char *line, t_game_data *game)
 {
 	char	*ptr;
 
 	if (ft_starts_with(line, "F "))
 	{
+		if (game->floor_color != -1)
+			return (FAILURE);
 		ptr = line + 1;
 		while (*ptr == ' ')
 			ptr++;
@@ -78,6 +81,8 @@ int	ft_parse_color_line(char *line, t_game_data *game)
 	}
 	if (ft_starts_with(line, "C "))
 	{
+		if (game->ceiling_color != -1)
+			return (FAILURE);
 		ptr = line + 1;
 		while (*ptr == ' ')
 			ptr++;

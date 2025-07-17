@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+         #
+#    By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 15:01:27 by sabellil          #+#    #+#              #
-#    Updated: 2025/07/16 18:17:02 by mairivie         ###   ########.fr        #
+#    Updated: 2025/07/17 14:25:56 by sabellil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,6 @@ val:
 		--track-origins=yes \
 		--gen-suppressions=all \
 		--read-var-info=yes \
-		--log-file=valgrind_report.log \
 		./cub3d 
 
  valclean:

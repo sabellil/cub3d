@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/16 19:35:42 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/17 14:20:57 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@
 # define ERR_ARG_COUNT 11
 # define ERR_PARSE_FAIL 12
 # define ERR_INFRA_FAIL 13
-# define COLLISION_DIST 0.2f
 
 # define GREEN 1703705
 # define YELLOW 16435200
@@ -154,11 +153,13 @@ int					ft_check_file_extension(const char *filename,
 						const char *extension);
 char				**ft_read_cub_file(const char *filename);
 char				**read_lines_from_file(int fd);
+int					ft_is_map_lines_in_cub(const char *line);
 // PARSING UTILS
 char				**read_lines_from_file(int fd);
 int					has_single_dot(const char *filename, int len_file);
 
 //INITALIZATION
+void				init_game_data(t_game_data *game);
 int					ft_second_parsing_and_init(char **file_lines,
 						t_game_data *game);
 int					parse_textures_and_colors(char **file_lines,

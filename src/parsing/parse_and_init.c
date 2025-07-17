@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_and_init.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:10:09 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/02 16:24:53 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/17 12:47:11 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,11 @@ int	ft_first_parsing(char *filename, char ***file_lines_out)
 		return (ERR_PARSE_FAIL);
 	*file_lines_out = file_lines;
 	return (SUCCESS);
+	
+}
+void	init_game_data(t_game_data *game)
+{
+	ft_memset(game, 0, sizeof(t_game_data));
+	game->floor_color = -1;
+	game->ceiling_color = -1;
 }

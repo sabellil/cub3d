@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 15:23:04 by sabellil          #+#    #+#             */
-/*   Updated: 2025/06/24 15:41:27 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/17 14:20:32 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	is_map_closed(char **map)
 	return (1);
 }
 
-int	ft_is_map_lines(const char *line)
+int	ft_is_map_lines_in_cub(const char *line)
 {
 	int	i;
 

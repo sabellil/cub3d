@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:37:16 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/02 16:24:00 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/17 14:51:25 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	parse_textures_and_colors(char **lines, t_game_data *game)
 
 	i = 0;
 	found = 0;
-	while (lines[i] && found < 6)
+	while (lines[i])
 	{
 		ft_strip_newline(lines[i]);
 		if (ft_is_empty_line(lines[i]) || ft_is_map_line(lines[i]))
@@ -64,6 +64,7 @@ int	ft_second_parsing_and_init(char **file_lines, t_game_data *game)
 {
 	if (parse_textures_and_colors(file_lines, game) != SUCCESS)
 	{
+		printf("J'ai echoue apres parse textures\n");
 		free_file_lines(file_lines);
 		return (ERR_PARSE_FAIL);
 	}
