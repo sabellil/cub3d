@@ -42,6 +42,16 @@ int	ft_is_it_a_wall(t_game_data *game, float y, float x)
 		return (FAILURE);
 }
 
+// typedef struct s_dda_data
+// {
+// 	t_pairf	delta_dist;
+// 	t_pairf	side_dist;
+// 	t_pairf	offset;
+// 	t_pairf	cross;
+// 	t_pairf	dir;
+// 	int		side;
+// }	t_dda_data;
+
 t_dst_side get_wall_distance_x_y(t_game_data *game, float alpha, float *current_x, float *current_y)
 {
     t_pairf dir;

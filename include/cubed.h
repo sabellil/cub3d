@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/16 20:55:48 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/17 16:42:05 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,16 @@ typedef struct s_dst_side
 	int 	side;
 	float	wall_dst;
 }			t_dst_side;
+
+typedef struct s_dda_data
+{
+	t_pairf	delta_dist;
+	t_pairf	side_dist;
+	t_pairf	offset;
+	t_pairf	cross;
+	t_pairf	dir;
+	int		side;
+}	t_dda_data;
 
 typedef struct s_param_w
 {
