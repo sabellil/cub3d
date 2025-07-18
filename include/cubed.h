@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/17 19:07:09 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/18 14:41:17 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ typedef struct s_pairf
     float y;
 }               t_pairf;
 
-typedef struct s_dst_side
+typedef struct s_hit_info
 {
-	int 	axis;
+	int 	axis_hit;
 	float	wall_dst;
-}			t_dst_side;
+}			t_hit_info;
 
 typedef struct s_dda_data
 {
@@ -80,7 +80,7 @@ typedef struct s_dda_data
 	int		axis_wall_hit;
 }	t_dda_data;
 
-typedef struct s_param_w
+typedef struct s_wall_slice_info
 {
 	t_asset 	*texture;
 	int			wall_heigth;
@@ -88,8 +88,8 @@ typedef struct s_param_w
 	float		texture_x;
 	int			texture_pos;
 	float		y;
-	float		alpha;
-}				t_param_w;
+	float		angle;
+}				t_wall_slice_info;
 
 
 typedef struct s_square
@@ -142,7 +142,7 @@ typedef struct s_game_data
 	float			dir_x;
 	float			dir_y;
 	int				player_found;
-	float			angle; //angle directeur
+	float			angle_fov; //angle directeur
 }					t_game_data;
 
 typedef struct s_infra
@@ -223,9 +223,9 @@ void				draw_minimap(t_data *data);
 //GRAPHIC N RENDER
 int					what_color_is_this_pixel(double x, double y, t_infra *infra);
 void				paint_floor_ceilling(t_img *ptr, t_infra *skelet);
-t_dst_side 			get_wall_data(t_game_data *game, float alpha, float *current_x, float *current_y);
+t_hit_info 			get_wall_data(t_game_data *game, float alpha, float *current_x, float *current_y);
 int					ft_render(t_data *data);
-int 				ft_paint_the_wall(t_game_data *game);
+int 				ft_raycast_the_wall(t_game_data *game);
 void				put_pixel(t_img *image, int color, int x, int y);
 int					move_down(t_infra *infra);
 int					move_up(t_infra *infra);

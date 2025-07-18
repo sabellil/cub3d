@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:39:08 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/17 18:17:19 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/18 14:43:12 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_render(t_data *data)
 
 	infra = &data->infra;
 	paint_floor_ceilling(infra->img_nxt, infra);
-	ft_paint_the_wall(&data->game);
+	ft_raycast_the_wall(&data->game);
 	draw_minimap(data);
 	mlx_put_image_to_window(infra->mlx, infra->win,
 		infra->img_now->new_img, 0, 0);

@@ -12,25 +12,25 @@
 
 #include "../../include/cubed.h"
 
-t_asset *get_texture_by_orientation(t_game_data *game, int side, float alpha) 
+t_asset *get_texture_by_orientation(t_game_data *game, int axis_of_the_wall_hit, float ray_angle) 
 {
-    if (side) 
+    if (axis_of_the_wall_hit == Y_AXIS ) 
     {
-        if (sinf(alpha) >= 0)
-            return &game->tex_ea;
-        return &game->tex_so;
+        if (sinf(ray_angle) <= 0)
+            return &game->tex_so;
+        return &game->tex_no;
     }
-    if (cosf(alpha) >= 0)
-        return &game->tex_we;
-    return &game->tex_no;
+    if (cosf(ray_angle) <= 0)
+        return &game->tex_ea;
+    return &game->tex_we;
 }
 
-static float	get_start_of_wall(const t_pairf *player_pos, t_dst_side *dst_side, float alpha)
+static float	get_start_of_wall(const t_pairf *player_pos, t_hit_info *dst_side, float alpha)
 {
 	float	wall_x;
     float   start_of_wall;
 
-	if (dst_side->axis == 0)
+	if (dst_side->axis_hit == 0)
 		wall_x = player_pos->y + (dst_side->wall_dst * sinf(alpha));
 	else
 		wall_x = player_pos->x + (dst_side->wall_dst * cosf(alpha));
@@ -60,7 +60,7 @@ unsigned int	get_pixel_from_texture(t_asset *texture, int x, int y)
 }
 
 
-void    draw_wall(t_game_data *game, t_param_w *params, int start, int end) {
+void    draw_wall(t_game_data *game, t_wall_slice_info *params, int start, int end) {
     unsigned int color;
 	float			tex_pos;
 	float			step;
@@ -69,9 +69,9 @@ void    draw_wall(t_game_data *game, t_param_w *params, int start, int end) {
     step = 1.0f * params->texture->height / (int)params->wall_heigth;
     tex_pos = (start - HEIGHT / 2 + params->wall_heigth / 2) * step;
     params->texture_pos = ft_min(params->texture->width, params->texture_x * params->texture->width) /*(TEXTURE_SIZE)*/;
-    if (params->axis_wall_hit == 0 && cosf(params->alpha) > 0)
+    if (params->axis_wall_hit == 0 && cosf(params->angle) > 0)
         params->texture_pos = params->texture->width - params->texture_pos - 1;
-    else if (params->axis_wall_hit  == 1 && sinf(params->alpha) < 0)
+    else if (params->axis_wall_hit  == 1 && sinf(params->angle) < 0)
         params->texture_pos = params->texture->width - params->texture_pos - 1;
     while (start < end)
     {
@@ -83,7 +83,7 @@ void    draw_wall(t_game_data *game, t_param_w *params, int start, int end) {
     }
 }
 
-void   draw_vertical_line_with_texture(t_game_data *game, t_param_w params)
+void   draw_vertical_line_with_texture(t_game_data *game, t_wall_slice_info params)
 {
     int	start;
 	int	end;
@@ -97,39 +97,39 @@ void   draw_vertical_line_with_texture(t_game_data *game, t_param_w params)
 int ft_paint_collumn_with_texture(t_game_data *game, float alpha_tmp, float y)
 {
     t_pairf     player_pos;
-    t_dst_side  dst_side;
-    t_dst_side  copy;
+    t_hit_info  raw_data_fisheyed;
+    t_hit_info  corrected_data;
 
     player_pos.x = game->pos_x;
     player_pos.y = game->pos_y;
-    dst_side = get_wall_data(game, alpha_tmp, &player_pos.y, &player_pos.x);
+    raw_data_fisheyed = get_wall_data(game, alpha_tmp, &player_pos.y, &player_pos.x);
     player_pos.x = game->pos_x;
     player_pos.y = game->pos_y;
 
-    copy = dst_side;
-    copy.wall_dst *= cos(alpha_tmp - game->angle);
-    if (copy.wall_dst < 0.01)
-		copy.wall_dst = 0.01;
-    draw_vertical_line_with_texture(game, (t_param_w){
-        .wall_heigth = (HEIGHT / copy.wall_dst),
-        .axis_wall_hit = dst_side.axis,
-        .texture = get_texture_by_orientation(game, dst_side.axis, alpha_tmp),
-        .texture_x = get_start_of_wall(&player_pos, &dst_side, alpha_tmp),
+    corrected_data = raw_data_fisheyed;
+    corrected_data.wall_dst *= cos(alpha_tmp - game->angle_fov);
+    if (corrected_data.wall_dst < 0.01)
+		corrected_data.wall_dst = 0.01;
+    draw_vertical_line_with_texture(game, (t_wall_slice_info){
+        .wall_heigth = (HEIGHT / corrected_data.wall_dst),
+        .axis_wall_hit = raw_data_fisheyed.axis_hit,
+        .texture = get_texture_by_orientation(game, raw_data_fisheyed.axis_hit, alpha_tmp),
+        .texture_x = get_start_of_wall(&player_pos, &raw_data_fisheyed, alpha_tmp),
         .texture_pos = 0,
         .y = y,
-        .alpha = alpha_tmp
+        .angle = alpha_tmp
     });
     return SUCCESS;
 }
 
-int ft_paint_the_wall(t_game_data *game)
+int ft_raycast_the_wall(t_game_data *game)
 {
     float   delta;
     float   alpha_tmp;
     float     y;
 
     delta = FOV / WIDTH;
-    alpha_tmp = game->angle - (FOV / 2);
+    alpha_tmp = game->angle_fov - (FOV / 2);
     y = 0;
     while (y < WIDTH)
     {

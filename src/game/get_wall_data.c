@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/17 19:07:09 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/18 14:26:43 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 // 	int		side;
 // }	t_dda_data;
 
-t_dst_side ft_calc_dst_and_side(t_dda_data   data)
+t_hit_info ft_calc_dst_and_side(t_dda_data   data)
 {
-    t_dst_side  result;
+    t_hit_info  result;
 
-    result.axis = data.axis_wall_hit;
+    result.axis_hit = data.axis_wall_hit;
     result.wall_dst = data.side_dist.x - data.delta_dist.x;
     if(data.axis_wall_hit)
         result.wall_dst = data.side_dist.y - data.delta_dist.y;
@@ -79,7 +79,7 @@ static void	ft_init_dda_data(t_dda_data *d, float alpha,
 }
 
 //get wall data
-t_dst_side get_wall_data(t_game_data *game, float alpha, float *current_x, float *current_y)
+t_hit_info get_wall_data(t_game_data *game, float alpha, float *current_x, float *current_y)
 {
     t_dda_data  d;
 
