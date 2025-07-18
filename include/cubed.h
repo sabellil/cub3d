@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/18 15:43:04 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/18 18:59:54 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ typedef struct s_wall_slice_info
 	int			axis_wall_hit;
 	float		offset_x;
 	int			texture_pos;
-	float		y;
+	float		collumn_id;
 	float		angle;
-}				t_wall_slice_info;
+}				t_wall_slice;
 
 
 typedef struct s_square
