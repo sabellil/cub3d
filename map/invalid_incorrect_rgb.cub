@@ -1,10 +1,10 @@
 NO ./textures/kitty_est.xpm
-
+SO ./textures/south.xpm
 EA ./textures/east.xpm
 WE ./textures/west.xpm
 
 F 220,100,0
-C 205,56,0
+C 205,-56,0
 
 11111
 10001
