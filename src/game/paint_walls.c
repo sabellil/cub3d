@@ -71,16 +71,16 @@ void    draw_wall(t_game_data *game, t_wall_slice *actwall_slice, int start, int
 
     step = 1.0f * actwall_slice->texture->height / actwall_slice->wall_heigth;
     tex_pos = (start - HEIGHT / 2 + actwall_slice->wall_heigth / 2) * step;
-    actwall_slice->texture_pos = ft_min(actwall_slice->texture->width, actwall_slice->offset_x * actwall_slice->texture->width) /*(TEXTURE_SIZE)*/;
+    actwall_slice->hit_pix_tex = ft_min(actwall_slice->texture->width, actwall_slice->hit_ratio_tex * actwall_slice->texture->width) /*(TEXTURE_SIZE)*/;
     
     if (actwall_slice->axis_wall_hit == 0 && cosf(actwall_slice->angle) > 0)
-        actwall_slice->texture_pos = actwall_slice->texture->width - actwall_slice->texture_pos - 1;
+        actwall_slice->hit_pix_tex = actwall_slice->texture->width - actwall_slice->hit_pix_tex - 1;
     else if (actwall_slice->axis_wall_hit  == 1 && sinf(actwall_slice->angle) < 0)
-        actwall_slice->texture_pos = actwall_slice->texture->width - actwall_slice->texture_pos - 1;
+        actwall_slice->hit_pix_tex = actwall_slice->texture->width - actwall_slice->hit_pix_tex - 1;
     
     while (start < end)
     {
-		color = get_pixel_from_texture(actwall_slice->texture, actwall_slice->texture_pos,
+		color = get_pixel_from_texture(actwall_slice->texture, actwall_slice->hit_pix_tex,
 				((int)tex_pos & (actwall_slice->texture->height - 1)));
         put_pixel(game->data->infra.img_nxt, color, actwall_slice->collumn_id, start);
         tex_pos += step;
@@ -98,19 +98,6 @@ void   draw_vertical_line_with_texture(t_game_data *game, t_wall_slice wall_slic
     draw_wall(game, &wall_slice_info, start, end);
 }
 
-// typedef struct s_wall_slice_info
-// {
-// 	t_asset 	*texture;
-// 	int			wall_heigth;
-// 	int			axis_wall_hit;
-// 	float		offset_x;
-// 	int			texture_pos;
-// 	float		y;
-// 	float		angle;
-// }				t_wall_slice_info;
-
-// t_wall_slice_info ft_get_slice_info
-
 t_wall_slice    get_slice_data(t_game_data *game, t_hit_info hit, float alpha_tmp, int collumn_id, t_pairf player_pos)
 {
         t_wall_slice    k;
@@ -118,17 +105,17 @@ t_wall_slice    get_slice_data(t_game_data *game, t_hit_info hit, float alpha_tm
         k.wall_heigth = (HEIGHT / hit.wall_dst);
         k.axis_wall_hit = hit.axis_hit;
         k.texture = get_wall_texture(game, hit.axis_hit, alpha_tmp);
-        k.offset_x = get_offset_texture(&player_pos, &hit, alpha_tmp);
-        k.texture_pos = 0;
+        k.hit_ratio_tex = get_offset_texture(&player_pos, &hit, alpha_tmp);
+        k.hit_pix_tex = 0;
         k.collumn_id = collumn_id;
         k.angle = alpha_tmp;
 
-        printf("wh:%i awh:%i ox:%f tp:%i ci:%f a:%f \n", k.wall_heigth,
-        k.axis_wall_hit,
-        k.offset_x,
-        k.texture_pos,
-        k.collumn_id,
-        k.angle);
+        // printf("wh:%i awh:%i ox:%f tp:%i ci:%f a:%f \n", k.wall_heigth,
+        // k.axis_wall_hit,
+        // k.offset_x,
+        // k.texture_pos,
+        // k.collumn_id,
+        // k.angle);
 
         return (k);
 }
