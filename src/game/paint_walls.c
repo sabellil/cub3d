@@ -25,7 +25,7 @@ t_asset *get_wall_texture(t_game_data *game, int wall_axis, float ray_angle)
     return &game->tex_we;
 }
 
-static float	get_offset_texture(const t_pairf *player_pos, t_hit_info *hit_info, float alpha)
+static float	get_ratio_texture(const t_pairf *player_pos, t_hit_info *hit_info, float alpha)
 {
 	float	hit_point;
     float   offset_texture;
@@ -65,12 +65,12 @@ unsigned int	get_pixel_from_texture(t_asset *texture, int x, int y)
 void    draw_wall(t_game_data *game, t_wall_slice *actwall_slice, int start, int end) 
 {
     unsigned int    color;
-	float			tex_pos;
+	float			pix_collumn;
 	float			step;
 
 
-    step = 1.0f * actwall_slice->texture->height / actwall_slice->wall_heigth;
-    tex_pos = (start - HEIGHT / 2 + actwall_slice->wall_heigth / 2) * step;
+    step = actwall_slice->texture->height / (float)actwall_slice->wall_heigth;
+    pix_collumn = (start - HEIGHT / 2 + actwall_slice->wall_heigth / 2) * step;
     actwall_slice->hit_pix_tex = ft_min(actwall_slice->texture->width, actwall_slice->hit_ratio_tex * actwall_slice->texture->width) /*(TEXTURE_SIZE)*/;
     
     if (actwall_slice->axis_wall_hit == 0 && cosf(actwall_slice->angle) > 0)
@@ -81,9 +81,9 @@ void    draw_wall(t_game_data *game, t_wall_slice *actwall_slice, int start, int
     while (start < end)
     {
 		color = get_pixel_from_texture(actwall_slice->texture, actwall_slice->hit_pix_tex,
-				((int)tex_pos & (actwall_slice->texture->height - 1)));
+				((int)pix_collumn & (actwall_slice->texture->height - 1)));
         put_pixel(game->data->infra.img_nxt, color, actwall_slice->collumn_id, start);
-        tex_pos += step;
+        pix_collumn += step;
         ++start;
     }
 }
@@ -105,7 +105,7 @@ t_wall_slice    get_slice_data(t_game_data *game, t_hit_info hit, float alpha_tm
         k.wall_heigth = (HEIGHT / hit.wall_dst);
         k.axis_wall_hit = hit.axis_hit;
         k.texture = get_wall_texture(game, hit.axis_hit, alpha_tmp);
-        k.hit_ratio_tex = get_offset_texture(&player_pos, &hit, alpha_tmp);
+        k.hit_ratio_tex = get_ratio_texture(&player_pos, &hit, alpha_tmp);
         k.hit_pix_tex = 0;
         k.collumn_id = collumn_id;
         k.angle = alpha_tmp;
