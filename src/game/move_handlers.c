@@ -43,9 +43,9 @@ int	move_left(t_infra *infra)
 int	move_turn(t_infra *infra, int keycode)
 {
 	if (keycode == XK_Left)
-		infra->data->game.angle_fov -= 0.2;
-	if (keycode == XK_Right)
 		infra->data->game.angle_fov += 0.2;
+	if (keycode == XK_Right)
+		infra->data->game.angle_fov -= 0.2;
 	infra->data->game.dir_x = cos (infra->data->game.angle_fov);
 	infra->data->game.dir_y = sin (infra->data->game.angle_fov);
 	return (SUCCESS);
