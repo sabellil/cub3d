@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 15:24:08 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/17 15:01:45 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/18 14:36:52 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(int argc, char **argv)
 	t_data	data;
 	char	**file_lines;
 
+	printf("verif\n");
 	ft_memset(&data, 0, sizeof(t_data));
 	init_game_data(&data.game);
 	if (argc != 2)
@@ -29,6 +30,7 @@ int	main(int argc, char **argv)
 	data.game.data = &data;
 	if (ft_second_parsing_and_init(file_lines, &data.game) != SUCCESS)
 	{
+		printf("On entre dans le if de ft second parsing and init\n");
 		ft_handle_error(ERR_PARSE_FAIL);
 		close_window(&data.infra);
 		return (FAILURE);

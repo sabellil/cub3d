@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:37:16 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/18 14:07:48 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/18 14:46:55 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,25 @@ int	ft_second_parsing_and_init(char **file_lines, t_game_data *game)
 	}
 	if (parse_map_and_player(file_lines, game) != SUCCESS)
 	{
+		printf("ca fail ici\n");
 		free_file_lines(file_lines);
 		return (ERR_PARSE_FAIL);
 	}
+
 	game->map_width = get_map_width(game->map);
 	game->map_height = get_map_height(game->map);
+
+	printf("Map size: %d x %d\n", game->map_width, game->map_height);
+
+	if (game->map_width > MAX_MAP_WIDTH || game->map_height > MAX_MAP_HEIGHT)
+	{
+		printf("Error\nMap is too big\n");
+
+		// ⚠️ Il faut libérer game->map ici sinon le jeu continue avec une map déjà chargée
+		free_file_lines(file_lines);
+		return (FAILURE);
+	}
+
 	free_file_lines(file_lines);
 	return (SUCCESS);
 }

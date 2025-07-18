@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/17 15:01:33 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/18 14:45:06 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@
 # define FOV 1.0f
 # define PI 3.1416f
 # define TEXTURE_SIZE 64
+# define MAX_MAP_WIDTH  15
+# define MAX_MAP_HEIGHT 15
+
 
 # define SUCCESS 0
 # define FAILURE 1
