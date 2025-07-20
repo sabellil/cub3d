@@ -6,7 +6,7 @@
 #    By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 15:01:27 by sabellil          #+#    #+#              #
-#    Updated: 2025/07/17 14:25:56 by sabellil         ###   ########.fr        #
+#    Updated: 2025/07/20 14:35:38 by sabellil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,8 @@ NAME = cub3D
 
 COMPIL = cc
 CFLAGS = -Wall -Wextra -Werror -g -I include -MD
+
+# Obligatoire
 
 SRC_DIR = src/
 SRC_LIST = main.c \
@@ -44,6 +46,33 @@ OBJ_LIST = $(SRC_LIST:.c=.o)
 
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_LIST))
 
+# Bonus
+
+#SRC_BONUS_LIST = main_bonus.c \
+			errors.c \
+			free.c \
+			game/draw_minimap_bonus.c \
+			game/graphic.c \
+			game/paint_walls.c \
+			game/ray_casting_generator.c \
+			game/handle_events.c \
+			game/move_handlers_bonus.c \
+			parsing/parse_and_init.c \
+			parsing/init_parsing_utils.c \
+			init/init_map.c \
+			init/init_map_utils.c \
+			init/init_utils.c \
+			init/init_infra_and_buffer.c \
+			init/handle_colors.c \
+			init/handle_textures.c \
+			init/handle_map.c \
+			init/handle_map_utils.c \
+			init/handle_player.c
+
+SRC_BONUS = $(addprefix $(SRC_DIR), $(SRC_BONUS_LIST))
+OBJ_BONUS_LIST = $(SRC_BONUS_LIST:.c=.o)
+OBJ_BONUS = $(addprefix $(OBJ_DIR), $(OBJ_BONUS_LIST))
+
 LIBFT_DIR = libft/
 LIBFT = $(LIBFT_DIR)libft.a
 
@@ -61,9 +90,16 @@ $(MLX):
 $(NAME): $(OBJ) $(LIBFT) $(MLX)
 	$(COMPIL) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) -lXext -lX11 -lm -o $(NAME)
 
+#bonus: $(MLX) $(LIBFT) $(BONUS_NAME)
+
+#$(BONUS_NAME): $(OBJ_BONUS) $(LIBFT) $(MLX) 
+#tab $(COMPIL) $(CFLAGS) $(OBJ_BONUS) $(LIBFT) $(MLX) -lXext -lX11 -lm -o $(BONUS_NAME)
+
+
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(@D)
 	$(COMPIL) $(CFLAGS) -c $< -o $@
+
 
 clean:
 	rm -rf $(OBJ_DIR)
@@ -72,6 +108,7 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	$(MAKE) fclean -C $(LIBFT_DIR)
+#ajouter $(BONUS_NAME) apres (NAME)
 	
 re: fclean all
 
