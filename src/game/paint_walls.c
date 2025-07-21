@@ -183,10 +183,10 @@ t_asset *get_texture_by_oriantation(t_game_data *game, int side, float alpha) {
     if (side) {
         if (sinf(alpha) >= 0)
             return &game->tex_ea;
-        return &game->tex_so;
+        return &game->tex_we;
     }
     if (cosf(alpha) >= 0)
-        return &game->tex_we;
+        return &game->tex_so;
     return &game->tex_no;
 }
 
