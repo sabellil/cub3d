@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/21 13:27:17 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/21 14:10:50 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_dst_side
 {
 	int 	side;
 	float	wall_dst;
+	t_pairf	hit;
 }			t_dst_side;
 
 typedef struct s_param_w
