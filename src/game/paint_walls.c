@@ -160,6 +160,7 @@ void    draw_wall(t_game_data *game, t_param_w *params, int start, int end) {
     step = 1.0f * params->texture->height / (int)params->dst_side.wall_dst;
     tex_pos = (start - HEIGHT / 2 + params->dst_side.wall_dst / 2) * step;
     params->texture_pos = ft_min(params->texture->width, params->texture_x * params->texture->width) /*(TEXTURE_SIZE)*/;
+    // params->texture_pos = (int)(params->texture_x * (float)params->texture->width);
     if (params->dst_side.side == 0 && cosf(params->alpha) > 0)
         params->texture_pos = params->texture->width - params->texture_pos - 1;
     else if (params->dst_side.side  == 1 && sinf(params->alpha) < 0)
