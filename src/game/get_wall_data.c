@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/18 14:26:43 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/21 14:35:27 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_hit_info ft_calc_dst_and_side(t_dda_data   data)
 
     result.axis_hit = data.axis_wall_hit;
     result.wall_dst = data.side_dist.x - data.delta_dist.x;
+	result.cross = data.cross;
     if(data.axis_wall_hit)
         result.wall_dst = data.side_dist.y - data.delta_dist.y;
     return (result);

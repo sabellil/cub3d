@@ -25,17 +25,29 @@ t_asset *get_wall_texture(t_game_data *game, int wall_axis, float ray_angle)
     return &game->tex_we;
 }
 
-static float	get_ratio_texture(const t_pairf *player_pos, t_hit_info *hit_info, float alpha)
+static float	get_ratio_texture(const t_pairf *player_pos, 
+    t_hit_info *hit_info, float alpha)
 {
-	float	hit_point;
     float   offset_texture;
+    
 
-	if (hit_info->axis_hit == X_AXIS)
-		hit_point = player_pos->y + (hit_info->wall_dst * sinf(alpha));
-	else
-		hit_point = player_pos->x + (hit_info->wall_dst * cosf(alpha));
-    offset_texture = fabsf(hit_point - floorf(hit_point));
+    (void)alpha;
+    (void)player_pos;
+    printf("crossX: %f crossY: %f\n", hit_info->cross.x, hit_info->cross.y);
+    if (hit_info->axis_hit == X_AXIS)
+	    offset_texture = hit_info->cross.y - floorf(hit_info->cross.y);
+    else
+	    offset_texture = hit_info->cross.x - floorf(hit_info->cross.x);
 
+    // float	hit_point;
+    // (void)hit_info->cross;
+	// if (hit_info->axis_hit == X_AXIS)
+	// 	hit_point = player_pos->y + (hit_info->wall_dst * sinf(alpha));
+	// else
+	// 	hit_point = player_pos->x + (hit_info->wall_dst * cosf(alpha));
+    // offset_texture = fabsf(hit_point - floorf(hit_point));
+
+    // printf("offset: %f\n", offset_texture);
 	return (offset_texture);
 }
 
@@ -106,10 +118,12 @@ t_wall_slice    get_slice_data(t_game_data *game, t_hit_info hit, float alpha_tm
         k.axis_wall_hit = hit.axis_hit;
         k.texture = get_wall_texture(game, hit.axis_hit, alpha_tmp);
         k.hit_ratio_tex = get_ratio_texture(&player_pos, &hit, alpha_tmp);
-        k.hit_pix_tex = 0;
+        k.hit_pix_tex = player_pos.x;
         k.collumn_id = collumn_id;
         k.angle = alpha_tmp;
 
+
+        // printf("k.hit_pix_tex: %i\n", k.hit_pix_tex);
         // printf("wh:%i awh:%i ox:%f tp:%i ci:%f a:%f \n", k.wall_heigth,
         // k.axis_wall_hit,
         // k.offset_x,
@@ -133,6 +147,7 @@ int ft_paint_collumn_with_texture(t_game_data *game, float alpha_tmp, float coll
     raw_data_fisheyed = get_wall_data(game, alpha_tmp, &player_pos.y, &player_pos.x);
     // player_pos.x = game->pos_x;
     // player_pos.y = game->pos_y;
+    // printf("-----------------------posX: %f posY: %f\n", game->pos_x, game->pos_y);
 
     corrected_data = raw_data_fisheyed;
     corrected_data.wall_dst *= cos(alpha_tmp - game->angle_fov);

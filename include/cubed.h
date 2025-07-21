@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/18 19:46:00 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/21 14:31:43 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_pairf
 typedef struct s_hit_info
 {
 	int 	axis_hit;
+	t_pairf	cross;
 	float	wall_dst;
 }			t_hit_info;
 
