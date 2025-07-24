@@ -81,6 +81,15 @@ typedef struct s_param_w
 	float		alpha;
 }				t_param_w;
 
+typedef struct	s_data_dda 
+{
+    t_pairf 	map_case;
+    t_pairf 	dir;
+    t_pairf 	step;
+    t_pairf 	delta_dist;
+    t_pairf 	wall_dist_on;
+}				t_data_dda;
+
 
 typedef struct s_square
 {
@@ -216,8 +225,11 @@ void				draw_minimap(t_data *data);
 int					what_color_is_this_pixel(double x, double y,
 						t_infra *infra);
 int					ft_render(t_data *data);
-int 				ft_paint_the_wall(t_game_data *game);
+int 				paint_the_wall(t_game_data *game);
 void				put_pixel(t_img *image, int color, int x, int y);
+t_data_dda 			init_data_dda(float alpha, float *current_x, float *current_y);
+int					ft_paint_one_pix_collumn(t_game_data *game, 
+						float alpha_tmp, float y);
 int					move_down(t_infra *infra);
 int					move_up(t_infra *infra);
 int					move_right(t_infra *infra);

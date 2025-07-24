@@ -12,36 +12,7 @@
 
 #include "../../include/cubed.h"
 
-int	rgb_to_int(unsigned char r, unsigned char g, unsigned char b)
-{
-	int	color;
-
-	color = (255 << 24) | (r << 16) | (g << 8) | b;
-	return (color);
-}
-
-void	put_pixel(t_img *image, int color, int x, int y)
-{
-	int		shifting;
-	char	*pix_target;
-
-	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT)
-		return ;
-	shifting = y * image->grid_len + x * (image->bit_per_pix / 8);
-	pix_target = image->pix_grid + shifting;
-	*(unsigned int *)pix_target = color;
-}
-
-void	swap_buffer(t_infra *infra)
-{
-	t_img	*temp;
-
-	temp = infra->img_now;
-	infra->img_now = infra->img_nxt;
-	infra->img_nxt = temp;
-}
-
-void	paint_each_pixel(t_img *ptr, t_infra *skelet)
+void	paint_ground_and_sky(t_img *ptr, t_infra *infra)
 {
 	double			x;
 	double			y;
@@ -55,19 +26,50 @@ void	paint_each_pixel(t_img *ptr, t_infra *skelet)
 		x = 0;
 		while (x++ < WIDTH)
 		{
-			color = what_color_is_this_pixel(x, y, skelet);
+			color = infra->data->game.floor_color;
+			if (y <= HEIGHT / infra->ratio)
+				color = infra->data->game.ceiling_color;
 			put_pixel(ptr, color, x, y);
 		}
 	}
 }
 
+int paint_the_wall(t_game_data *game)
+{
+    float   delta;
+    float   alpha_tmp;
+    float     y;
+
+    delta = FOV / WIDTH;
+    alpha_tmp = game->angle - (FOV / 2);
+    y = 0;
+    while (y < 1280.0f)
+    {
+        if (ft_paint_one_pix_collumn(game, alpha_tmp, y) == FAILURE)
+            return (FAILURE);
+        y++;
+        alpha_tmp = alpha_tmp + delta;
+    }
+    return SUCCESS;
+}
+
+void	swap_buffer(t_infra *infra)
+{
+	t_img	*temp;
+
+	temp = infra->img_now;
+	infra->img_now = infra->img_nxt;
+	infra->img_nxt = temp;
+}
+
+//TODO: Oust paint the minimap pour les bonus
 int	ft_render(t_data *data)
 {
 	t_infra	*infra;
 
 	infra = &data->infra;
-	paint_each_pixel(infra->img_nxt, infra);
-	ft_paint_the_wall(&data->game);
+	paint_ground_and_sky(infra->img_nxt, infra);
+	paint_the_wall(&data->game);
 	draw_minimap(data);
 	mlx_put_image_to_window(infra->mlx, infra->win,
 		infra->img_now->new_img, 0, 0);

@@ -22,9 +22,10 @@ SRC_LIST = main.c \
 			errors.c \
 			free.c \
 			game/draw_minimap.c \
-			game/graphic.c \
+			game/utils.c \
+			game/get_dda_data.c \
 			game/paint_walls.c \
-			game/ray_casting_generator.c \
+			game/paint_image_and_render.c \
 			game/handle_events.c \
 			game/move_handlers.c \
 			parsing/parse_and_init.c \

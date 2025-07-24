@@ -13,16 +13,16 @@
 #include "../../include/cubed.h"
 
 
-t_dst_side ft_get_dst_side(int side, t_pairf wall_pos)
-{
-    t_dst_side  result;
+// t_dst_side ft_get_dst_side(int side, t_pairf wall_pos)
+// {
+//     t_dst_side  result;
 
-    result.side = side;
-    result.wall_dst = wall_pos.x;
-    if(side)
-        result.wall_dst = wall_pos.y;
-    return (result);
-}
+//     result.side = side;
+//     result.wall_dst = wall_pos.x;
+//     if(side)
+//         result.wall_dst = wall_pos.y;
+//     return (result);
+// }
 
 int	ft_is_it_a_wall(t_game_data *game, float y, float x)
 {
@@ -42,82 +42,89 @@ int	ft_is_it_a_wall(t_game_data *game, float y, float x)
 		return (FAILURE);
 }
 
+
+
+// t_data_dda init_data_dda(float alpha, float *current_x, float *current_y)
+// {
+//     t_data_dda dda;
+
+//     dda.dir.x = cosf(alpha);
+// 	dda.dir.y = sinf(alpha);
+// 	dda.map_case.x = floorf(*current_x);
+// 	dda.map_case.y = floorf(*current_y);
+
+// 	if (dda.dir.x == 0.0f)
+// 		dda.delta_dist.x = 1e30;
+// 	else
+// 		dda.delta_dist.x = fabsf(1.0f / dda.dir.x);
+
+// 	if (dda.dir.y == 0.0f)
+// 		dda.delta_dist.y = 1e30;
+// 	else
+// 		dda.delta_dist.y = fabsf(1.0f / dda.dir.y);
+
+// 	if (dda.dir.x < 0)
+// 	{
+// 		dda.step.x = -1;
+// 		dda.wall_dist_on.x = (*current_x - dda.map_case.x) * dda.delta_dist.x;
+// 	}
+// 	else
+// 	{
+// 		dda.step.x = 1;
+// 		dda.wall_dist_on.x = (dda.map_case.x + 1.0f - *current_x) * dda.delta_dist.x;
+// 	}
+
+// 	if (dda.dir.y < 0)
+// 	{
+// 		dda.step.y = -1;
+// 		dda.wall_dist_on.y = (*current_y - dda.map_case.y) * dda.delta_dist.y;
+// 	}
+// 	else
+// 	{
+// 		dda.step.y = 1;
+// 		dda.wall_dist_on.y = (dda.map_case.y + 1.0f - *current_y) * dda.delta_dist.y;
+// 	}
+//     return (dda);
+// }
+
+//TODO si time, templacer current x et current y par une tpairf player_pos
 t_dst_side	get_wall_distance_x_y(t_game_data *game, float alpha, float *current_x, float *current_y)
 {
-	t_pairf	dir;
-	t_pairf	cross;
-	t_pairf	step;
-	t_pairf	side_dist;
-	t_pairf	delta_dist;
-	int		side;
+    t_data_dda d;
+
+    d = init_data_dda(alpha, current_x, current_y);
+    //2emme structure
+	int		side = 0; //axis_hit + define vertical_y && horizontal_x
 	t_pairf	hit;
 	float	wall_dst;
 
-	dir.x = cosf(alpha);
-	dir.y = sinf(alpha);
-
-	cross.x = floorf(*current_x);
-	cross.y = floorf(*current_y);
-
-	if (dir.x == 0.0f)
-		delta_dist.x = 1e30;
-	else
-		delta_dist.x = fabsf(1.0f / dir.x);
-
-	if (dir.y == 0.0f)
-		delta_dist.y = 1e30;
-	else
-		delta_dist.y = fabsf(1.0f / dir.y);
-
-	if (dir.x < 0)
+	while (ft_is_it_a_wall(game, d.map_case.y, d.map_case.x) != SUCCESS)
 	{
-		step.x = -1;
-		side_dist.x = (*current_x - cross.x) * delta_dist.x;
-	}
-	else
-	{
-		step.x = 1;
-		side_dist.x = (cross.x + 1.0f - *current_x) * delta_dist.x;
-	}
-
-	if (dir.y < 0)
-	{
-		step.y = -1;
-		side_dist.y = (*current_y - cross.y) * delta_dist.y;
-	}
-	else
-	{
-		step.y = 1;
-		side_dist.y = (cross.y + 1.0f - *current_y) * delta_dist.y;
-	}
-
-	while (ft_is_it_a_wall(game, cross.y, cross.x) != SUCCESS)
-	{
-		if (side_dist.x < side_dist.y)
+		if (d.wall_dist_on.x < d.wall_dist_on.y)
 		{
-			side_dist.x += delta_dist.x;
-			cross.x += step.x;
+			d.wall_dist_on.x += d.delta_dist.x;
+			d.map_case.x += d.step.x;
 			side = 0;
 		}
 		else
 		{
-			side_dist.y += delta_dist.y;
-			cross.y += step.y;
+			d.wall_dist_on.y += d.delta_dist.y;
+			d.map_case.y += d.step.y;
 			side = 1;
 		}
 	}
 
 	if (side == 0)
 	{
-		wall_dst = side_dist.x - delta_dist.x;
-		hit.x = cross.x;
-		hit.y = *current_y + wall_dst * dir.y;
+		wall_dst = d.wall_dist_on.x - d.delta_dist.x;
+		hit.x = d.map_case.x;
+		hit.y = *current_y + wall_dst * d.dir.y;
 	}
 	else
 	{
-		wall_dst = side_dist.y - delta_dist.y;
-		hit.y = cross.y;
-		hit.x = *current_x + wall_dst * dir.x;
+		wall_dst = d.wall_dist_on.y - d.delta_dist.y;
+		hit.y = d.map_case.y;
+		hit.x = *current_x + wall_dst * d.dir.x;
 	}
 
 	t_dst_side result;
@@ -137,13 +144,6 @@ t_asset *get_texture_by_oriantation(t_game_data *game, int side, float alpha)
     if (cosf(alpha) >= 0)
         return &game->tex_so;
     return &game->tex_no;
-}
-
-float	ft_min(size_t n, size_t n2)
-{
-	if (n < n2)
-		return (n);
-	return (n2);
 }
 
 unsigned int	get_pixel_from_texture(t_asset *texture, int x, int y)
@@ -253,21 +253,3 @@ int	ft_paint_one_pix_collumn(t_game_data *game, float alpha_tmp, float y)
 	return (SUCCESS);
 }
 
-int ft_paint_the_wall(t_game_data *game)
-{
-    float   delta;
-    float   alpha_tmp;
-    float     y;
-
-    delta = FOV / WIDTH;
-    alpha_tmp = game->angle - (FOV / 2);
-    y = 0;
-    while (y < 1280.0f)
-    {
-        if (ft_paint_one_pix_collumn(game, alpha_tmp, y) == FAILURE)
-            return (FAILURE);
-        y++;
-        alpha_tmp = alpha_tmp + delta;
-    }
-    return SUCCESS;
-}

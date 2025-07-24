@@ -12,13 +12,21 @@
 
 #include "../../include/cubed.h"
 
-int	what_color_is_this_pixel(double x, double y, t_infra *infra)
+void	put_pixel(t_img *image, int color, int x, int y)
 {
-	int	color;
+	int		shifting;
+	char	*pix_target;
 
-	color = infra->data->game.floor_color;
-	(void)x;
-	if (y <= HEIGHT / infra->ratio)
-		color = infra->data->game.ceiling_color;
-	return (color);
+	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT)
+		return ;
+	shifting = y * image->grid_len + x * (image->bit_per_pix / 8);
+	pix_target = image->pix_grid + shifting;
+	*(unsigned int *)pix_target = color;
+}
+
+float	ft_min(size_t n, size_t n2)
+{
+	if (n < n2)
+		return (n);
+	return (n2);
 }
