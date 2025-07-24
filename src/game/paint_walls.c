@@ -42,58 +42,6 @@ int	ft_is_it_a_wall(t_game_data *game, float y, float x)
 		return (FAILURE);
 }
 
-// t_dst_side get_wall_distance_x_y(t_game_data *game, float alpha, float *current_x, float *current_y)
-// {
-//     t_pairf dir;
-//     t_pairf cross;
-//     float offset_y; //un seul offset ici ? Sinon faire une t_pair
-//     float offset_x;
-//     char  side = 0; //Gab ? besoin d'info sur ce truc
-
-//     dir.x = cosf(alpha);
-//     dir.y = sinf(alpha);
-//     cross.y = floorf(*current_y);
-//     cross.x = floorf(*current_x);
-
-//     float delta_dist_x = fabsf(1 / dir.x);
-//     float delta_dist_y = fabsf(1 / dir.y);
-//     float side_dist_x = (*current_x - cross.x) * delta_dist_x;
-//     float side_dist_y = (*current_y - cross.y) * delta_dist_y;
-//     offset_x = -1;
-//     offset_y = -1;
-//     if (dir.x > 0)
-//     {
-//         side_dist_x  = (cross.x + 1  - *current_x) * delta_dist_x;
-//         offset_x = 1;
-//     }
-//     if (dir.y > 0)
-//     {
-//         side_dist_y  = (cross.y + 1  - *current_y) * delta_dist_y;
-//         offset_y = 1;
-//     }
-//     while (ft_is_it_a_wall(game, cross.y, cross.x) != SUCCESS)
-//     {
-//         if (side_dist_x < side_dist_y)
-//         {
-//             side_dist_x += delta_dist_x;
-//             cross.x += offset_x;
-//             side = 0;
-//         }
-//         else
-//         {
-//             side_dist_y += delta_dist_y;
-//             cross.y += offset_y;
-//             side = 1;
-//         }
-//     }
-
-//     return (ft_get_dst_side(side, (t_pairf){
-//         .x = (side_dist_x - delta_dist_x),
-//         .y = (side_dist_y - delta_dist_y)
-//     }));
-// }
-
-
 t_dst_side	get_wall_distance_x_y(t_game_data *game, float alpha, float *current_x, float *current_y)
 {
 	t_pairf	dir;
@@ -179,7 +127,8 @@ t_dst_side	get_wall_distance_x_y(t_game_data *game, float alpha, float *current_
 	return (result);
 }
 
-t_asset *get_texture_by_oriantation(t_game_data *game, int side, float alpha) {
+t_asset *get_texture_by_oriantation(t_game_data *game, int side, float alpha) 
+{
     if (side) {
         if (sinf(alpha) >= 0)
             return &game->tex_ea;
@@ -190,38 +139,12 @@ t_asset *get_texture_by_oriantation(t_game_data *game, int side, float alpha) {
     return &game->tex_no;
 }
 
-
-int	ft_check_if_wall_to_redo(float dst, int color, t_game_data *game, int x)//quelle huateur de mur afficher selon ma position
-{
-	float	wall_height;
-    (void) x;
-	(void)color;//on applique pas la couleur ici donc jignore
-	(void)game;
-	wall_height = (float)HEIGHT / dst;//calcul de la hauteur du mur a lecran
-	return (FAILURE);//je dessine pas car le pixel ne fiat pas partie du mur
-}
-
-// static float	get_start_of_wall(const t_pairf *player_pos, t_dst_side *dst_side, float alpha)
-// {
-// 	float	wall_x;
-
-// 	if (dst_side->side == 0)
-// 		wall_x = player_pos->y + dst_side->wall_dst
-// 			* sinf(alpha);
-// 	else
-// 		wall_x = player_pos->x + dst_side->wall_dst
-// 			*  cosf(alpha);
-    
-// 	return (fabsf(wall_x - floorf(wall_x)));
-// }
-
 float	ft_min(size_t n, size_t n2)
 {
 	if (n < n2)
 		return (n);
 	return (n2);
 }
-
 
 unsigned int	get_pixel_from_texture(t_asset *texture, int x, int y)
 {
@@ -236,8 +159,8 @@ unsigned int	get_pixel_from_texture(t_asset *texture, int x, int y)
 	return (*(unsigned int *)pixel_address);
 }
 
-
-void    draw_wall(t_game_data *game, t_param_w *params, int start, int end) {
+void    draw_wall(t_game_data *game, t_param_w *params, int start, int end) 
+{
     unsigned int color;
 	float			tex_pos;
 	float			step;
@@ -329,9 +252,6 @@ int	ft_paint_one_pix_collumn(t_game_data *game, float alpha_tmp, float y)
 	});
 	return (SUCCESS);
 }
-
-
-
 
 int ft_paint_the_wall(t_game_data *game)
 {
