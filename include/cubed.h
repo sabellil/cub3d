@@ -81,14 +81,14 @@ typedef struct s_param_w
 	float		alpha;
 }				t_param_w;
 
-typedef struct	s_dda_data 
+typedef struct	s_data_dda 
 {
     t_pairf 	map_case;
     t_pairf 	dir;
     t_pairf 	step;
     t_pairf 	delta_dist;
     t_pairf 	wall_dist_on;
-}				t_dda_data;
+}				t_data_dda;
 
 
 typedef struct s_square
@@ -227,7 +227,7 @@ int					what_color_is_this_pixel(double x, double y,
 int					ft_render(t_data *data);
 int 				paint_the_wall(t_game_data *game);
 void				put_pixel(t_img *image, int color, int x, int y);
-t_dda_data 			init_dda_data(float alpha, float *current_x, float *current_y);
+t_data_dda 			init_data_dda(float alpha, float *current_x, float *current_y);
 int					ft_paint_one_pix_collumn(t_game_data *game, 
 						float alpha_tmp, float y);
 int					move_down(t_infra *infra);

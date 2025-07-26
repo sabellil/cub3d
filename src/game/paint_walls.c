@@ -44,55 +44,55 @@ int	ft_is_it_a_wall(t_game_data *game, float y, float x)
 
 
 
-t_dda_data init_dda_data(float alpha, float *current_x, float *current_y)
-{
-    t_dda_data dda;
+// t_data_dda init_data_dda(float alpha, float *current_x, float *current_y)
+// {
+//     t_data_dda dda;
 
-    dda.dir.x = cosf(alpha);
-	dda.dir.y = sinf(alpha);
-	dda.map_case.x = floorf(*current_x);
-	dda.map_case.y = floorf(*current_y);
+//     dda.dir.x = cosf(alpha);
+// 	dda.dir.y = sinf(alpha);
+// 	dda.map_case.x = floorf(*current_x);
+// 	dda.map_case.y = floorf(*current_y);
 
-	if (dda.dir.x == 0.0f)
-		dda.delta_dist.x = 1e30;
-	else
-		dda.delta_dist.x = fabsf(1.0f / dda.dir.x);
+// 	if (dda.dir.x == 0.0f)
+// 		dda.delta_dist.x = 1e30;
+// 	else
+// 		dda.delta_dist.x = fabsf(1.0f / dda.dir.x);
 
-	if (dda.dir.y == 0.0f)
-		dda.delta_dist.y = 1e30;
-	else
-		dda.delta_dist.y = fabsf(1.0f / dda.dir.y);
+// 	if (dda.dir.y == 0.0f)
+// 		dda.delta_dist.y = 1e30;
+// 	else
+// 		dda.delta_dist.y = fabsf(1.0f / dda.dir.y);
 
-	if (dda.dir.x < 0)
-	{
-		dda.step.x = -1;
-		dda.wall_dist_on.x = (*current_x - dda.map_case.x) * dda.delta_dist.x;
-	}
-	else
-	{
-		dda.step.x = 1;
-		dda.wall_dist_on.x = (dda.map_case.x + 1.0f - *current_x) * dda.delta_dist.x;
-	}
+// 	if (dda.dir.x < 0)
+// 	{
+// 		dda.step.x = -1;
+// 		dda.wall_dist_on.x = (*current_x - dda.map_case.x) * dda.delta_dist.x;
+// 	}
+// 	else
+// 	{
+// 		dda.step.x = 1;
+// 		dda.wall_dist_on.x = (dda.map_case.x + 1.0f - *current_x) * dda.delta_dist.x;
+// 	}
 
-	if (dda.dir.y < 0)
-	{
-		dda.step.y = -1;
-		dda.wall_dist_on.y = (*current_y - dda.map_case.y) * dda.delta_dist.y;
-	}
-	else
-	{
-		dda.step.y = 1;
-		dda.wall_dist_on.y = (dda.map_case.y + 1.0f - *current_y) * dda.delta_dist.y;
-	}
-    return (dda);
-}
+// 	if (dda.dir.y < 0)
+// 	{
+// 		dda.step.y = -1;
+// 		dda.wall_dist_on.y = (*current_y - dda.map_case.y) * dda.delta_dist.y;
+// 	}
+// 	else
+// 	{
+// 		dda.step.y = 1;
+// 		dda.wall_dist_on.y = (dda.map_case.y + 1.0f - *current_y) * dda.delta_dist.y;
+// 	}
+//     return (dda);
+// }
 
 //TODO si time, templacer current x et current y par une tpairf player_pos
 t_dst_side	get_wall_distance_x_y(t_game_data *game, float alpha, float *current_x, float *current_y)
 {
-    t_dda_data d;
+    t_data_dda d;
 
-    d = init_dda_data(alpha, current_x, current_y);
+    d = init_data_dda(alpha, current_x, current_y);
     //2emme structure
 	int		side = 0; //axis_hit + define vertical_y && horizontal_x
 	t_pairf	hit;
