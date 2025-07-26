@@ -47,11 +47,31 @@ float   get_wall_dist(float actual_case, float dir, float map_case, float delta_
 {
     float   wall_distance;
 
-    wall_distance = (actual_case + 1.0f - map_case) * delta_dist;
+    wall_distance = (map_case + 1.0f - actual_case) * delta_dist;
     if (dir < 0)
         wall_distance = (actual_case - map_case) * delta_dist;
     return (wall_distance);
 }
+
+t_data_dda init_data_dda(float alpha, float *current_x, float *current_y)
+{
+    t_data_dda dda;
+
+    dda.dir.x = cosf(alpha);
+	dda.dir.y = sinf(alpha);
+	dda.map_case.x = floorf(*current_x);
+	dda.map_case.y = floorf(*current_y);
+    dda.delta_dist.x = get_delta_dist_from_dir(dda.dir.x);
+    dda.delta_dist.y = get_delta_dist_from_dir(dda.dir.y);
+    dda.step.x = get_step_from_dir(dda.dir.x);
+    dda.step.y = get_step_from_dir(dda.dir.y);
+    dda.wall_dist_on.x = get_wall_dist(*current_x, dda.dir.x, dda.map_case.x,
+        dda.delta_dist.x);
+    dda.wall_dist_on.y = get_wall_dist(*current_y, dda.dir.y, dda.map_case.y, dda.delta_dist.y);
+    return (dda);
+}
+
+
 	// if (dda.dir.x == 0.0f)
 	// 	dda.delta_dist.x = 1e30;
 	// else
@@ -83,21 +103,3 @@ float   get_wall_dist(float actual_case, float dir, float map_case, float delta_
 	// 	dda.step.y = 1;
 	// 	dda.wall_dist_on.y = (dda.map_case.y + 1.0f - *current_y) * dda.delta_dist.y;
 	// }
-
-t_data_dda init_data_dda(float alpha, float *current_x, float *current_y)
-{
-    t_data_dda dda;
-
-    dda.dir.x = cosf(alpha);
-	dda.dir.y = sinf(alpha);
-	dda.map_case.x = floorf(*current_x);
-	dda.map_case.y = floorf(*current_y);
-    dda.delta_dist.x = get_delta_dist_from_dir(dda.dir.x);
-    dda.delta_dist.y = get_delta_dist_from_dir(dda.dir.y);
-    dda.step.x = get_step_from_dir(dda.dir.x);
-    dda.step.y = get_step_from_dir(dda.dir.y);
-    dda.wall_dist_on.x = get_wall_dist(*current_x, dda.dir.x, dda.map_case.x,
-        dda.delta_dist.x);
-    dda.wall_dist_on.y = get_wall_dist(*current_y, dda.dir.y, dda.map_case.y, dda.delta_dist.y);
-    return (dda);
-}
