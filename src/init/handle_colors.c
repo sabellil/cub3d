@@ -6,54 +6,32 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 16:15:05 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/17 15:19:30 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/28 15:05:29 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
 
-// static int	parse_rgb_component(const char *str, int *component)
-// {
-// 	int	value;
-
-// 	if (!ft_isdigit_str(str))
-// 		return (FAILURE);
-// 	value = ft_atoi(str);
-// 	if (value < 0 || value > 255)
-// 		return (FAILURE);
-// 	*component = value;
-// 	return (SUCCESS);
-// }
-
 static int	parse_rgb_component(char *str, int *out)
 {
-	// int	i = 0;
 	int	len = 0;
 	int	value;
-
+	
 	if (!str || str[0] == '\0')
 		return (FAILURE);
-
-	// Vérifie que tous les caractères sont des chiffres
 	while (str[len])
 	{
 		if (!ft_isdigit(str[len]))
 			return (FAILURE);
 		len++;
 	}
-
-	// Refuse les nombres avec plus d’un chiffre mais qui commencent par 0
 	if (len > 1 && str[0] == '0')
 		return (FAILURE);
-
-	// Refuse les valeurs trop longues (plus de 3 chiffres)
 	if (len > 3)
 		return (FAILURE);
-
 	value = ft_atoi(str);
 	if (value < 0 || value > 255)
 		return (FAILURE);
-
 	*out = value;
 	return (SUCCESS);
 }

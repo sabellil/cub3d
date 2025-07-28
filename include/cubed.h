@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/28 14:16:50 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/28 15:10:31 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@
 # define MAX_MAP_HEIGHT 25
 # define vertical_y 1
 # define horizontal_x 0
-
-
 # define SUCCESS 0
 # define FAILURE 1
 # define ERR_ARG_COUNT 11
@@ -220,9 +218,6 @@ int					close_window(t_infra *infra);
 int					handle_keypress(int keycode, t_infra *infra);
 int					ft_init_infra(t_infra *infra);
 void				ft_setup_hooks(t_data *data);
-
-//GRID VIEW
-void				draw_minimap(t_data *data);
 
 //GRAPHIC N RENDER
 int					what_color_is_this_pixel(double x, double y,

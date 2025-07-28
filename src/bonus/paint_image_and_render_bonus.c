@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_casting_generator.c                            :+:      :+:    :+:   */
+/*   paint_image_and_render_bonus.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:39:08 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/16 18:13:10 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/28 15:02:53 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cubed.h"
+#include "../../include/cubed_bonus.h"
 
 void	paint_ground_and_sky(t_img *ptr, t_infra *infra)
 {
@@ -62,7 +62,6 @@ void	swap_buffer(t_infra *infra)
 	infra->img_nxt = temp;
 }
 
-//TODO: Oust paint the minimap pour les bonus
 int	ft_render(t_data *data)
 {
 	t_infra	*infra;

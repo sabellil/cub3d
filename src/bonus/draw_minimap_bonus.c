@@ -6,11 +6,11 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:42:21 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/28 14:18:43 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/28 15:07:23 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cubed.h"
+#include "../../include/cubed_bonus.h"
 
 static void	draw_square(t_img *img, t_square sq)
 {
@@ -29,17 +29,16 @@ static void	draw_square(t_img *img, t_square sq)
 		i++;
 	}
 }
-
 static void	draw_map_tile(t_img *img, char tile, t_tile_info info)
 {
 	t_square	sq;
 
 	if (tile == '1')
-		sq.color = 0x222222; //TODO define black/white
+		sq.color = COLOR_WALL;
 	else if (tile == '0')
-		sq.color = 0xffffff;
+		sq.color = COLOR_FLOOR;
 	else
-		sq.color = 0x222222;
+		sq.color = COLOR_UNKNOWN;
 	sq.x = info.x * info.size;
 	sq.y = info.y * info.size;
 	sq.size = info.size;
@@ -88,7 +87,7 @@ void	draw_minimap(t_data *data)
 	img = data->infra.img_nxt;
 	draw_minimap_tiles(data, img, tile_size);
 	sq.size = 4;
-	sq.color = 0xFF0000;
+	sq.color = COLOR_PLAYER_DOT;
 	sq.x = (int)(data->game.pos_y * tile_size - sq.size / 2.0);
 	sq.y = (int)(data->game.pos_x * tile_size - sq.size / 2.0);
 	if (sq.x < 0)

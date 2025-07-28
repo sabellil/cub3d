@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cubed.h                                            :+:      :+:    :+:   */
+/*   cubed_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/28 14:16:50 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/28 15:06:42 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@
 # define MAX_MAP_HEIGHT 25
 # define vertical_y 1
 # define horizontal_x 0
-
-
+# define COLOR_WALL         0x222222
+# define COLOR_FLOOR        0xFFFFFF
+# define COLOR_UNKNOWN      0x888888
+# define COLOR_PLAYER_DOT   0xFF0000
 # define SUCCESS 0
 # define FAILURE 1
 # define ERR_ARG_COUNT 11
