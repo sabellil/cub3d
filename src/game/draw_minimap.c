@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:42:21 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/21 13:49:51 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/28 13:58:56 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	draw_map_tile(t_img *img, char tile, t_tile_info info)
 	t_square	sq;
 
 	if (tile == '1')
-		sq.color = 0x222222;
+		sq.color = 0x222222; //TODO define black/white
 	else if (tile == '0')
 		sq.color = 0xffffff;
 	else

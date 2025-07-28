@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/21 14:10:50 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/28 13:51:39 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 # define TEXTURE_SIZE 64
 # define MAX_MAP_WIDTH  25
 # define MAX_MAP_HEIGHT 25
+# define vertical_y 1
+# define horizontal_x 0
 
 
 # define SUCCESS 0
