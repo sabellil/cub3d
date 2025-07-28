@@ -6,11 +6,10 @@
 #    By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 15:01:27 by sabellil          #+#    #+#              #
-#    Updated: 2025/07/28 14:37:54 by sabellil         ###   ########.fr        #
+#    Updated: 2025/07/28 14:48:14 by sabellil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# ========== Variables de base ==========
 NAME		= cub3D
 BONUS_NAME	= cub3D_bonus
 
@@ -26,11 +25,9 @@ MLX_DIR		= minilibx-linux
 LIBFT		= $(LIBFT_DIR)/libft.a
 MLX			= $(MLX_DIR)/libmlx_Linux.a
 
-# ========== Fichiers sources ==========
 SRC =	main.c \
 		errors.c \
 		free.c \
-		game/draw_minimap.c \
 		game/utils.c \
 		game/get_dda_data.c \
 		game/paint_walls.c \
@@ -56,7 +53,7 @@ SRC_BONUS = main.c \
 		game/utils.c \
 		game/get_dda_data.c \
 		game/paint_walls.c \
-		game/paint_image_and_render.c \
+		bonus/paint_image_and_render_bonus.c \
 		game/handle_events.c \
 		bonus/move_handlers_bonus.c \
 		parsing/parse_and_init.c \
@@ -74,7 +71,6 @@ SRC_BONUS = main.c \
 OBJS		= $(addprefix $(OBJ_PATH)/, $(SRC:.c=.o))
 OBJS_BONUS	= $(addprefix $(OBJ_PATH)/, $(SRC_BONUS:.c=.o))
 
-# ========== Règles ==========
 all: $(LIBFT) $(MLX) $(NAME)
 
 bonus: $(LIBFT) $(MLX) $(BONUS_NAME)
