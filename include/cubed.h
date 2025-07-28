@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/28 15:51:03 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/28 18:40:42 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@
 # define YELLOW 16435200
 # define BLUE 1645055
 # define ORANGE 16416000
+# define COLOR_INVALID 0 
+//# define COLOR_INVALID 0xFF00FF // rose vif pour debug
 
 typedef struct s_asset t_asset;
 
@@ -73,6 +75,7 @@ typedef struct s_impact_data
 	t_pairf	hit;
 }			t_impact_data;
 
+//toute la struct a refaire et arenommer
 typedef struct s_param_w
 {
 	t_asset 	*texture;
