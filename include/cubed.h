@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/28 13:51:39 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/28 14:16:50 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_tile_info
 	int				size;
 	char			tile;
 }					t_tile_info;
+
 
 typedef struct s_pairf
 {
