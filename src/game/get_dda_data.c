@@ -13,15 +13,6 @@
 
 #include "../../include/cubed.h"
 
-// typedef struct	s_data_dda 
-// {
-//     t_pairf 	map_case;
-//     t_pairf 	dir;
-//     t_pairf 	step;
-//     t_pairf 	delta_dist;
-//     t_pairf 	wall_dist_on;
-// }				t_data_dda;
-
 float   get_delta_dist_from_dir(float dir)
 {
     float   result;
@@ -70,36 +61,3 @@ t_data_dda init_data_dda(float alpha, float *current_x, float *current_y)
     dda.wall_dist_on.y = get_wall_dist(*current_y, dda.dir.y, dda.map_case.y, dda.delta_dist.y);
     return (dda);
 }
-
-
-	// if (dda.dir.x == 0.0f)
-	// 	dda.delta_dist.x = 1e30;
-	// else
-	// 	dda.delta_dist.x = fabsf(1.0f / dda.dir.x);
-
-	// if (dda.dir.y == 0.0f)
-	// 	dda.delta_dist.y = 1e30;
-	// else
-	// 	dda.delta_dist.y = fabsf(1.0f / dda.dir.y);
-
-	// if (dda.dir.x < 0)
-	// {
-	// 	dda.step.x = -1;
-	// 	dda.wall_dist_on.x = (*current_x - dda.map_case.x) * dda.delta_dist.x;
-	// }
-	// else
-	// {
-	// 	dda.step.x = 1;
-	// 	dda.wall_dist_on.x = (dda.map_case.x + 1.0f - *current_x) * dda.delta_dist.x;
-	// }
-
-	// if (dda.dir.y < 0)
-	// {
-	// 	dda.step.y = -1;
-	// 	dda.wall_dist_on.y = (*current_y - dda.map_case.y) * dda.delta_dist.y;
-	// }
-	// else
-	// {
-	// 	dda.step.y = 1;
-	// 	dda.wall_dist_on.y = (dda.map_case.y + 1.0f - *current_y) * dda.delta_dist.y;
-	// }
