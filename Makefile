@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+         #
+#    By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 15:01:27 by sabellil          #+#    #+#              #
-#    Updated: 2025/07/20 14:35:38 by sabellil         ###   ########.fr        #
+#    Updated: 2025/07/28 15:48:30 by mairivie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC_LIST = main.c \
 			game/draw_minimap.c \
 			game/utils.c \
 			game/get_dda_data.c \
+			game/get_impact_data.c \
 			game/paint_walls.c \
 			game/paint_image_and_render.c \
 			game/handle_events.c \

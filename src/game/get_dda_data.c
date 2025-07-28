@@ -53,21 +53,21 @@ float   get_wall_dist(float actual_case, float dir, float map_case, float delta_
     return (wall_distance);
 }
 
-t_data_dda init_data_dda(float alpha, float *current_x, float *current_y)
+t_data_dda init_data_dda(float alpha, float *curr_x, float *curr_y)
 {
     t_data_dda dda;
 
     dda.dir.x = cosf(alpha);
 	dda.dir.y = sinf(alpha);
-	dda.map_case.x = floorf(*current_x);
-	dda.map_case.y = floorf(*current_y);
+	dda.map_case.x = floorf(*curr_x);
+	dda.map_case.y = floorf(*curr_y);
     dda.delta_dist.x = get_delta_dist_from_dir(dda.dir.x);
     dda.delta_dist.y = get_delta_dist_from_dir(dda.dir.y);
     dda.step.x = get_step_from_dir(dda.dir.x);
     dda.step.y = get_step_from_dir(dda.dir.y);
-    dda.wall_dist_on.x = get_wall_dist(*current_x, dda.dir.x, dda.map_case.x,
+    dda.wall_dist_on.x = get_wall_dist(*curr_x, dda.dir.x, dda.map_case.x,
         dda.delta_dist.x);
-    dda.wall_dist_on.y = get_wall_dist(*current_y, dda.dir.y, dda.map_case.y, dda.delta_dist.y);
+    dda.wall_dist_on.y = get_wall_dist(*curr_y, dda.dir.y, dda.map_case.y, dda.delta_dist.y);
     return (dda);
 }
 
@@ -85,21 +85,21 @@ t_data_dda init_data_dda(float alpha, float *current_x, float *current_y)
 	// if (dda.dir.x < 0)
 	// {
 	// 	dda.step.x = -1;
-	// 	dda.wall_dist_on.x = (*current_x - dda.map_case.x) * dda.delta_dist.x;
+	// 	dda.wall_dist_on.x = (*curr_x - dda.map_case.x) * dda.delta_dist.x;
 	// }
 	// else
 	// {
 	// 	dda.step.x = 1;
-	// 	dda.wall_dist_on.x = (dda.map_case.x + 1.0f - *current_x) * dda.delta_dist.x;
+	// 	dda.wall_dist_on.x = (dda.map_case.x + 1.0f - *curr_x) * dda.delta_dist.x;
 	// }
 
 	// if (dda.dir.y < 0)
 	// {
 	// 	dda.step.y = -1;
-	// 	dda.wall_dist_on.y = (*current_y - dda.map_case.y) * dda.delta_dist.y;
+	// 	dda.wall_dist_on.y = (*curr_y - dda.map_case.y) * dda.delta_dist.y;
 	// }
 	// else
 	// {
 	// 	dda.step.y = 1;
-	// 	dda.wall_dist_on.y = (dda.map_case.y + 1.0f - *current_y) * dda.delta_dist.y;
+	// 	dda.wall_dist_on.y = (dda.map_case.y + 1.0f - *curr_y) * dda.delta_dist.y;
 	// }
