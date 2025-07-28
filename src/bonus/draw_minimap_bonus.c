@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:42:21 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/28 15:07:23 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/28 16:08:45 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	draw_square(t_img *img, t_square sq)
 		i++;
 	}
 }
+
 static void	draw_map_tile(t_img *img, char tile, t_tile_info info)
 {
 	t_square	sq;

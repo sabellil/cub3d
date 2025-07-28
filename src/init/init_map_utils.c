@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 15:40:04 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/02 16:36:47 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/28 16:15:23 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,17 @@ int	get_map_height(char **map)
 	return (i);
 }
 
-void    free_file_lines(char **file_lines)
+void	free_file_lines(char **file_lines)
 {
-    int    i;
+	int	i;
 
-    if (!file_lines)
-        return ;
-    i = 0;
-    while (file_lines[i])
-    {
-        free(file_lines[i]);
-        i++;
-    }
-    free(file_lines);
+	if (!file_lines)
+		return ;
+	i = 0;
+	while (file_lines[i])
+	{
+		free(file_lines[i]);
+		i++;
+	}
+	free(file_lines);
 }

@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 16:15:05 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/28 15:05:29 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/28 16:13:17 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 static int	parse_rgb_component(char *str, int *out)
 {
-	int	len = 0;
+	int	len;
 	int	value;
-	
+
+	len = 0;
 	if (!str || str[0] == '\0')
 		return (FAILURE);
 	while (str[len])
@@ -35,7 +36,6 @@ static int	parse_rgb_component(char *str, int *out)
 	*out = value;
 	return (SUCCESS);
 }
-
 
 static int	parse_component_and_store(char *str, int *out, char **split)
 {
@@ -74,7 +74,6 @@ int	ft_set_color(int *dest, char *color_str)
 	ft_free_strarr(split);
 	return (SUCCESS);
 }
-
 
 int	ft_parse_color_line(char *line, t_game_data *game)
 {

@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 17:41:28 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/17 14:58:28 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/28 16:14:35 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ int	ft_set_texture(t_asset *dest, char *path_str, void *mlx_ptr)
 		free(trimmed);
 		return (FAILURE);
 	}
-	dest->addr = mlx_get_data_addr(dest->img, &dest->bpp, &dest->line_len, &dest->endian);
+	dest->addr = mlx_get_data_addr(dest->img,
+			&dest->bpp, &dest->line_len, &dest->endian);
 	dest->width = width;
 	dest->height = height;
 	free(trimmed);
@@ -76,8 +77,9 @@ static int	handle_texture(char *line, char **path, t_asset *tex, void *mlx)
 
 int	ft_parse_texture_line(char *line, t_game_data *game)
 {
-	void	*mlx = ((t_data *)game)->infra.mlx;
+	void	*mlx;
 
+	mlx = ((t_data *)game)->infra.mlx;
 	if (ft_starts_with(line, "NO "))
 		return (handle_texture(line + 3, &game->path_no, &game->tex_no, mlx));
 	if (ft_starts_with(line, "SO "))

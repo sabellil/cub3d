@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_infra_and_buffer.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:27:40 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/02 16:23:49 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/28 16:14:54 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
-
 
 int	init_double_buffer(t_infra *infra)
 {
