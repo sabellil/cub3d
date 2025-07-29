@@ -13,8 +13,9 @@
 #include "../../include/cubed_bonus.h"
 int	on_key_press(int keycode, t_infra *infra)
 {
-	t_game_data *game = &infra->data->game;
+	t_game_data *game;
 
+	game = &infra->data->game;
 	if (keycode == XK_Escape)
 		close_window(infra);
 	else if (keycode == XK_w || keycode == XK_W)
@@ -34,8 +35,9 @@ int	on_key_press(int keycode, t_infra *infra)
 
 int	on_key_release(int keycode, t_infra *infra)
 {
-	t_game_data *game = &infra->data->game;
-
+	t_game_data *game;
+	
+	game = &infra->data->game;
 	if (keycode == XK_w || keycode == XK_W)
 		game->key_w = RELEASED;
 	else if (keycode == XK_s || keycode == XK_S)
@@ -89,10 +91,13 @@ int	can_move_to_pos(t_game_data *game, float x, float y)
 
 int	move_up(t_infra *infra)
 {
-	t_game_data	*game = &infra->data->game;
-	float		new_x = game->pos_x + 0.05 * game->dir_y;
-	float		new_y = game->pos_y + 0.05 * game->dir_x;
+	t_game_data	*game;
+	float		new_x;
+	float		new_y;
 
+	game = &infra->data->game;
+	new_x = game->pos_x + 0.05 * game->dir_y;
+	new_y = game->pos_y + 0.05 * game->dir_x;
 	if (can_move_to_pos(game, new_x, new_y))
 	{
 		game->pos_x = new_x;
@@ -103,10 +108,13 @@ int	move_up(t_infra *infra)
 
 int	move_down(t_infra *infra)
 {
-	t_game_data	*game = &infra->data->game;
-	float		new_x = game->pos_x - 0.05 * game->dir_y;
-	float		new_y = game->pos_y - 0.05 * game->dir_x;
+	t_game_data	*game;
+	float		new_x;
+	float		new_y;
 
+	game = &infra->data->game;
+	new_x = game->pos_x - 0.05 * game->dir_y;
+	new_y = game->pos_y - 0.05 * game->dir_x;
 	if (can_move_to_pos(game, new_x, new_y))
 	{
 		game->pos_x = new_x;
@@ -117,10 +125,13 @@ int	move_down(t_infra *infra)
 
 int	move_left(t_infra *infra)
 {
-	t_game_data	*game = &infra->data->game;
-	float		new_x = game->pos_x - 0.05 * game->dir_x;
-	float		new_y = game->pos_y + 0.05 * game->dir_y;
+	t_game_data	*game;
+	float		new_x;
+	float		new_y;
 
+	game = &infra->data->game;
+	new_x = game->pos_x - 0.05 * game->dir_x;
+	new_y = game->pos_y + 0.05 * game->dir_y;
 	if (can_move_to_pos(game, new_x, new_y))
 	{
 		game->pos_x = new_x;
@@ -131,10 +142,13 @@ int	move_left(t_infra *infra)
 
 int	move_right(t_infra *infra)
 {
-	t_game_data	*game = &infra->data->game;
-	float		new_x = game->pos_x + 0.05 * game->dir_x;
-	float		new_y = game->pos_y - 0.05 * game->dir_y;
+	t_game_data	*game;
+	float		new_x;
+	float		new_y;
 
+	game = &infra->data->game;
+	new_x = game->pos_x + 0.05 * game->dir_x;
+	new_y = game->pos_y - 0.05 * game->dir_y;
 	if (can_move_to_pos(game, new_x, new_y))
 	{
 		game->pos_x = new_x;
@@ -142,76 +156,6 @@ int	move_right(t_infra *infra)
 	}
 	return (SUCCESS);
 }
-
-
-
-// int	move_up(t_infra *infra)
-// {
-// 	t_game_data	*game;
-// 	float		new_x;
-// 	float		new_y;
-
-// 	game = &infra->data->game;
-// 	new_x = game->pos_x + 0.2 * game->dir_y;
-// 	new_y = game->pos_y + 0.2 * game->dir_x;
-// 	if (game->map[(int)new_x][(int)new_y] != '1')
-// 	{
-// 		game->pos_x = new_x;
-// 		game->pos_y = new_y;
-// 	}
-// 	return (SUCCESS);
-// }
-
-// int	move_down(t_infra *infra)
-// {
-// 	t_game_data	*game;
-// 	float		new_x;
-// 	float		new_y;
-
-// 	game = &infra->data->game;
-// 	new_x = game->pos_x - 0.2 * game->dir_y;
-// 	new_y = game->pos_y - 0.2 * game->dir_x;
-// 	if (game->map[(int)new_x][(int)new_y] != '1')
-// 	{
-// 		game->pos_x = new_x;
-// 		game->pos_y = new_y;
-// 	}
-// 	return (SUCCESS);
-// }
-
-// int	move_right(t_infra *infra)
-// {
-// 	t_game_data	*game;
-// 	float		new_x;
-// 	float		new_y;
-
-// 	game = &infra->data->game;
-// 	new_x = game->pos_x + 0.2 * game->dir_x;
-// 	new_y = game->pos_y - 0.2 * game->dir_y;
-// 	if (game->map[(int)new_x][(int)new_y] != '1')
-// 	{
-// 		game->pos_x = new_x;
-// 		game->pos_y = new_y;
-// 	}
-// 	return (SUCCESS);
-// }
-
-// int	move_left(t_infra *infra)
-// {
-// 	t_game_data	*game;
-// 	float		new_x;
-// 	float		new_y;
-
-// 	game = &infra->data->game;
-// 	new_x = game->pos_x - 0.2 * game->dir_x;
-// 	new_y = game->pos_y + 0.2 * game->dir_y;
-// 	if (game->map[(int)new_x][(int)new_y] != '1')
-// 	{
-// 		game->pos_x = new_x;
-// 		game->pos_y = new_y;
-// 	}
-// 	return (SUCCESS);
-// }
 
 int	move_turn(t_infra *infra, int keycode)
 {

@@ -13,8 +13,9 @@
 #include "../../include/cubed.h"
 int	on_key_press(int keycode, t_infra *infra)
 {
-	t_game_data *game = &infra->data->game;
-
+	t_game_data *game;
+	
+	game = &infra->data->game;
 	if (keycode == XK_Escape)
 		close_window(infra);
 	else if (keycode == XK_w || keycode == XK_W)
@@ -34,8 +35,9 @@ int	on_key_press(int keycode, t_infra *infra)
 
 int	on_key_release(int keycode, t_infra *infra)
 {
-	t_game_data *game = &infra->data->game;
-
+	t_game_data *game;
+	
+	game = &infra->data->game;
 	if (keycode == XK_w || keycode == XK_W)
 		game->key_w = RELEASED;
 	else if (keycode == XK_s || keycode == XK_S)

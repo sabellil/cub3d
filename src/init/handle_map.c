@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:17:52 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/29 15:54:27 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/29 17:32:45 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,6 @@ static int	copy_map(char **file_lines, char ***out_map, int start, int len)
 	return (SUCCESS);
 }
 
-// int	extract_map(char **file_lines, char ***out_map)
-// {
-// 	int	start;
-// 	int	end;
-// 	int	len;
-
-// 	start = 0;
-// 	while (file_lines[start] && !ft_is_map_line(file_lines[start]))
-// 		start++;
-// 	if (!file_lines[start])
-// 		return (FAILURE);
-// 	end = start;
-// 	while (file_lines[end] && ft_is_map_line(file_lines[end]))
-// 		end++;
-// 	len = end - start;
-// 	*out_map = (char **)malloc(sizeof(char *) * (len + 1));
-// 	if (!*out_map)
-// 		return (FAILURE);
-// 	return (copy_map(file_lines, out_map, start, len));
-// }
-
 int	extract_map(char **file_lines, char ***out_map)
 {
 	int	start;
@@ -69,10 +48,10 @@ int	extract_map(char **file_lines, char ***out_map)
 	end = start;
 	while (file_lines[end])
 	{
-		if (file_lines[end][0] == '\0') // ligne vide dans le bloc de map → erreur
+		if (file_lines[end][0] == '\0')
 			return (FAILURE);
 		if (!ft_is_map_line(file_lines[end]))
-			return (FAILURE); // ligne non-map après le début de la map → erreur
+			return (FAILURE);
 		end++;
 	}
 	len = end - start;
