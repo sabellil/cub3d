@@ -12,69 +12,20 @@
 
 #include "../../include/cubed.h"
 
-int	ft_is_it_a_wall(t_game_data *game, float y, float x)
+unsigned int	what_color_is_hit_pixel(t_asset *texture, int hit_x, int hit_y)
 {
-	int		map_x;
-	int		map_y;
-	char	cell;
+	char	*char_of_pix_on_xpm;
+	int		color;
 
-	map_x = round(x);
-	map_y = round(y);
-	if (map_y < 0 || map_y >= game->map_height || map_x < 0
-		|| map_x >= game->map_width)
-		return (SUCCESS);
-	cell = game->map[map_y][map_x];
-	if (cell == '1' || cell == ' ')
-		return (SUCCESS);
-	else
-		return (FAILURE);
-}
-
-//TODO si time, templacer current x et current y par une tpairf player_pos
-t_dst_side	get_wall_distance_x_y(t_game_data *game, float alpha, float *current_x, float *current_y)
-{
-    t_data_dda d;
-
-    d = init_data_dda(alpha, current_x, current_y);
-    //2emme structure
-	int		axis_hit = 0; //axis_hit + define vertical_y && horizontal_x
-	t_pairf	hit;
-	float	wall_dst;
-
-	while (ft_is_it_a_wall(game, d.map_case.y, d.map_case.x) != SUCCESS)
-	{
-		if (d.wall_dist_on.x < d.wall_dist_on.y)
-		{
-			d.wall_dist_on.x += d.delta_dist.x;
-			d.map_case.x += d.step.x;
-			axis_hit = 0;
-		}
-		else
-		{
-			d.wall_dist_on.y += d.delta_dist.y;
-			d.map_case.y += d.step.y;
-			axis_hit = 1;
-		}
-	}
-
-	if (axis_hit == 0)
-	{
-		wall_dst = d.wall_dist_on.x - d.delta_dist.x;
-		hit.x = d.map_case.x;
-		hit.y = *current_y + wall_dst * d.dir.y;
-	}
-	else
-	{
-		wall_dst = d.wall_dist_on.y - d.delta_dist.y;
-		hit.y = d.map_case.y;
-		hit.x = *current_x + wall_dst * d.dir.x;
-	}
-
-	t_dst_side result;
-	result.side = axis_hit;
-	result.wall_dst = wall_dst;
-	result.hit = hit;
-	return (result);
+	if (!texture || !texture->addr)
+		return (COLOR_INVALID);
+	if (hit_x < 0 || hit_x >= texture->width || hit_y < 0 || hit_y >= texture->height)
+		return (COLOR_INVALID);
+	char_of_pix_on_xpm = texture->addr 
+		+ (hit_y * texture->line_len) 
+		+ (hit_x * (texture->bpp / 8));
+	color = *(unsigned int *)char_of_pix_on_xpm;
+	return (color);
 }
 
 t_asset		*get_texture_by_orientation(t_game_data *game, int axis_hit, float alpha)
@@ -99,104 +50,82 @@ t_asset		*get_texture_by_orientation(t_game_data *game, int axis_hit, float alph
 	return(texture);
 }
 
-unsigned int	get_pixel_from_texture(t_asset *texture, int x, int y)
+//paint segment/colonne du mur de maniere realiste par rapport a la perspective
+void    draw_wall(t_game_data *game, t_param_w *params, int start, int end) //TODO: Rename de mort a faire
 {
-	char	*pixel_address;
-
-	if (!texture || !texture->addr)
-		return (0);
-	if (x < 0 || x >= texture->width || y < 0 || y >= texture->height)
-		return (0);
-	pixel_address = texture->addr + (y * texture->line_len) + (x
-			* (texture->bpp / 8));
-	return (*(unsigned int *)pixel_address);
-}
-
-void    draw_wall(t_game_data *game, t_param_w *params, int start, int end) 
-{
-    unsigned int color;
+    unsigned int	color;
 	float			tex_pos;
 	float			step;
 
-
-    step = 1.0f * params->texture->height / (int)params->dst_side.wall_dst;
-    tex_pos = (start - HEIGHT / 2 + params->dst_side.wall_dst / 2) * step;
-    // params->texture_pos = ft_min(params->texture->width, params->texture_x * params->texture->width) /*(TEXTURE_SIZE)*/;
-
-    params->texture_pos = (int)params->texture_x;   
-    // if (params->dst_side.side == 0 && cosf(params->alpha) > 0)
-    //     params->texture_pos = params->texture->width - params->texture_pos - 1;
-    // else if (params->dst_side.side  == 1 && sinf(params->alpha) < 0)
-    //     params->texture_pos = params->texture->width - params->texture_pos - 1;
+	//detricotage a faire : why texture pos et tex pos ??
+    step = 1.0f * params->texture->height / (int)params->impact.wall_dst; //(plus on est loin plus les pas sont grands) = plus on saute de pix dans la colonne
+    tex_pos = (start - HEIGHT / 2 + params->impact.wall_dst / 2) * step;
+    params->texture_pos = (int)params->texture_x;  //texture_x = colonne ou on est dans la texture 
     while (start < end)
     {
-		int tx = params->texture_pos;
+		int tx = params->texture_pos; //je choppe les co precis dans la texture
         int ty = (int)tex_pos & (params->texture->height - 1);
-        color = get_pixel_from_texture(params->texture, tx, ty);
-        if (color == 0)
-            color = 0xFF00FF; // magenta pour repérer le problème
-        put_pixel(game->data->infra.img_nxt, color, params->y, start);
-        tex_pos += step;
-        ++start;
+        color = what_color_is_hit_pixel(params->texture, tx, ty); //je choppe couleur dans texture
+        put_pixel(game->data->infra.img_nxt, color, params->y, start); //peint le pixel
+        tex_pos += step; //et j'avance dans la texture (plus on est loin plus les pas sont grands)
+        start++;
     }
 }
 
+//calcule les bornes de la ou on va repeindre la colonne avec les pix de la texture
 void   draw_vertical_line_with_texture(t_game_data *game, t_param_w params)
- {
+{
     float	start;
 	float	end;
 
-    params.dst_side.wall_dst = (float)HEIGHT / params.dst_side.wall_dst; //calcul de la hauteur du mur a lecran
-    start = ((float)HEIGHT / 2.0f) - (params.dst_side.wall_dst / 2.0f);//calcul  ou commence le et finit le mur su rlecran
-    end = ((float)HEIGHT / 2.0f) + (params.dst_side.wall_dst  / 2.0f);
+    params.impact.wall_dst = (float)HEIGHT / params.impact.wall_dst; //calcul de la hauteur du mur a lecran
+    start = ((float)HEIGHT / 2.0f) - (params.impact.wall_dst / 2.0f);//calcul  ou commence le et finit le mur su rlecran
+    end = ((float)HEIGHT / 2.0f) + (params.impact.wall_dst  / 2.0f); //wtf pourquoi on s'embete a tout cast en float alors au'on a des int en arg dans la ft ensuite
     draw_wall(game, &params, start, end);
 }
+
+//TODO: peut-etre rename param en ray_data
 
 int	ft_paint_one_pix_collumn(t_game_data *game, float alpha_tmp, float y)
 {
 	t_pairf		player_pos;
-	t_dst_side	dst_side;
-	float		wall_x;
+	t_impact_data	impact;
+	float		wall_x; //la coordonee x de la case du mur ????
 	int			texture_x;
 	t_asset		*texture;
 
-	player_pos.x = game->pos_x;
+	player_pos.x = game->pos_x; //comme j'y touche pas = simplifiable
 	player_pos.y = game->pos_y;
 
-	dst_side = get_wall_distance_x_y(game, alpha_tmp, &player_pos.y, &player_pos.x);
+	impact = get_impact_data_with_dda(game, alpha_tmp, &player_pos.y, &player_pos.x);
 
-	dst_side.wall_dst *= cosf(alpha_tmp - game->angle);
-	if (dst_side.wall_dst < 0.01f)
-		dst_side.wall_dst = 0.01f;
+	impact.wall_dst *= cosf(alpha_tmp - game->angle); //correction de donees antifisheye
+	if (impact.wall_dst < 0.01f) //on bloque la distance du mur a 0.01, car risque de div pr 0 et crash
+		impact.wall_dst = 0.01f;
+	//meybe rassembler ces 3 lignes dans un corrected /adjusted data
 
-	if (dst_side.side == 0)
-		wall_x = dst_side.hit.y;
+	if (impact.axis_hit == HORIZ_X) //utiliser l'autre co du point d'impact pour situer ou se trouve la col dans la texture
+		wall_x = impact.hit.y;
 	else
-		wall_x = dst_side.hit.x;
-	wall_x -= floorf(wall_x);
+		wall_x = impact.hit.x;
+	wall_x -= floorf(wall_x); //obtenir un truc entre 0 et 1
 
-	texture = get_texture_by_oriantation(game, dst_side.side, alpha_tmp);
+	texture = get_texture_by_orientation(game, impact.axis_hit, alpha_tmp);
+
+	//tout ce bloc la en une fonction dont le but est de me donner le "numero de la col frappee par le rayon dans la texture)
 	if (!texture || !texture->addr)
-	{
-		printf("NULL texture !\n");
 		return (FAILURE);
-	}
-
-	texture_x = (int)(wall_x * (float)texture->width);
-
-	if (dst_side.side == 0 && cosf(alpha_tmp) > 0.0f)
+	texture_x = (int)(wall_x * (float)texture->width); //co x dans ma texture
+	if (impact.axis_hit == HORIZ_X && cosf(alpha_tmp) < 0.0f) // mettre un ou fait la meme ?
 		texture_x = texture->width - texture_x - 1;
-	if (dst_side.side == 1 && sinf(alpha_tmp) < 0.0f)
+	if (impact.axis_hit == VERTI_Y && sinf(alpha_tmp) > 0.0f)
 		texture_x = texture->width - texture_x - 1;
-
 	if (texture_x < 0 || texture_x >= texture->width)
-	{
-		printf("BAD texture_x: %d / texture->width: %d\n", texture_x, texture->width);
 		return (FAILURE);
-	}
 
+	//ci apres, faire une fonction dediee a init la structure (on la decla et on la b0 par ex)
 	draw_vertical_line_with_texture(game, (t_param_w){
-		.dst_side = dst_side,
+		.impact = impact,
 		.texture = texture,
 		.texture_x = texture_x,
 		.texture_pos = 0.0f,

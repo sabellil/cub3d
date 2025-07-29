@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/29 12:46:04 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/29 14:11:22 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@
 # define YELLOW 16435200
 # define BLUE 1645055
 # define ORANGE 16416000
+# define COLOR_INVALID 0 
+//# define COLOR_INVALID 0xFF00FF // rose vif pour debug
 
 typedef struct s_asset	t_asset;
 
@@ -64,22 +66,23 @@ typedef struct s_pairf
 	float				y;
 }						t_pairf;
 
-typedef struct s_dst_side
+typedef struct s_impact_data 
 {
-	int					side;
+	int					axis_hit;
 	float				wall_dst;
 	t_pairf				hit;
-}						t_dst_side;
+}						t_impact_data;
 
+//toute la struct a refaire et arenommer
 typedef struct s_param_w
 {
-	t_asset				*texture;
-	t_dst_side			dst_side;
-	float				texture_x;
-	float				texture_pos;
-	float				y;
-	float				alpha;
-}						t_param_w;
+	t_asset 	*texture;
+	t_impact_data  impact;
+	float		texture_x;
+	float		texture_pos;
+	float		y;
+	float		alpha;
+}				t_param_w;
 
 typedef struct s_data_dda
 {
@@ -225,8 +228,8 @@ int						what_color_is_this_pixel(double x, double y,
 int						ft_render(t_data *data);
 int						paint_the_wall(t_game_data *game);
 void					put_pixel(t_img *image, int color, int x, int y);
-t_data_dda				init_data_dda(float alpha, float *current_x,
-							float *current_y);
+t_data_dda				init_data_dda(float alpha, float *curr_x,
+							float *curr_y);
 int						ft_paint_one_pix_collumn(t_game_data *game,
 							float alpha_tmp, float y);
 int						move_down(t_infra *infra);
@@ -239,5 +242,9 @@ int						ft_check_if_wall_to_redo(float dst, int color,
 							t_game_data *game, int x);
 void					free_file_lines_partial(char **lines, int count);
 void					free_file_lines(char **file_lines);
+
+void complete_impact_data(t_data_dda d, t_impact_data *impact, float *curr_x, float *curr_y);
+int	ft_is_it_a_wall(t_game_data *game, float y, float x);
+t_impact_data	get_impact_data_with_dda(t_game_data *game, float alpha, float *curr_x, float *curr_y);
 
 #endif
