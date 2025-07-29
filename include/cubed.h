@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/28 16:03:54 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/29 12:46:04 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define MAX_MAP_WIDTH 25
 # define MAX_MAP_HEIGHT 25
 # define VERTI_Y 1
-# define HORIZ_H 0
+# define HORIZ_X 0
 # define SUCCESS 0
 # define FAILURE 1
 # define ERR_ARG_COUNT 11

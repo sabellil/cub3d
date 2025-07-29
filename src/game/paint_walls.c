@@ -77,16 +77,26 @@ t_dst_side	get_wall_distance_x_y(t_game_data *game, float alpha, float *current_
 	return (result);
 }
 
-t_asset *get_texture_by_oriantation(t_game_data *game, int side, float alpha) 
+t_asset		*get_texture_by_orientation(t_game_data *game, int axis_hit, float alpha)
 {
-    if (side) {
-        if (sinf(alpha) >= 0)
-            return &game->tex_ea;
-        return &game->tex_we;
+	t_asset	*texture;
+
+	texture = NULL;
+	if (axis_hit == HORIZ_X) 
+	{
+        if (cosf(alpha) >= 0)
+            texture = &game->tex_ea;
+		else
+        	texture = &game->tex_we;
     }
-    if (cosf(alpha) >= 0)
-        return &game->tex_so;
-    return &game->tex_no;
+    if (axis_hit == VERTI_Y) 
+	{
+        if (sinf(alpha) >= 0)
+            texture = &game->tex_no;
+		else
+        	texture = &game->tex_so;
+    }
+	return(texture);
 }
 
 unsigned int	get_pixel_from_texture(t_asset *texture, int x, int y)
@@ -114,10 +124,10 @@ void    draw_wall(t_game_data *game, t_param_w *params, int start, int end)
     // params->texture_pos = ft_min(params->texture->width, params->texture_x * params->texture->width) /*(TEXTURE_SIZE)*/;
 
     params->texture_pos = (int)params->texture_x;   
-    if (params->dst_side.side == 0 && cosf(params->alpha) > 0)
-        params->texture_pos = params->texture->width - params->texture_pos - 1;
-    else if (params->dst_side.side  == 1 && sinf(params->alpha) < 0)
-        params->texture_pos = params->texture->width - params->texture_pos - 1;
+    // if (params->dst_side.side == 0 && cosf(params->alpha) > 0)
+    //     params->texture_pos = params->texture->width - params->texture_pos - 1;
+    // else if (params->dst_side.side  == 1 && sinf(params->alpha) < 0)
+    //     params->texture_pos = params->texture->width - params->texture_pos - 1;
     while (start < end)
     {
 		int tx = params->texture_pos;
