@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/29 16:43:19 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/29 17:26:15 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,13 @@
 # define ERR_ARG_COUNT 11
 # define ERR_PARSE_FAIL 12
 # define ERR_INFRA_FAIL 13
+# define RELEASED 0
+# define PRESSED 1
 # define GREEN 1703705
 # define YELLOW 16435200
 # define BLUE 1645055
 # define ORANGE 16416000
 # define COLOR_INVALID 0 
-//# define COLOR_INVALID 0xFF00FF // rose vif pour debug
 
 typedef struct s_asset	t_asset;
 
@@ -72,7 +73,6 @@ typedef struct s_impact_data
 	t_pairf				hit;
 }						t_impact_data;
 
-//toute la struct a refaire et arenommer
 typedef struct s_param_w
 {
 	t_asset 	*texture;
@@ -142,6 +142,12 @@ typedef struct s_game_data
 	float				dir_y;
 	int					player_found;
 	float				angle;
+	int key_w;
+	int key_s;
+	int key_a;
+	int key_d;
+	int key_left;
+	int key_right;
 }						t_game_data;
 
 typedef struct s_infra
@@ -152,6 +158,7 @@ typedef struct s_infra
 	t_img				*img_nxt;
 	double				ratio;
 	struct s_data		*data;
+
 }						t_infra;
 
 typedef struct s_data
@@ -217,9 +224,12 @@ void					free_mlx_and_data(t_infra *infra);
 
 // INFRA
 int						close_window(t_infra *infra);
-int						handle_keypress(int keycode, t_infra *infra);
+int	handle_keypress(t_infra *infra);
 int						ft_init_infra(t_infra *infra);
 void					ft_setup_hooks(t_data *data);
+int	on_key_press(int keycode, t_infra *infra);
+int	on_key_release(int keycode, t_infra *infra);
+int	event_loop(t_infra *infra);
 
 // GRAPHIC N RENDER
 int						what_color_is_this_pixel(double x, double y,

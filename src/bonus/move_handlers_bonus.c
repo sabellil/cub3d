@@ -11,7 +11,45 @@
 /* ************************************************************************** */
 
 #include "../../include/cubed_bonus.h"
+int	on_key_press(int keycode, t_infra *infra)
+{
+	t_game_data *game = &infra->data->game;
 
+	if (keycode == XK_Escape)
+		close_window(infra);
+	else if (keycode == XK_w || keycode == XK_W)
+		game->key_w = PRESSED;
+	else if (keycode == XK_s || keycode == XK_S)
+		game->key_s = PRESSED;
+	else if (keycode == XK_a || keycode == XK_A)
+		game->key_a = PRESSED;
+	else if (keycode == XK_d || keycode == XK_D)
+		game->key_d = PRESSED;
+	else if (keycode == XK_Left)
+		game->key_left = PRESSED;
+	else if (keycode == XK_Right)
+		game->key_right = PRESSED;
+	return (SUCCESS);
+}
+
+int	on_key_release(int keycode, t_infra *infra)
+{
+	t_game_data *game = &infra->data->game;
+
+	if (keycode == XK_w || keycode == XK_W)
+		game->key_w = RELEASED;
+	else if (keycode == XK_s || keycode == XK_S)
+		game->key_s = RELEASED;
+	else if (keycode == XK_a || keycode == XK_A)
+		game->key_a = RELEASED;
+	else if (keycode == XK_d || keycode == XK_D)
+		game->key_d = RELEASED;
+	else if (keycode == XK_Left)
+		game->key_left = RELEASED;
+	else if (keycode == XK_Right)
+		game->key_right = RELEASED;
+	return (SUCCESS);
+}
 int	is_walkable_cell(t_game_data *game, int x, int y)
 {
 	if (x < 0 || y < 0 || x >= game->map_height)
@@ -52,8 +90,8 @@ int	can_move_to_pos(t_game_data *game, float x, float y)
 int	move_up(t_infra *infra)
 {
 	t_game_data	*game = &infra->data->game;
-	float		new_x = game->pos_x + 0.2 * game->dir_y;
-	float		new_y = game->pos_y + 0.2 * game->dir_x;
+	float		new_x = game->pos_x + 0.05 * game->dir_y;
+	float		new_y = game->pos_y + 0.05 * game->dir_x;
 
 	if (can_move_to_pos(game, new_x, new_y))
 	{
@@ -66,8 +104,8 @@ int	move_up(t_infra *infra)
 int	move_down(t_infra *infra)
 {
 	t_game_data	*game = &infra->data->game;
-	float		new_x = game->pos_x - 0.2 * game->dir_y;
-	float		new_y = game->pos_y - 0.2 * game->dir_x;
+	float		new_x = game->pos_x - 0.05 * game->dir_y;
+	float		new_y = game->pos_y - 0.05 * game->dir_x;
 
 	if (can_move_to_pos(game, new_x, new_y))
 	{
@@ -80,8 +118,8 @@ int	move_down(t_infra *infra)
 int	move_left(t_infra *infra)
 {
 	t_game_data	*game = &infra->data->game;
-	float		new_x = game->pos_x - 0.2 * game->dir_x;
-	float		new_y = game->pos_y + 0.2 * game->dir_y;
+	float		new_x = game->pos_x - 0.05 * game->dir_x;
+	float		new_y = game->pos_y + 0.05 * game->dir_y;
 
 	if (can_move_to_pos(game, new_x, new_y))
 	{
@@ -94,8 +132,8 @@ int	move_left(t_infra *infra)
 int	move_right(t_infra *infra)
 {
 	t_game_data	*game = &infra->data->game;
-	float		new_x = game->pos_x + 0.2 * game->dir_x;
-	float		new_y = game->pos_y - 0.2 * game->dir_y;
+	float		new_x = game->pos_x + 0.05 * game->dir_x;
+	float		new_y = game->pos_y - 0.05 * game->dir_y;
 
 	if (can_move_to_pos(game, new_x, new_y))
 	{
@@ -178,9 +216,9 @@ int	move_right(t_infra *infra)
 int	move_turn(t_infra *infra, int keycode)
 {
 	if (keycode == XK_Left)
-		infra->data->game.angle -= 0.2;
+		infra->data->game.angle -= 0.05;
 	if (keycode == XK_Right)
-		infra->data->game.angle += 0.2;
+		infra->data->game.angle += 0.05;
 	infra->data->game.dir_x = cos(infra->data->game.angle);
 	infra->data->game.dir_y = sin(infra->data->game.angle);
 	return (SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/29 16:43:16 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/29 17:25:56 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@
 # define ERR_ARG_COUNT 11
 # define ERR_PARSE_FAIL 12
 # define ERR_INFRA_FAIL 13
+# define RELEASED 0
+# define PRESSED 1
 
 # define GREEN 1703705
 # define YELLOW 16435200
@@ -144,6 +146,12 @@ typedef struct s_game_data
 	float				dir_y;
 	int					player_found;
 	float				angle;
+	int key_w;
+	int key_s;
+	int key_a;
+	int key_d;
+	int key_left;
+	int key_right;
 }						t_game_data;
 
 typedef struct s_infra
@@ -154,6 +162,7 @@ typedef struct s_infra
 	t_img				*img_nxt;
 	double				ratio;
 	struct s_data		*data;
+
 }						t_infra;
 
 typedef struct s_data
@@ -219,9 +228,13 @@ void					free_mlx_and_data(t_infra *infra);
 
 // INFRA
 int						close_window(t_infra *infra);
-int						handle_keypress(int keycode, t_infra *infra);
+int	handle_keypress(t_infra *infra);
 int						ft_init_infra(t_infra *infra);
 void					ft_setup_hooks(t_data *data);
+int	on_key_press(int keycode, t_infra *infra);
+int	on_key_release(int keycode, t_infra *infra);
+int	event_loop(t_infra *infra);
+
 
 // GRID VIEW
 void					draw_minimap(t_data *data);
