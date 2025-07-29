@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:42:21 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/29 14:19:08 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/29 14:19:33 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,5 @@ void	draw_minimap(t_data *data)
 		sq.y = 0;
 	else if (sq.y + sq.size > map_height_px)
 		sq.y = map_height_px - sq.size;
-		
 	draw_square(img, sq);
 }
