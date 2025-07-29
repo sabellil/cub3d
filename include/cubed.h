@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/29 14:11:22 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/29 14:51:56 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,15 @@ typedef struct s_impact_data
 }						t_impact_data;
 
 //toute la struct a refaire et arenommer
-typedef struct s_param_w
+typedef struct s_ray_data
 {
-	t_asset 	*texture;
-	t_impact_data  impact;
-	float		texture_x;
-	float		texture_pos;
-	float		y;
-	float		alpha;
-}				t_param_w;
+	t_asset 		*texture; //asset de la texture pour ce mur OK
+	t_impact_data	impact; //info sur le point d'impact du rayon OK
+	float			texture_x; // entre 0 et 1, permet de trouver la colonne concernee dans la texture touchee
+	float			tex_x_pos; //
+	float			y; //
+	float			alpha; //angle du rayon 
+}					t_ray_data;
 
 typedef struct s_data_dda
 {

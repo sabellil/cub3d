@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/28 16:04:49 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/29 14:51:56 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,15 @@ typedef struct s_dst_side
 	t_pairf				hit;
 }						t_dst_side;
 
-typedef struct s_param_w
+typedef struct s_ray_data
 {
 	t_asset				*texture;
 	t_dst_side			dst_side;
 	float				texture_x;
-	float				texture_pos;
+	float				tex_x_pos;
 	float				y;
 	float				alpha;
-}						t_param_w;
+}						t_ray_data;
 
 typedef struct s_data_dda
 {
