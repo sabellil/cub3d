@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 17:41:28 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/28 16:14:35 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/29 16:21:37 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,29 @@ int	ft_is_map_line(const char *line)
 		return (1);
 	return (0);
 }
+// int	ft_is_map_line(const char *line)
+// {
+// 	int	i;
+// 	char	c;
+
+// 	if (!line)
+// 		return (0);
+// 	i = 0;
+// 	while (line[i])
+// 	{
+// 		c = line[i];
+// 		if (c == '\n' || c == '\r') // ignorer retour chariot
+// 		{
+// 			i++;
+// 			continue;
+// 		}
+// 		if (c != ' ' && c != '0' && c != '1'
+// 			&& c != 'N' && c != 'S' && c != 'E' && c != 'W')
+// 			return (0);
+// 		i++;
+// 	}
+// 	return (1);
+// }
 
 int	ft_set_texture(t_asset *dest, char *path_str, void *mlx_ptr)
 {

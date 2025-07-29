@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/29 14:11:22 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/29 16:43:19 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@
 # define ERR_ARG_COUNT 11
 # define ERR_PARSE_FAIL 12
 # define ERR_INFRA_FAIL 13
-
 # define GREEN 1703705
 # define YELLOW 16435200
 # define BLUE 1645055
