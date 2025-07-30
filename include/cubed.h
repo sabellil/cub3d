@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/29 14:51:56 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/30 14:33:38 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,14 @@ typedef struct s_impact_data
 	t_pairf				hit;
 }						t_impact_data;
 
-//toute la struct a refaire et arenommer
 typedef struct s_ray_data
 {
-	t_asset 		*texture; //asset de la texture pour ce mur OK
-	t_impact_data	impact; //info sur le point d'impact du rayon OK
-	float			texture_x; // entre 0 et 1, permet de trouver la colonne concernee dans la texture touchee
-	float			tex_x_pos; //
-	float			y; //
-	float			alpha; //angle du rayon 
+	t_asset 		*texture;
+	t_impact_data	impact;
+	float			texture_x; 
+	float			tex_x_pos;
+	float			x_img;
+	float			alpha;
 }					t_ray_data;
 
 typedef struct s_data_dda
@@ -161,6 +160,10 @@ typedef struct s_data
 	t_infra				infra;
 }						t_data;
 
+
+
+
+
 // PARSING
 int						ft_first_parsing(char *filename,
 							char ***file_lines_out);
@@ -199,7 +202,6 @@ int						get_map_width(char **map);
 int						get_map_height(char **map);
 
 // INITALIZATION UTILS
-void					print_file_lines(char **lines);
 int						ft_strarr_len(char **arr);
 void					ft_free_strarr(char **arr);
 int						ft_isdigit_str(const char *str);
@@ -215,6 +217,8 @@ void					free_map(char **map);
 int						ft_free_and_fail(char *tmp, char **split);
 void					destroy_images_and_window(t_infra *infra);
 void					free_mlx_and_data(t_infra *infra);
+void					free_file_lines_partial(char **lines, int count);
+void					free_file_lines(char **file_lines);
 
 // INFRA
 int						close_window(t_infra *infra);
@@ -222,29 +226,32 @@ int						handle_keypress(int keycode, t_infra *infra);
 int						ft_init_infra(t_infra *infra);
 void					ft_setup_hooks(t_data *data);
 
-// GRAPHIC N RENDER
-int						what_color_is_this_pixel(double x, double y,
-							t_infra *infra);
-int						ft_render(t_data *data);
-int						paint_the_wall(t_game_data *game);
-void					put_pixel(t_img *image, int color, int x, int y);
-t_data_dda				init_data_dda(float alpha, float *curr_x,
-							float *curr_y);
-int						ft_paint_one_pix_collumn(t_game_data *game,
-							float alpha_tmp, float y);
+// MOVE
 int						move_down(t_infra *infra);
 int						move_up(t_infra *infra);
 int						move_right(t_infra *infra);
 int						move_left(t_infra *infra);
 int						move_turn(t_infra *infra, int keycode);
-int						ft_is_it_a_wall(t_game_data *game, float x, float y);
-int						ft_check_if_wall_to_redo(float dst, int color,
-							t_game_data *game, int x);
-void					free_file_lines_partial(char **lines, int count);
-void					free_file_lines(char **file_lines);
 
-void complete_impact_data(t_data_dda d, t_impact_data *impact, float *curr_x, float *curr_y);
-int	ft_is_it_a_wall(t_game_data *game, float y, float x);
-t_impact_data	get_impact_data_with_dda(t_game_data *game, float alpha, float *curr_x, float *curr_y);
+// STRUCTURE TOOLS
+t_data_dda				init_data_dda(float alpha, float *curr_x,
+							float *curr_y);
+t_ray_data				*get_ray_data_to_draw_wall_line(t_game_data *game,
+							float alpha_tmp, float y);
+t_impact_data			get_impact_data_with_dda(t_game_data *game, float alpha,
+							float *curr_x, float *curr_y);
+void 					fill_impact_data(t_data_dda d, t_impact_data *impact,
+							float *curr_x, float *curr_y);
+t_asset					*get_texture_by_orientation(t_game_data *game,
+							int axis_hit, float alpha);
+
+// RAYCASTING
+int						ft_render(t_data *data);
+int						paint_the_wall(t_game_data *game);
+void					put_pixel(t_img *image, int color, int x, int y);
+unsigned int			what_color_is_hit_pixel(t_asset *texture, int hit_x,
+							int hit_y);
+int						draw_wall_line_with_texture(t_game_data *game,
+							float angle_tmp, float x_img);
 
 #endif

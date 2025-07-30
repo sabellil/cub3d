@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 15:45:49 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/28 15:51:03 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/30 14:19:38 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ t_impact_data	get_impact_data_with_dda(t_game_data *game,
 			impact.axis_hit = VERTI_Y;
 		}
 	}
-	complete_impact_data(d, &impact, curr_x, curr_y);
+	fill_impact_data(d, &impact, curr_x, curr_y);
 	return (impact);
 }
 
-void complete_impact_data(t_data_dda d, t_impact_data *impact, float *curr_x, float *curr_y)
+void fill_impact_data(t_data_dda d, t_impact_data *impact, float *curr_x, float *curr_y)
 {
 	if (impact->axis_hit == HORIZ_X)
 	{

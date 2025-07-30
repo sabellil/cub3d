@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+         #
+#    By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 15:01:27 by sabellil          #+#    #+#              #
-#    Updated: 2025/07/29 14:14:11 by sabellil         ###   ########.fr        #
+#    Updated: 2025/07/30 13:04:51 by mairivie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC =	main.c \
 		game/utils.c \
 		game/get_dda_data.c \
 		game/get_impact_data.c \
+		game/get_ray_data.c \
 		game/paint_walls.c \
 		game/paint_image_and_render.c \
 		game/handle_events.c \
@@ -54,6 +55,7 @@ SRC_BONUS = main.c \
 		game/utils.c \
 		game/get_dda_data.c \
 		game/get_impact_data.c \
+		game/get_ray_data.c \
 		game/paint_walls.c \
 		bonus/paint_image_and_render_bonus.c \
 		game/handle_events.c \

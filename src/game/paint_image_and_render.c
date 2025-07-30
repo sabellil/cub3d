@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paint_image_and_render.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:39:08 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/29 14:12:21 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/30 13:59:05 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	paint_ground_and_sky(t_img *ptr, t_infra *infra)
 {
-	double			x;
-	double			y;
+	float			x;
+	float			y;
 	unsigned int	color;
 
-	x = 0.0;
+	x = 0;
 	y = HEIGHT;
 	color = 0;
 	while (y-- > 0)
@@ -38,16 +38,16 @@ int	paint_the_wall(t_game_data *game)
 {
 	float	delta;
 	float	alpha_tmp;
-	float	y;
+	float	img_x;
 
 	delta = FOV / WIDTH;
 	alpha_tmp = game->angle - (FOV / 2);
-	y = 0;
-	while (y < 1280.0f)
+	img_x = 0.0f;
+	while (img_x < 1280.0f)
 	{
-		if (ft_paint_one_pix_collumn(game, alpha_tmp, y) == FAILURE)
+		if (draw_wall_line_with_texture(game, alpha_tmp, img_x) == FAILURE)
 			return (FAILURE);
-		y++;
+		img_x++;
 		alpha_tmp = alpha_tmp + delta;
 	}
 	return (SUCCESS);
