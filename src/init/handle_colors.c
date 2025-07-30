@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 16:15:05 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/28 16:13:17 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/30 14:08:16 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,30 @@ static int	parse_component_and_store(char *str, int *out, char **split)
 		ft_free_strarr(split);
 		return (FAILURE);
 	}
+	if (*trimmed == '\0')
+	{
+		free(trimmed);
+		ft_free_strarr(split);
+		return (FAILURE);
+	}
 	if (parse_rgb_component(trimmed, out) != SUCCESS)
 		return (ft_free_and_fail(trimmed, split));
 	free(trimmed);
 	return (SUCCESS);
+}
+
+int	ft_count_char(char *s, char c)
+{
+	int	i = 0;
+	int	count = 0;
+
+	while (s && s[i])
+	{
+		if (s[i] == c)
+			count++;
+		i++;
+	}
+	return (count);
 }
 
 int	ft_set_color(int *dest, char *color_str)
@@ -60,6 +80,8 @@ int	ft_set_color(int *dest, char *color_str)
 	int		g;
 	int		b;
 
+	if (ft_count_char(color_str, ',') != 2)
+		return (FAILURE);
 	split = ft_split(color_str, ',');
 	if (!split || ft_strarr_len(split) != 3)
 	{
