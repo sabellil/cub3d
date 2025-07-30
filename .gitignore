@@ -2,7 +2,7 @@
 *.d
 
 cub3D_bonus
-cud3D
+cub3D
 
 # Object files
 *.o
