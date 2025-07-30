@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/29 17:26:15 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/29 18:20:38 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ int						is_line_part_of_map(char *line);
 int						is_map_closed(char **map);
 int						count_and_set_player(t_game_data *game, int y, int x,
 							char c);
-int						is_valid_player_char(char c);
+int						valid_player(char c);
 int						get_map_width(char **map);
 int						get_map_height(char **map);
 

@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:42:21 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/29 14:19:33 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/29 17:43:43 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	draw_map_tile(t_img *img, char tile, t_tile_info info)
 	else if (tile == '0')
 		sq.color = COLOR_FLOOR;
 	else
-		sq.color = COLOR_UNKNOWN;
+		sq.color = COLOR_WALL;
 	sq.x = info.x * info.size;
 	sq.y = info.y * info.size;
 	sq.size = info.size;

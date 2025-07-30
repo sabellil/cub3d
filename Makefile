@@ -6,7 +6,7 @@
 #    By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/23 15:01:27 by sabellil          #+#    #+#              #
-#    Updated: 2025/07/29 14:14:11 by sabellil         ###   ########.fr        #
+#    Updated: 2025/07/29 18:28:23 by sabellil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRC_BONUS = main.c \
 		bonus/paint_image_and_render_bonus.c \
 		game/handle_events.c \
 		bonus/move_handlers_bonus.c \
+		bonus/move_handlers_utils_bonus.c \
 		parsing/parse_and_init.c \
 		parsing/init_parsing_utils.c \
 		init/init_map.c \

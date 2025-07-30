@@ -11,47 +11,6 @@
 /* ************************************************************************** */
 
 #include "../../include/cubed.h"
-int	on_key_press(int keycode, t_infra *infra)
-{
-	t_game_data *game;
-	
-	game = &infra->data->game;
-	if (keycode == XK_Escape)
-		close_window(infra);
-	else if (keycode == XK_w || keycode == XK_W)
-		game->key_w = PRESSED;
-	else if (keycode == XK_s || keycode == XK_S)
-		game->key_s = PRESSED;
-	else if (keycode == XK_a || keycode == XK_A)
-		game->key_a = PRESSED;
-	else if (keycode == XK_d || keycode == XK_D)
-		game->key_d = PRESSED;
-	else if (keycode == XK_Left)
-		game->key_left = PRESSED;
-	else if (keycode == XK_Right)
-		game->key_right = PRESSED;
-	return (SUCCESS);
-}
-
-int	on_key_release(int keycode, t_infra *infra)
-{
-	t_game_data *game;
-	
-	game = &infra->data->game;
-	if (keycode == XK_w || keycode == XK_W)
-		game->key_w = RELEASED;
-	else if (keycode == XK_s || keycode == XK_S)
-		game->key_s = RELEASED;
-	else if (keycode == XK_a || keycode == XK_A)
-		game->key_a = RELEASED;
-	else if (keycode == XK_d || keycode == XK_D)
-		game->key_d = RELEASED;
-	else if (keycode == XK_Left)
-		game->key_left = RELEASED;
-	else if (keycode == XK_Right)
-		game->key_right = RELEASED;
-	return (SUCCESS);
-}
 
 int	move_up(t_infra *infra)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:33:51 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/28 15:59:58 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/30 11:46:12 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,3 @@ float	ft_min(size_t n, size_t n2)
 		return (n);
 	return (n2);
 }
-
-
