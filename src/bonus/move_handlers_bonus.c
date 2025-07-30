@@ -19,8 +19,8 @@ int	move_up(t_infra *infra)
 	float		new_y;
 
 	game = &infra->data->game;
-	new_x = game->pos_x + 0.05 * game->dir_y;
-	new_y = game->pos_y + 0.05 * game->dir_x;
+	new_x = game->pos_x + SPEED_RATIO * game->dir_y;
+	new_y = game->pos_y + SPEED_RATIO * game->dir_x;
 	if (can_move_to_pos(game, new_x, new_y))
 	{
 		game->pos_x = new_x;
@@ -36,8 +36,8 @@ int	move_down(t_infra *infra)
 	float		new_y;
 
 	game = &infra->data->game;
-	new_x = game->pos_x - 0.05 * game->dir_y;
-	new_y = game->pos_y - 0.05 * game->dir_x;
+	new_x = game->pos_x - SPEED_RATIO * game->dir_y;
+	new_y = game->pos_y - SPEED_RATIO * game->dir_x;
 	if (can_move_to_pos(game, new_x, new_y))
 	{
 		game->pos_x = new_x;
@@ -53,8 +53,8 @@ int	move_left(t_infra *infra)
 	float		new_y;
 
 	game = &infra->data->game;
-	new_x = game->pos_x - 0.05 * game->dir_x;
-	new_y = game->pos_y + 0.05 * game->dir_y;
+	new_x = game->pos_x - SPEED_RATIO * game->dir_x;
+	new_y = game->pos_y + SPEED_RATIO * game->dir_y;
 	if (can_move_to_pos(game, new_x, new_y))
 	{
 		game->pos_x = new_x;
@@ -70,8 +70,8 @@ int	move_right(t_infra *infra)
 	float		new_y;
 
 	game = &infra->data->game;
-	new_x = game->pos_x + 0.05 * game->dir_x;
-	new_y = game->pos_y - 0.05 * game->dir_y;
+	new_x = game->pos_x + SPEED_RATIO * game->dir_x;
+	new_y = game->pos_y - SPEED_RATIO * game->dir_y;
 	if (can_move_to_pos(game, new_x, new_y))
 	{
 		game->pos_x = new_x;
@@ -83,9 +83,9 @@ int	move_right(t_infra *infra)
 int	move_turn(t_infra *infra, int keycode)
 {
 	if (keycode == XK_Left)
-		infra->data->game.angle -= 0.05;
+		infra->data->game.angle -= SPEED_RATIO;
 	if (keycode == XK_Right)
-		infra->data->game.angle += 0.05;
+		infra->data->game.angle += SPEED_RATIO;
 	infra->data->game.dir_x = cos(infra->data->game.angle);
 	infra->data->game.dir_y = sin(infra->data->game.angle);
 	return (SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/29 18:27:12 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/30 14:49:09 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define TEXTURE_SIZE 64
 # define MAX_MAP_WIDTH 25
 # define MAX_MAP_HEIGHT 25
+# define SPEED_RATIO 0.01
 # define VERTI_Y 1
 # define HORIZ_H 0
 # define COLOR_WALL 0x222222
@@ -53,6 +54,8 @@
 # define YELLOW 16435200
 # define BLUE 1645055
 # define ORANGE 16416000
+# define COLOR_INVALID 0 
+//# define COLOR_INVALID 0xFF00FF // rose vif pour debug
 
 typedef struct s_asset	t_asset;
 
@@ -70,22 +73,22 @@ typedef struct s_pairf
 	float				y;
 }						t_pairf;
 
-typedef struct s_dst_side
+typedef struct s_impact_data 
 {
-	int					side;
+	int					axis_hit;
 	float				wall_dst;
 	t_pairf				hit;
-}						t_dst_side;
+}						t_impact_data;
 
-typedef struct s_param_w
+typedef struct s_ray_data
 {
-	t_asset				*texture;
-	t_dst_side			dst_side;
-	float				texture_x;
-	float				texture_pos;
-	float				y;
-	float				alpha;
-}						t_param_w;
+	t_asset 		*texture;
+	t_impact_data	impact;
+	float			texture_x; 
+	float			tex_x_pos;
+	float			x_img;
+	float			alpha;
+}					t_ray_data;
 
 typedef struct s_data_dda
 {
@@ -162,7 +165,6 @@ typedef struct s_infra
 	t_img				*img_nxt;
 	double				ratio;
 	struct s_data		*data;
-
 }						t_infra;
 
 typedef struct s_data
@@ -209,7 +211,6 @@ int						get_map_width(char **map);
 int						get_map_height(char **map);
 
 // INITALIZATION UTILS
-void					print_file_lines(char **lines);
 int						ft_strarr_len(char **arr);
 void					ft_free_strarr(char **arr);
 int						ft_isdigit_str(const char *str);
@@ -225,6 +226,8 @@ void					free_map(char **map);
 int						ft_free_and_fail(char *tmp, char **split);
 void					destroy_images_and_window(t_infra *infra);
 void					free_mlx_and_data(t_infra *infra);
+void					free_file_lines_partial(char **lines, int count);
+void					free_file_lines(char **file_lines);
 
 // INFRA
 int						close_window(t_infra *infra);
@@ -240,25 +243,32 @@ int	can_move_to_pos(t_game_data *game, float x, float y);
 // GRID VIEW
 void					draw_minimap(t_data *data);
 
-// GRAPHIC N RENDER
-int						what_color_is_this_pixel(double x, double y,
-							t_infra *infra);
-int						ft_render(t_data *data);
-int						paint_the_wall(t_game_data *game);
-void					put_pixel(t_img *image, int color, int x, int y);
-t_data_dda				init_data_dda(float alpha, float *current_x,
-							float *current_y);
-int						ft_paint_one_pix_collumn(t_game_data *game,
-							float alpha_tmp, float y);
+// MOVE
 int						move_down(t_infra *infra);
 int						move_up(t_infra *infra);
 int						move_right(t_infra *infra);
 int						move_left(t_infra *infra);
 int						move_turn(t_infra *infra, int keycode);
-int						ft_is_it_a_wall(t_game_data *game, float x, float y);
-int						ft_check_if_wall_to_redo(float dst, int color,
-							t_game_data *game, int x);
-void					free_file_lines_partial(char **lines, int count);
-void					free_file_lines(char **file_lines);
+
+// STRUCTURE TOOLS
+t_data_dda				init_data_dda(float alpha, float *curr_x,
+							float *curr_y);
+t_ray_data				*get_ray_data_to_draw_wall_line(t_game_data *game,
+							float alpha_tmp, float y);
+t_impact_data			get_impact_data_with_dda(t_game_data *game, float alpha,
+							float *curr_x, float *curr_y);
+void 					fill_impact_data(t_data_dda d, t_impact_data *impact,
+							float *curr_x, float *curr_y);
+t_asset					*get_texture_by_orientation(t_game_data *game,
+							int axis_hit, float alpha);
+
+// RAYCASTING
+int						ft_render(t_data *data);
+int						paint_the_wall(t_game_data *game);
+void					put_pixel(t_img *image, int color, int x, int y);
+unsigned int			what_color_is_hit_pixel(t_asset *texture, int hit_x,
+							int hit_y);
+int						draw_wall_line_with_texture(t_game_data *game,
+							float angle_tmp, float x_img);
 
 #endif
