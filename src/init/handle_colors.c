@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_colors.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 16:15:05 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/30 14:08:16 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/30 15:39:25 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,11 @@ static int	parse_component_and_store(char *str, int *out, char **split)
 
 int	ft_count_char(char *s, char c)
 {
-	int	i = 0;
-	int	count = 0;
+	int	i;
+	int	count;
 
+	i = 0;
+	count = 0;
 	while (s && s[i])
 	{
 		if (s[i] == c)

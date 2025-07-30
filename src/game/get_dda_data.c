@@ -60,7 +60,8 @@ t_data_dda	init_data_dda(float alpha, float *curr_x, float *curr_y)
 	dda.step.x = get_step_from_dir(dda.dir.x);
 	dda.step.y = get_step_from_dir(dda.dir.y);
 	dda.wall_dist_on.x = get_wall_dist(*curr_x, dda.dir.x, dda.map_case.x,
-		dda.delta_dist.x);
-	dda.wall_dist_on.y = get_wall_dist(*curr_y, dda.dir.y, dda.map_case.y, dda.delta_dist.y);
+			dda.delta_dist.x);
+	dda.wall_dist_on.y = get_wall_dist(*curr_y, dda.dir.y, dda.map_case.y,
+			dda.delta_dist.y);
 	return (dda);
 }

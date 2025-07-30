@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_impact_data.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 15:45:49 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/30 14:44:43 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/30 15:42:58 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,14 @@ int	ft_is_it_a_wall(t_game_data *game, float y, float x)
 		return (FAILURE);
 }
 
-//TODO pas besoin de game non ?
-t_impact_data	get_impact_data_with_dda(t_game_data *game, 
+t_impact_data	get_impact_data_with_dda(t_game_data *game,
 	float alpha, float *curr_x, float *curr_y)
 {
-    t_data_dda d;
-	t_impact_data impact;
+	t_data_dda		d;
+	t_impact_data	impact;
 
 	ft_bzero(&impact, sizeof(t_impact_data));
-    d = init_data_dda(alpha, curr_x, curr_y);
-	//on pourrait avoir une fonction find_wall_hit_axis
+	d = init_data_dda(alpha, curr_x, curr_y);
 	while (ft_is_it_a_wall(game, d.map_case.y, d.map_case.x) != SUCCESS)
 	{
 		if (d.wall_dist_on.x < d.wall_dist_on.y)
@@ -66,7 +64,8 @@ t_impact_data	get_impact_data_with_dda(t_game_data *game,
 	return (impact);
 }
 
-void fill_impact_data(t_data_dda d, t_impact_data *impact, float *curr_x, float *curr_y)
+void	fill_impact_data(t_data_dda d, t_impact_data *impact, float *curr_x,
+	float *curr_y)
 {
 	if (impact->axis_hit == HORIZ_X)
 	{
