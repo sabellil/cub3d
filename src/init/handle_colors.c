@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 16:15:05 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/30 14:08:16 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/30 14:53:50 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	parse_component_and_store(char *str, int *out, char **split)
 	free(trimmed);
 	return (SUCCESS);
 }
-
+ 
 int	ft_count_char(char *s, char c)
 {
 	int	i = 0;
