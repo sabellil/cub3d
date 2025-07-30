@@ -1,12 +1,15 @@
 NO ./textures/kitty_nord.xpm
 SO ./textures/kitty_sud.xpm
+EA ./textures/kitty_est.xpm
 WE ./textures/kitty_ouest.xpm
 
 C 173,216,230
 F 211,211,211
 
-11111
-10001
-10N01
-10001
-11111
+ 11111111
+1000000001
+1000100001
+1001000001
+100N100001
+1000000001
+ 11111111
