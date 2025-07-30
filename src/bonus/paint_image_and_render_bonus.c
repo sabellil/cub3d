@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:39:08 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/30 14:35:56 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/30 15:06:02 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,18 @@ void	paint_ground_and_sky(t_img *ptr, t_infra *infra)
 	x = 0.0;
 	y = HEIGHT;
 	color = 0;
-	while (y-- > 0)
+	while (y >= 0)
 	{
 		x = 0;
-		while (x++ < WIDTH)
+		while (x < WIDTH)
 		{
 			color = infra->data->game.floor_color;
 			if (y <= HEIGHT / infra->ratio)
 				color = infra->data->game.ceiling_color;
 			put_pixel(ptr, color, x, y);
+			++x;
 		}
+		--y;
 	}
 }
 
