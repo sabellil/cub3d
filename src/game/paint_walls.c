@@ -16,11 +16,11 @@
 void	paint_one_column_with_tex(t_game_data *game, t_ray_data *ray,
 		int draw_start, int draw_end)
 {
-	unsigned int color;
-	float tex_y_pos;
-	float step;
-	int tx;
-	int ty;
+	unsigned int	color;
+	float			tex_y_pos;
+	float			step;
+	int				tx;
+	int				ty;
 
 	step = 1.0f * ray->texture->height / (int)ray->impact.wall_dst;
 		//(plus on est loin plus les pas sont grands) = plus on saute de pix dans la colonne
@@ -31,11 +31,11 @@ void	paint_one_column_with_tex(t_game_data *game, t_ray_data *ray,
 	{
 		tx = ray->tex_x_pos; // je choppe les co precis dans la texture
 		ty = (int)tex_y_pos & (ray->texture->height - 1);
-		color = what_color_is_hit_pixel(ray->texture, tx, ty);          
+		color = what_color_is_hit_pixel(ray->texture, tx, ty);
 			// je choppe couleur dans texture
 		put_pixel(game->data->infra.img_nxt, color, ray->x_img, draw_start);
 			// peint le pixel
-		tex_y_pos += step;                                              
+		tex_y_pos += step;
 			// et j'avance dans la texture (plus on est loin plus les pas sont grands)
 		draw_start++;
 	}
@@ -45,15 +45,15 @@ void	paint_one_column_with_tex(t_game_data *game, t_ray_data *ray,
 int	draw_wall_line_with_texture(t_game_data *game, float angle_tmp,
 		float x_img)
 {
-	int start;
-	int end;
-	t_ray_data *ray;
+	int			start;
+	int			end;
+	t_ray_data	*ray;
 
 	ray = get_ray_data_to_draw_wall_line(game, angle_tmp, x_img);
 	if (ray == NULL)
 		return (FAILURE);
 	start = (HEIGHT / 2) - (ray->impact.wall_dst / 2);
-	end = (HEIGHT / 2) + (ray->impact.wall_dst / 2);  
+	end = (HEIGHT / 2) + (ray->impact.wall_dst / 2);
 	paint_one_column_with_tex(game, ray, start, end);
 	free(ray);
 	return (SUCCESS);
