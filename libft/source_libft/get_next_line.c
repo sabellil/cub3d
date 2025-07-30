@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:40:56 by mairivie          #+#    #+#             */
-/*   Updated: 2024/10/15 16:51:53 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/30 15:29:02 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ char	*read_line(int fd, char *line, ssize_t *size_line, struct s_gnl *data)
 	while (1)
 	{
 		if (i_line == *size_line - 1)
-		{
 			line = resize_line(line, size_line, &i_line);
-		}
+		if(!line)
+			return NULL;
 		if (data->i_buffer >= data->res_read)
 		{
 			refill_buffer(fd, data);
@@ -54,9 +54,7 @@ char	*read_line(int fd, char *line, ssize_t *size_line, struct s_gnl *data)
 		++i_line;
 		++data->i_buffer;
 		if (data->buffer[data->i_buffer - 1] == '\n')
-		{
 			return (end_string(line, &i_line));
-		}
 	}
 }
 

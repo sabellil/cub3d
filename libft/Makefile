@@ -6,7 +6,7 @@
 #    By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/14 13:02:42 by mairive           #+#    #+#              #
-#    Updated: 2025/01/24 15:57:30 by mairivie         ###   ########.fr        #
+#    Updated: 2025/07/30 15:22:13 by mairivie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME = libft.a
 
 COMPIL = cc
-CFLAGS = -Wall -Wextra -Werror -I.
+CFLAGS = -Wall -Wextra -Werror -I. -g3
 
 SRC_DIR = source_libft/
 SRC_LIST = ft_isalnum.c ft_isalpha.c ft_isdigit.c ft_isprint.c ft_isascii.c \
