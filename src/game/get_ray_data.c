@@ -6,7 +6,7 @@
 /*   By: mairivie <mairivie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:41:55 by mairivie          #+#    #+#             */
-/*   Updated: 2025/07/30 14:08:06 by mairivie         ###   ########.fr       */
+/*   Updated: 2025/07/30 15:51:58 by mairivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,6 @@ int	get_x_texture(t_asset *texture, t_impact_data impact, float angle_tmp)
 	if (tex_hit_coord_x < 0 || tex_hit_coord_x >= texture->width)
 		return (FAILURE);
 	return (tex_hit_coord_x);
-}
-
-t_ray_data	init_ray_data(t_impact_data impact, t_asset *texture,
-		int tex_hit_coord_x, int x_img, float angle_tmp)
-{
-	t_ray_data	ray_data;
-
-	ft_bzero(&ray_data, sizeof(t_ray_data));
-	ray_data.impact = impact;
-	ray_data.texture = texture;
-	ray_data.texture_x = tex_hit_coord_x;
-	ray_data.tex_x_pos = 0.0f;
-	ray_data.x_img = x_img;
-	ray_data.alpha = angle_tmp;
-	return (ray_data);
 }
 
 t_ray_data	*get_ray_data_to_draw_wall_line(t_game_data *game, float angle_tmp,
