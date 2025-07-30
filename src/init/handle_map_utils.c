@@ -6,7 +6,7 @@
 /*   By: sabellil <sabellil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 15:23:04 by sabellil          #+#    #+#             */
-/*   Updated: 2025/07/29 18:12:40 by sabellil         ###   ########.fr       */
+/*   Updated: 2025/07/30 14:39:05 by sabellil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ int	is_line_part_of_map(char *line)
 	return (0);
 }
 
+/*
+y >= 0 on ne va pas au dessus de la premiere ligne
+x >= 0 on ne va pas au dessus de la premiere colonne
+la ligne existe
+la colonne existe dans cette ligne 
+*/
 static int	is_inside(char **map, int y, int x)
 {
 	return (y >= 0 && x >= 0 && map[y] && x < (int)ft_strlen(map[y]));
